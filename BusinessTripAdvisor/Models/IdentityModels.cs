@@ -29,6 +29,7 @@ namespace BusinessTripAdvisor.Models
         public DbSet<CommentType> CommentTypes { get; set; }
         public DbSet<AccommodationType> AccommodationTypes { get; set; }
         public DbSet<TransportationType> TransportationTypes { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         public static ApplicationDbContext Create()
         {
