@@ -25,6 +25,8 @@ namespace BusinessTripAdvisor.Models
         {
         }
 
+        public DbSet<ProviderType> ProviderTypes { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
