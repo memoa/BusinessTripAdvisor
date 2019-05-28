@@ -185,6 +185,10 @@
     <Compile Include="Migrations\201905280820478_AddAccommodationTypes.Designer.cs">
       <DependentUpon>201905280820478_AddAccommodationTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905280828380_AddTransportationTypes.cs" />
+    <Compile Include="Migrations\201905280828380_AddTransportationTypes.Designer.cs">
+      <DependentUpon>201905280828380_AddTransportationTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccommodationType.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -192,6 +196,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProviderType.cs" />
+    <Compile Include="Models\TransportationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -277,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905280820478_AddAccommodationTypes.resx">
       <DependentUpon>201905280820478_AddAccommodationTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905280828380_AddTransportationTypes.resx">
+      <DependentUpon>201905280828380_AddTransportationTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

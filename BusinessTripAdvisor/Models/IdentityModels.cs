@@ -28,6 +28,7 @@ namespace BusinessTripAdvisor.Models
         public DbSet<ProviderType> ProviderTypes { get; set; }
         public DbSet<CommentType> CommentTypes { get; set; }
         public DbSet<AccommodationType> AccommodationTypes { get; set; }
+        public DbSet<TransportationType> TransportationTypes { get; set; }
 
         public static ApplicationDbContext Create()
         {
