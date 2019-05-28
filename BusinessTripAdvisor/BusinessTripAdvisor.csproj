@@ -177,8 +177,13 @@
     <Compile Include="Migrations\201905280743458_InitialMigration.Designer.cs">
       <DependentUpon>201905280743458_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905280816576_AddCommentTypes.cs" />
+    <Compile Include="Migrations\201905280816576_AddCommentTypes.Designer.cs">
+      <DependentUpon>201905280816576_AddCommentTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CommentType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProviderType.cs" />
@@ -261,6 +266,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905280743458_InitialMigration.resx">
       <DependentUpon>201905280743458_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905280816576_AddCommentTypes.resx">
+      <DependentUpon>201905280816576_AddCommentTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
