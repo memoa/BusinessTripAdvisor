@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LogIn/Register</title>
+    <link rel="stylesheet" href="Css/style.css">
+</head>
+<body id="body-index">
+    <div id="sign-up-div">
+      <h2 class="h2-index">Create Account</h2>
+      <form id="sign-up-form" class="form-index">
+        <label for="firstName">First Name <span class="required-span">*</span></label>
+        <input type="text" id="firstName" required>
+        <br>
+        <label for="firstName">Last Name <span class="required-span">*</span></label>
+        <input type="text" id="lastName" required>
+        <br>
+        <label for="email">Email <span class="required-span">*</span></label>
+        <input type="email" id="email" required>
+        <br>
+        <label for="phone">Phone number  <span class="required-span">*</span></label>
+        <input type="number" id="phone1" required>
+        <br>
+        <label for="address">Address  <span class="required-span">*</span></label>
+        <input type="text" id="address1" class="address" required>
+        <select name="city" id="city1" title="Select city" required>
+            <option value="" disabled selected>City...</option>
+            <option value="beograd">Beograd</option>
+            <option value="novi_sad">Novi sad</option>
+            <option value="nis">Niš</option>
+        </select>
+        <br>
+        <label for="password">Password <span class="required-span">*</span></label>
+            <input type="password" id="password" minlength="5" title="Must contain at least 5 characters" required>
+            <br>
+            <label for="confirmPassword">Confirm password <span class="required-span">*</span></label>
+            <input type="password" id="confirmPassword" minlength="5" required>
+            <br>
+
+            <button type="submit" id="btn-sign-up" class="btn-main">Sign up</button>
+            <p>Already registred? <button class="btn-text" id="btn-to-log-in">Log in</button></p>
+      </form>
+    </div>
+    <div id="log-in-div">
+        <h2 class="h2-index">Log in</h2>
+        <form id="log-in-form" class="form-index">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+            <br>
+            <label for="password1">Password</label>
+            <input type="password" id="password" minlength="5" required>
+
+            <button type="submit" id="btn-log-in" class="btn-main">Log in</button>
+            <p>Not registred? <button class="btn-text" id="btn-to-sign-up">Sign up</button></p>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

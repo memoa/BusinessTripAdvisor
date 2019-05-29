@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+
+*{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+#body-index{
+    border: 0;
+    margin: 0;
+    font-family: 'Titillium Web', sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("../img/adventure-camera-coffee-1051075.jpg");
+    color: white;
+    background-size: cover;
+    background-position: top center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sign-up-div,
+#log-in-div {
+    width: 30%;
+    background-color: transparent;
+    margin: 3rem auto;
+    padding: 1rem;
+    border: 0.2rem solid black;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.7), 0 2rem 2rem 0 rgba(0, 0, 0, 0.7);
+}
+#log-in-div {
+    display: none;
+}
+.h2-index {
+    margin-bottom: 2rem;
+    color: orange;
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0.2rem 0.2rem 0.4rem rgba(70, 70, 70, 0.5);
+}
+form.form-index {
+    width: 80%;
+    margin: 1rem auto;
+}
+form.form-index label {
+    display: block;
+    font-size: 1.4rem;
+}
+.required-span {
+    color: red;
+}
+form.form-index input {
+    width: 100%;
+    height: 2.4rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+    margin: 0.2rem 1rem 1rem 0;
+    padding: 0.2rem;
+    border: none;
+    border-bottom: 0.2rem solid white;
+    background-color: transparent;
+    outline: none;
+}
+form.form-index input.address {
+    width: 66%;
+    margin-right: 0;
+    padding-right: 0;
+}
+form.form-index select {
+    width: 33%;
+    height: 2.4rem;
+    position: relative;
+    bottom: -0.1rem;
+    left: -0.3rem;
+    font-size: 1.6rem;
+    background-color: transparent;
+    border: 0.2rem solid white;
+    border-radius: 1rem 1rem 1rem 0;
+    outline: none;
+}
+form.form-index select option {
+    background-color: white;
+}
+form.form-index input:focus { border-bottom: 0.3rem solid orange }
+form.form-index select:focus { border: 0.3rem solid orange }
+
+form.form-index input[type=number]::-webkit-inner-spin-button, 
+form.form-index input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.btn-main {
+    display: block;
+    height: 3.6rem;
+    width: 12rem;
+    margin: 1.2rem auto;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, #144E79, #0D324D);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
+}
+.btn-main:hover,
+.btn-main:active {
+    background-image: linear-gradient(to right, #0F3959, #0A2539);
+    color: orange;
+    box-shadow: 0.7rem 0.7rem 0.9rem 0 rgba(0, 0, 0, .5);
+    transform: scale(1.05);
+    transition-duration: .1s;
+}
+.btn-text {
+    background-color: transparent;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+}
+.btn-text:hover,
+.btn-text:active {
+    color: orange;
+}
+form.form-index p {
+    font-size: 1.4rem;
+    text-align: center;
+}
