@@ -13,7 +13,7 @@
     font-family: 'Titillium Web', sans-serif;
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("../img/adventure-camera-coffee-1051075.jpg");
+    background: linear-gradient( rgba(218, 213, 213, 0.7), rgba(218, 213, 213, 0.7) ), url("../img/adventure-camera-coffee-1051075.jpg");
     color: white;
     background-size: cover;
     background-position: top center;
@@ -37,7 +37,7 @@
 }
 .h2-index {
     margin-bottom: 2rem;
-    color: orange;
+    color: #0e89a5;
     font-size: 2.4rem;
     font-weight: bold;
     text-align: center;
@@ -112,7 +112,7 @@ form.form-index input[type=number]::-webkit-outer-spin-button {
 .btn-main:hover,
 .btn-main:active {
     background-image: linear-gradient(to right, #0F3959, #0A2539);
-    color: orange;
+    color: #0e89a5;
     box-shadow: 0.7rem 0.7rem 0.9rem 0 rgba(0, 0, 0, .5);
     transform: scale(1.05);
     transition-duration: .1s;
@@ -126,7 +126,7 @@ form.form-index input[type=number]::-webkit-outer-spin-button {
 }
 .btn-text:hover,
 .btn-text:active {
-    color: orange;
+    color: #0e89a5;
 }
 form.form-index p {
     font-size: 1.4rem;

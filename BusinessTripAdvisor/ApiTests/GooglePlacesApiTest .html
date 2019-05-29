@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=for, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="https://maps.googleapis.com/maps/api/place/autocomplete/json" target="_blank">
+        Input: <input type="text" name="input">
+        Types: <input type="text" name="types">
+        Language: <input type="text" name="language">
+        Key: <input type="text" name="key">
+        <input type="submit">
+    </form>
+    <p id="demo"></p>
+    <ul id="lista"></ul>
+    <button onclick="loadDoc()">Klik</button>
+    <script>
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var JSonString = this.responseText;
+                    document.getElementById("demo").innerHTML = JSonString;
+                    var places = JSON.parse(JSonString);
+                    document.getElementById("demo").innerHTML = places.status;
+                    for (var elem in places.predictions) {
+                        var newLiElem = document.createElement("li");
+                        newLiElem.innerHTML = places.predictions[elem].description;
+                        //document.getElementById("demo").innerHTML = elem.length;
+                        var parent = document.getElementById("lista");
+                        parent.appendChild(newLiElem);
+                    }
+                }
+            }
+            xhttp.open("GET", "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Vict&types=geocode&language=fr&key=AIzaSyDtjy5RN4jz4qg92Y4iwUj-vV8OTrxHy3E", true);
+            xhttp.send();
+        };
+        function loadDoc2() {
+            var niz = ["fdsfd", "gffghfgf", "yeytyr"];
+            for (var i in niz) {
+                var newLiElem = document.createElement("li");
+                newLiElem.innerHTML = niz[i];
+                var parent = document.getElementById("lista");
+                parent.appendChild(newLiElem);
+            }
+        }
+    </script>
+</body>
+</html>
