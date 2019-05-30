@@ -211,7 +211,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApiTests\GooglePlacesApiTest .html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -219,7 +218,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="FrontEnd\BTA\Css\homeStyle.css" />
-    <Content Include="FrontEnd\BTA\Css\signIn.css" />
     <Content Include="FrontEnd\BTA\Css\style.css" />
     <Content Include="FrontEnd\BTA\Home.html" />
     <Content Include="FrontEnd\BTA\img\adult-background-close-up-1079033.jpg" />
@@ -228,14 +226,11 @@
     <Content Include="FrontEnd\BTA\img\adventure-blur-close-up-346885.jpg" />
     <Content Include="FrontEnd\BTA\img\adventure-camera-coffee-1051075.jpg" />
     <Content Include="FrontEnd\BTA\img\art-camera-journey-970203.jpg" />
-    <Content Include="FrontEnd\BTA\img\icon.jpg" />
     <Content Include="FrontEnd\BTA\img\icons8-facebook-circled-48.png" />
     <Content Include="FrontEnd\BTA\img\icons8-instagram-48.png" />
     <Content Include="FrontEnd\BTA\img\icons8-twitter-circled-48.png" />
-    <Content Include="FrontEnd\BTA\img\images.png" />
     <Content Include="FrontEnd\BTA\index.html" />
     <Content Include="FrontEnd\BTA\script.js" />
-    <Content Include="FrontEnd\BTA\SignIn.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
