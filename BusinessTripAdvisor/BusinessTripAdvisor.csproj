@@ -201,14 +201,6 @@
     <Compile Include="Migrations\201905311014074_AddAccomodation.Designer.cs">
       <DependentUpon>201905311014074_AddAccomodation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905311048234_AddCityLifeFeedback.cs" />
-    <Compile Include="Migrations\201905311048234_AddCityLifeFeedback.Designer.cs">
-      <DependentUpon>201905311048234_AddCityLifeFeedback.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905311050016_DeletedCityLifeFeedback.cs" />
-    <Compile Include="Migrations\201905311050016_DeletedCityLifeFeedback.Designer.cs">
-      <DependentUpon>201905311050016_DeletedCityLifeFeedback.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201905311050425_AddCityLifeFeedback1.cs" />
     <Compile Include="Migrations\201905311050425_AddCityLifeFeedback1.Designer.cs">
       <DependentUpon>201905311050425_AddCityLifeFeedback1.cs</DependentUpon>
@@ -357,12 +349,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905311014074_AddAccomodation.resx">
       <DependentUpon>201905311014074_AddAccomodation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905311048234_AddCityLifeFeedback.resx">
-      <DependentUpon>201905311048234_AddCityLifeFeedback.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905311050016_DeletedCityLifeFeedback.resx">
-      <DependentUpon>201905311050016_DeletedCityLifeFeedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905311050425_AddCityLifeFeedback1.resx">
       <DependentUpon>201905311050425_AddCityLifeFeedback1.cs</DependentUpon>
