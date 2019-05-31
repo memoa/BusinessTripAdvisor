@@ -31,6 +31,7 @@ namespace BusinessTripAdvisor.Models
         public DbSet<TransportationType> TransportationTypes { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<Accommodation> Accommodations { get; set; }
 
         public static ApplicationDbContext Create()
         {
