@@ -25,12 +25,10 @@ namespace BusinessTripAdvisor.Models
         {
         }
 
-        public DbSet<ProviderType> ProviderTypes { get; set; }
         public DbSet<CommentType> CommentTypes { get; set; }
         public DbSet<AccommodationType> AccommodationTypes { get; set; }
         public DbSet<TransportationType> TransportationTypes { get; set; }
         public DbSet<City> Cities { get; set; }
-        public DbSet<UserType> UserTypes { get; set; }
         public DbSet<Accommodation> Accommodations { get; set; }
         public DbSet<CityLIfeFeedback> CityLIfeFeedbacks { get; set; }
         public DbSet<Tag> Tags { get; set; }
