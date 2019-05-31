@@ -35,6 +35,7 @@ namespace BusinessTripAdvisor.Models
         public DbSet<CityLIfeFeedback> CityLIfeFeedbacks { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<AccommodationFeedback> AccommodationFeedbacks { get; set; }
+        public DbSet<Provider> Providers { get; set; }
 
         public static ApplicationDbContext Create()
         {
