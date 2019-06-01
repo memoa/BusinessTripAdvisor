@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BTA | Accommodation</title>
+    <script
+    src="https://code.jquery.com/jquery-3.4.0.js"
+    integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+    crossorigin="anonymous">
+</script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="Css/Accommodation.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/966e3b6ec4.js"></script>
+</head>
+<body>
+    <div class="komplet">
+        <header>
+            <nav>
+                    <div class="menu-icon">
+                            <i class="fa fa-bars fa-2x"></i>
+                        </div>
+                <div class="logo">
+                     Business Trip Advisor
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="#">Home</a> </li>
+                        <li><a href="#">Life In Different Countries</a> </li>
+                        <li><a href="#">Accommodation</a> </li>
+                        <li><a href="#">Transportation</a> </li>
+                        <li><a href="#">Feedbacks</a> </li>
+                        <li><a href="#">Providers</a> </li>
+                        <li><a href="#">LogOut</a> </li>
+                        <li><a href="#"><i class="fas fa-plus-square fa-2x"></i></a></li>
+                    </ul>
+                    
+                </div>
+                
+            </nav>
+            <div class="choosecity">
+                <span>
+                    <p>Where to go ?</p>
+                    <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list">
+                </span>
+            </div>
+        </header>
+        <div class="category">
+            <div class="middle">
+                <a class="but" href="#">
+                      <i class="fas fa-hotel"></i>
+                      <p class="ctg">Hotel</p>
+                      
+                </a>
+                <a class="but" href="#">
+                    <i class="fas fa-door-open"></i>
+                      <p class="ctg">Hostel</p>
+                </a>
+                <a class="but" href="#">
+                    <i class="fas fa-building"></i>
+                      <p class="ctg">Apartman</p>
+                </a>
+                <a class="but" href="#">
+                      <i class="fas fa-home"></i>
+                      <p class="ctg">House</p>
+                </a>
+            </div>
+          </div>
+          <div class="statment">
+            <h1>Choose your accommodation with</h1><br>
+            <h1>Bussines Trip Advisor</h1>
+            <p class="fewwords">
+                  Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+            </p>
+        </div>
+        <div id="ponuda">
+            <div class="card" style="width: 35rem;">
+                    <img class="card-img-top" src="img/budapest1.jpg" alt="Card image cap">
+                    <div class="card-body">
+                      <p class="card-text">Budapest great place for adventure. 
+                          Fantastic cousine and friendly people
+                          Lorem Ipsum is simply dummy text of the 
+                          printing and typesetting industry. 
+                          Lorem Ipsum has been the industry's 
+                          standard dummy text ever since the 1500s, 
+                          when an unknown printer took a galley
+                        </p>
+                    </div>
+                  </div>
+    
+                  <div class="card" style="width: 35rem;">
+                        <img class="card-img-top" src="img/dublin1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                          <p class="card-text">Dublin great place for adventure. 
+                              Fantastic cousine and friendly people
+                              Lorem Ipsum is simply dummy text of the 
+                              printing and typesetting industry. 
+                              Lorem Ipsum has been the industry's 
+                              standard dummy text ever since the 1500s, 
+                              when an unknown printer took a galley
+                            </p>
+                        </div>
+                      </div>
+    
+                      <div class="card" style="width: 35rem;">
+                            <img class="card-img-top" src="img/rabat1.jpg" alt="Card image cap">
+                            <div class="card-body">
+                              <p class="card-text">Rabat great place for adventure. 
+                                  Fantastic cousine and friendly people
+                                  Lorem Ipsum is simply dummy text of the 
+                                  printing and typesetting industry. 
+                                  Lorem Ipsum has been the industry's 
+                                  standard dummy text ever since the 1500s, 
+                                  when an unknown printer took a galley
+                                </p>
+                            </div>
+                          </div>
+    
+                          <div class="card" style="width: 35rem;">
+                                <img class="card-img-top" src="img/lisabon1.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                  <p class="card-text">Lisabon great place for adventure. 
+                                      Fantastic cousine and friendly people
+                                      Lorem Ipsum is simply dummy text of the 
+                                      printing and typesetting industry. 
+                                      Lorem Ipsum has been the industry's 
+                                      standard dummy text ever since the 1500s, 
+                                      when an unknown printer took a galley
+                                    </p>
+                                </div>
+                              </div>
+                            </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        //toogle button
+        $(document).ready(function(){
+            $(".menu-icon").on("click",function(){
+                $("nav ul").toggleClass("showing");
+            });
+        });
+        
+        //scrolling effect
+        $(window).on("scroll", function(){
+            if($(window).scrollTop()){
+                $('nav').addClass('black');
+            }
+            else{
+                $('nav').removeClass('black');
+            }
+        })
+
+        </script>
+</body>
+</html>

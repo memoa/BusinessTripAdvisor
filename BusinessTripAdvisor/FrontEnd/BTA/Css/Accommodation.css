@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+*{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #f2f2f2;
+}
+.komplet{
+    font-family: 'Titillium Web', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+header{
+    border: 0;
+    margin: 0;
+    width: 100%;
+    min-height: 70vh;
+    background: linear-gradient( rgba(218, 213, 213, 0.7), rgba(218, 213, 213, 0.7) ), url("../img/hotel-man.jpg");
+    color: white;
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-icon{
+    width: 100%;
+    background: #000;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 15px 24px;
+    cursor: pointer;
+    color: #fff;
+    display: none;
+}
+.logo{
+    position: absolute;
+    float: left;
+    margin: 16px 30px;
+    color: #0e89a5;
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+nav ul 
+{
+    list-style: none;
+    background: linear-gradient( #0e89a5(218, 213, 213, 0.7), #0e89a5(218, 213, 213, 0.7) );
+    overflow: hidden;
+    color: white;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+    transition: 1s;
+}
+nav.black ul{
+    background: #000;
+}
+
+nav ul li{
+    display: inline-block;
+    padding: 20px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #0e89a5;
+    font-size: 16px;
+}
+.choosecity{
+    height: 15vh;
+    width: 60%;
+    background: linear-gradient( rgba(14, 137, 165, 0.7), rgba(14, 137, 165, 0.7) );
+    line-height: 15vh;
+    padding: 0 2rem 0 2rem;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
+  
+}
+span{
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 2rem;
+    width: 100%;
+}
+p{
+    margin: 0;
+    padding: 0 20px 0 0;
+    border: 0;
+    display: inline-block;
+}
+
+#town{
+    width: 70%;
+    height: 2rem;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.middle{
+    position: absolute;
+    top: 70%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    text-align: center;
+}
+.but{
+    display: inline-block;
+    width: 7rem;
+    height: 7rem;
+    background-color: #0e89a5;
+    margin: 10px;
+    border-radius: 30%;
+    box-shadow: 0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
+    color: white;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+
+}
+.but i {
+   
+    font-size:  26px;
+    transition: 0.2s linear;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 0 0 0;
+    text-decoration: none;
+}
+.but:hover i{
+    transform: scale(1.3);
+    color: #0e89a5;
+}
+.but:hover .ctg{
+    color: #0e89a5;
+    transform: scale(1.1);
+}
+.but::before{
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: white;
+    transform: rotate(45deg);
+    left: -110%;
+    top: 90%;
+}
+.but:hover::before{
+    animation: aaa 0.7s 1;
+    top: -10%;
+    left: -10%;
+}
+@keyframes aaa{
+    0%{
+        left: -110%;
+        top: 90%;
+    }
+    50%{
+        left: 10%;
+        top: -30%;
+    }
+    100%{
+        left: -10%;
+        top: -10%;
+    }
+}
+.ctg{
+    color: white;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.statment{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 5rem 0;
+    flex-direction: column;
+    letter-spacing: 0.2rem;
+}
+h1{
+    padding-bottom: 1rem;
+}
+#ponuda{
+    padding-top: 40px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+    border: 1px solid black;
+}
+.card{
+    margin-bottom: 40px;
+}
+.menu > ul > li > a > i{
+    position: absolute;
+    right: 1.5rem;
+}
+.menu > ul > li > a > i:hover{
+    color: green;
+}
