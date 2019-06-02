@@ -95,6 +95,7 @@
       </p>
     </div>
     <div id="ponuda">
+      @*
       <div class="card" style="width: 35rem;">
         <img class="card-img-top" src="~/FrontEnd/BTA/img/budapest1.jpg" alt="Card image cap" />
         <div class="card-body">
@@ -139,21 +140,7 @@
           </p>
         </div>
       </div>
-
-      <div class="card" style="width: 35rem;">
-        <img class="card-img-top" src="~/FrontEnd/BTA/img/lisabon1.jpg" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text">
-            Lisabon great place for adventure.
-            Fantastic cousine and friendly people
-            Lorem Ipsum is simply dummy text of the
-            printing and typesetting industry.
-            Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s,
-            when an unknown printer took a galley
-          </p>
-        </div>
-      </div>
+      *@
     </div>
   </div>
 
@@ -176,6 +163,20 @@
       }
     })
 
+    $.ajax({
+      url: "/api/cities",
+      method: "GET",
+      success: function (responseData) {
+        if (responseData.length == 0)
+          $("#ponuda").append("<p>There are no cities in database.");
+        else {
+          for (var i = 0; i < responseData.length; ++i) {
+            var city = responseData[i];
+            $("#ponuda").append(`<div class="card" style="width: 35rem;"><img class="card-img-top" src="/FrontEnd/BTA/img/lisabon1.jpg" alt="Card image cap"><div class="card-body"><h5 class="card-title">${city.name}</h5><p class="card-text">${city.description}</p></div></div>`);
+          }
+        }
+      }
+    });
   </script>
 </body>
 </html>

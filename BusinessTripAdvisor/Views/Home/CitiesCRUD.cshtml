@@ -24,7 +24,7 @@
         $("#body").append(`<table id="table" class="table"><tr><th>Id</th><th>Name</th><th>Description</th><th>Postal code</th><th></th><th></th></tr></table>`);
         for (var i = 0; i < responseData.length; ++i) {
           var record = responseData[i];
-          $("#table").append(`<tr><td>${record.id}</td><td>${record.name}</td><td>${record.description}</td><td>${record.postalCode}</td><td onclick="editCity(${record.id})">edit</td><td onclick="deleteCity(${record.id})">delete</td></tr>`);
+          $("#table").append(`<tr><td>${record.id}</td><td>${record.name}</td><td>${record.description}</td><td>${record.postalCode}</td><td><button class="btn btn-primary" onclick="editCity(${record.id})">edit</button></td><td><button class="btn btn-primary" onclick="deleteCity(${record.id})">delete</button></td></tr>`);
         }
       },
       error: function (jqXHR, textStatus, errorThrown) {
