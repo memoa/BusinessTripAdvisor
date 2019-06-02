@@ -236,6 +236,10 @@
     <Compile Include="Migrations\201905311711371_DeleteUserTypeAndProviderType.Designer.cs">
       <DependentUpon>201905311711371_DeleteUserTypeAndProviderType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906021058500_DeleteCommentTypeModel.cs" />
+    <Compile Include="Migrations\201906021058500_DeleteCommentTypeModel.Designer.cs">
+      <DependentUpon>201906021058500_DeleteCommentTypeModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationFeedback.cs" />
@@ -243,7 +247,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CityLifeFeedback.cs" />
-    <Compile Include="Models\CommentType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Provider.cs" />
@@ -381,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905311711371_DeleteUserTypeAndProviderType.resx">
       <DependentUpon>201905311711371_DeleteUserTypeAndProviderType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021058500_DeleteCommentTypeModel.resx">
+      <DependentUpon>201906021058500_DeleteCommentTypeModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
