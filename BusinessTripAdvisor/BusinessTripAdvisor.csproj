@@ -328,6 +328,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\CitiesCRUD.cshtml" />
+    <Content Include="Views\Home\LifeInDifferentCountries.cshtml" />
+    <Content Include="Views\Home\Accommodations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -31,5 +31,15 @@ namespace BusinessTripAdvisor.Controllers
         {
             return View();
         }
+
+        public ActionResult LifeInDifferentCountries()
+        {
+            return View();
+        }
+
+        public ActionResult Accommodations()
+        {
+            return View();
+        }
     }
 }
