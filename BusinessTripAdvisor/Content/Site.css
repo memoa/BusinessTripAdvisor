@@ -22,3 +22,12 @@ select,
 textarea {
     max-width: 280px;
 }
+
+input.error, 
+textarea.error {
+  border: 2px solid red;
+}
+
+label.error {
+  color: red;
+}
