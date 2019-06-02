@@ -26,5 +26,10 @@ namespace BusinessTripAdvisor.Controllers
 
             return View();
         }
+
+        public ActionResult CitiesCRUD()
+        {
+            return View();
+        }
     }
 }

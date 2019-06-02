@@ -1,0 +1,106 @@
+﻿
+@{
+  ViewBag.Title = "Cities CRUD";
+}
+
+<h2>Cities CRUD</h2>
+
+<div id="body"></div>
+
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+  $(document).ready(function () {
+    getCities();
+  });
+
+  function getCities() {
+    $("#body").empty()
+      .append(`<button class="btn btn-primary" onclick="newCity();">New city</button>`);
+    $.ajax({
+      url: "/api/cities",
+      method: "GET",
+      success: function (responseData, textStatus, jqXHR) {
+        $("#body").append(`<table id="table" class="table"><tr><th>Id</th><th>Name</th><th>Description</th><th>Postal code</th><th></th><th></th></tr></table>`);
+        for (var i = 0; i < responseData.length; ++i) {
+          var record = responseData[i];
+          $("#table").append(`<tr><td>${record.id}</td><td>${record.name}</td><td>${record.description}</td><td>${record.postalCode}</td><td onclick="editCity(${record.id})">edit</td><td onclick="deleteCity(${record.id})">delete</td></tr>`);
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        alert("Something wrong happend.");
+      }
+    });
+  }
+
+  function newCity() {
+    $("#body").empty()
+      .append(`<form id="form"><div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" class="form-control"/></div><div class="form-group"><label for="description">Description</label><input type="textarea" id="description" name="description" class="form-control"/></div><div class="form-group"><label for="postalCode">Postal code</label><input type="text" id="postalCode" name="postalCode" class="form-control"/></div><input type="submit" class="btn btn-primary" value="Save"/></form>`);
+    $("#form").submit(function (event) {
+      event.preventDefault();
+      $.ajax({
+        url: "/api/cities",
+        method: "POST",
+        data: {
+          name: $("#name").val(),
+          description: $("#description").val(),
+          postalCode: $("#postalCode").val()
+        },
+        success: function (responseData, textStatus, jqXHR) {
+          getCities();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("Something wrong happend.");
+        }
+      });
+    });
+  }
+
+  function editCity(id) {
+    $("#body").empty();
+    $("#body").append(`<form id="form"><div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" class="form-control"/></div><div class="form-group"><label for="description">Description</label><input type="textarea" id="description" name="description" class="form-control"/></div><div class="form-group"><label for="postalCode">Postal code</label><input type="text" id="postalCode" name="postalCode" class="form-control"/></div><input type="submit" class="btn btn-primary" value="Save"/></form>`);
+    $.ajax({
+      url: "/api/cities/" + id,
+      method: "GET",
+      success: function (responseData, textStatus, jqXHR) {
+        $("#name").attr("value", responseData.name);
+        $("#description").attr("value", responseData.description);
+        $("#postalCode").attr("value", responseData.postalCode);
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        alert("Something wrong happend.");
+      }
+    });
+    $("#form").submit(function (event) {
+      event.preventDefault();
+      $.ajax({
+        url: "/api/cities/" + id,
+        method: "PUT",
+        data: {
+          name: $("#name").val(),
+          description: $("#description").val(),
+          postalCode: $("#postalCode").val()
+        },
+        success: function (responseData, textStatus, jqXHR) {
+          getCities();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("Something wrong happend.");
+        }
+      });
+    });
+  }
+
+  function deleteCity(id) {
+    $.ajax({
+      url: "/api/cities/" + id,
+      method: "DELETE",
+      success: function (responseData, textStatus, jqXHR) {
+        getCities();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        alert("Something wrong happend.");
+      }
+    });
+  }
+</script>
