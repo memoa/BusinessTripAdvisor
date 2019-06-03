@@ -1,168 +1,218 @@
 ﻿
 @{
-  ViewBag.Title = "Cities CRUD";
+    ViewBag.Title = "Cities CRUD";
 }
 
 <h2>Cities CRUD</h2>
 
-<div id="body"></div>
+@*<div id="body"></div>*@
+
+<div id="tableDiv" style="display:none;">
+    <button class="btn btn-primary" onclick="newCity();">New city</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Postal code</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+<form id="form" method="POST">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="postalCode">Postal code</label>
+        <input type="text" id="postalCode" name="postalCode" class="form-control" />
+    </div>
+    <div class="btn-toolbar">
+        <input type="submit" class="btn btn-success" value="Save" />
+        <button class="btn btn-danger" onclick="getCities()">Discart changes</button>
+    </div>
+</form>
+
 
 @section scripts {
-@Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")
 
-<script>
-  // Dynamic Cities Table Backend View - dynamically creating HTML content,
-  //   table and form needed for interaction with database using jQuery
-  //   and AJAX for API calls
+    <script>
+        // Dynamic Cities Table Backend View - dynamically creating HTML content,
+        //   table and form needed for interaction with database using jQuery
+        //   and AJAX for API calls
 
-  // Read all cities from database after creating page
-  $(document).ready(function () {
-    getCities();
-  });
-
-  // READ : Get all cities from database using cities API, draw table in #body,
-  //   fill rows and columns with data
-  function getCities() {
-    // Empties #body and draws button New City
-    $("#body").empty()
-      .append(`<button class="btn btn-primary" onclick="newCity();">New city</button>`);
-    // Get all cities, table draw in #body
-    $.ajax({
-      url: "/api/cities",
-      method: "GET",
-      success: function (responseData, textStatus, jqXHR) {
-        // Cities get successfully, draw table header (city property names)
-        $("#body").append(`<table id="table" class="table"><tr><th>Id</th><th>Name</th><th>Description</th><th>Postal code</th><th></th><th></th></tr></table>`);
-        // Draw rows for each record in cities table, draw buttons edit and delete
-        for (var i = 0; i < responseData.length; ++i) {
-          var record = responseData[i];
-          $("#table").append(`<tr><td>${record.id}</td><td>${record.name}</td><td>${record.description}</td><td>${record.postalCode}</td><td><a class="btn-link" onclick="editCity(${record.id})">Edit</a></td><td><a class="btn-link" onclick="deleteCity(${record.id})">Delete</a></td></tr>`);
-        }
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        alert("Something wrong happend.");
-      }
-    });
-  }
-
-  // CREATE : Draw form for new city properties input, submit and put city in database over cities API
-  function newCity() {
-    // Empty #body and draw form inside
-    $("#body").empty()
-      .append(`<form id="form" method="POST"><div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" class="form-control"/></div><div class="form-group"><label for="description">Description</label><textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea></div><div class="form-group"><label for="postalCode">Postal code</label><input type="text" id="postalCode" name="postalCode" class="form-control"/></div><div class="btn-toolbar"><input type="submit" class="btn btn-success" value="Save"/><button class="btn btn-danger" onclick="getCities()">Discart changes</button></div></form>`);
-    // Client side validation rules
-    $("#form").validate({
-      rules: {
-        name: {
-          required: true,
-          maxlength: 50
-        },
-        description: {
-          required: true,
-          maxlength: 5000
-        },
-        postalCode: {
-          required: true,
-          number: true
-        }
-      }
-    });
-    // On submit : take values from form, put it in object and send that object to cities API
-    $(form).submit(function (event) {
-      event.preventDefault();
-      // If form is valid, send data to API
-      if ($("#form").valid()) {
-        $.ajax({
-          url: "/api/cities",
-          method: "POST",
-          data: {
-            name: $("#name").val(),
-            description: $("#description").val(),
-            postalCode: $("#postalCode").val()
-          },
-          success: function (responseData, textStatus, jqXHR) {
+        // Read all cities from database after creating page
+        $(document).ready(function () {
             getCities();
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            alert("Something wrong happend.");
-          }
         });
-      }
-    });
-  }
 
-  // UPDATE : Get city data from database with specific id, using cities API,
-  //   draw and fill form with that data, and send modified data to database, using cities API
-  function editCity(id) {
-    // Empty #body and draw form
-    $("#body").empty()
-      .append(`<form id="form" method="POST"><div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" class="form-control"/></div><div class="form-group"><label for="description">Description</label><textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea></div><div class="form-group"><label for="postalCode">Postal code</label><input type="text" id="postalCode" name="postalCode" class="form-control"/></div><div class="btn-toolbar"><input type="submit" class="btn btn-success" value="Save"/><button class="btn btn-danger" onclick="getCities()">Discart changes</button></div></form>`);
-    // Client side validation rules
-    $("#form").validate({
-      rules: {
-        name: {
-          required: true,
-          maxlength: 50
-        },
-        description: {
-          required: true,
-          maxlength: 5000
-        },
-        postalCode: {
-          required: true,
-          number: true
+        // READ : Get all cities from database using cities API, draw table in #body,
+        //   fill rows and columns with data
+        function getCities() {
+            $("#form").hide();
+            $("#tableDiv").show();
+            // Empties #body and draws button New City
+            //$("#body").empty()
+            //    .append(`<button class="btn btn-primary" onclick="newCity();">New city</button>`);
+            // Get all cities, table draw in #body
+            $.ajax({
+                url: "/api/cities",
+                method: "GET",
+                success: function (responseData, textStatus, jqXHR) {
+                    $("#tableBody").empty();
+                    // Cities get successfully, draw table header (city property names)
+                    //$("#body").append(`<table id="table" class="table"><tr><th>Id</th><th>Name</th><th>Description</th><th>Postal code</th><th></th><th></th></tr></table>`);
+                    // Draw rows for each record in cities table, draw buttons edit and delete
+                    for (var i = 0; i < responseData.length; ++i) {
+                        var record = responseData[i];
+                        $("#tableBody").append(`<tr><td>${record.id}</td><td>${record.name}</td><td>${record.description}</td><td>${record.postalCode}</td><td><a class="btn-link" onclick="editCity(${record.id})">Edit</a></td><td><a class="btn-link" onclick="deleteCity(${record.id})">Delete</a></td></tr>`);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Something wrong happend.");
+                }
+            });
         }
-      }
-    });
-    // Read city record from database using cities API and fill the form
-    $.ajax({
-      url: "/api/cities/" + id,
-      method: "GET",
-      success: function (responseData, textStatus, jqXHR) {
-        $("#name").attr("value", responseData.name);
-        $("#description").text(responseData.description);
-        $("#postalCode").attr("value", responseData.postalCode);
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        alert("Something wrong happend.");
-      }
-    });
-    // On submit : take values from form, put it in object and send that object to cities API
-    $("#form").submit(function (event) {
-      event.preventDefault();
-      // If form is valid, send data to API
-      if ($("#form").valid()) {
-        $.ajax({
-          url: "/api/cities/" + id,
-          method: "PUT",
-          data: {
-            name: $("#name").val(),
-            description: $("#description").val(),
-            postalCode: $("#postalCode").val()
-          },
-          success: function (responseData, textStatus, jqXHR) {
-            getCities();
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            alert("Something wrong happend.");
-          }
-        });
-      }
-    });
-  }
 
-  // DELETE : Delete record in database using cities API
-  function deleteCity(id) {
-    $.ajax({
-      url: "/api/cities/" + id,
-      method: "DELETE",
-      success: function (responseData, textStatus, jqXHR) {
-        getCities();
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        alert("Something wrong happend.");
-      }
-    });
-  }
-</script>
+        // CREATE : Draw form for new city properties input, submit and put city in database over cities API
+        function newCity() {
+            $("#name").val("");
+            $("#description").val("");
+            $("#postalCode").val("");
+            $("#tableDiv").hide();
+            $("#form").show();
+            // Empty #body and draw form inside
+            //$("#body").empty()
+            //    .append(`<form id="form" method="POST"><div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" class="form-control"/></div><div class="form-group"><label for="description">Description</label><textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea></div><div class="form-group"><label for="postalCode">Postal code</label><input type="text" id="postalCode" name="postalCode" class="form-control"/></div><div class="btn-toolbar"><input type="submit" class="btn btn-success" value="Save"/><button class="btn btn-danger" onclick="getCities()">Discart changes</button></div></form>`);
+            // Client side validation rules
+            $("#form").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        maxlength: 50
+                    },
+                    description: {
+                        required: true,
+                        maxlength: 5000
+                    },
+                    postalCode: {
+                        required: true,
+                        number: true
+                    }
+                }
+            });
+            // On submit : take values from form, put it in object and send that object to cities API
+            $(form).submit(function (event) {
+                event.preventDefault();
+                // If form is valid, send data to API
+                if ($("#form").valid()) {
+                    $.ajax({
+                        url: "/api/cities",
+                        method: "POST",
+                        data: {
+                            name: $("#name").val(),
+                            description: $("#description").val(),
+                            postalCode: $("#postalCode").val()
+                        },
+                        success: function (responseData, textStatus, jqXHR) {
+                            getCities();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert("Something wrong happend.");
+                        }
+                    });
+                }
+            });
+        }
+
+        // UPDATE : Get city data from database with specific id, using cities API,
+        //   draw and fill form with that data, and send modified data to database, using cities API
+        function editCity(id) {
+            $("#name").val("");
+            $("#description").val("");
+            $("#postalCode").val("");
+            $("#tableDiv").hide();
+            $("#form").show();
+            // Empty #body and draw form
+            //$("#body").empty()
+            //    .append(`<form id="form" method="POST"><div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" class="form-control"/></div><div class="form-group"><label for="description">Description</label><textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea></div><div class="form-group"><label for="postalCode">Postal code</label><input type="text" id="postalCode" name="postalCode" class="form-control"/></div><div class="btn-toolbar"><input type="submit" class="btn btn-success" value="Save"/><button class="btn btn-danger" onclick="getCities()">Discart changes</button></div></form>`);
+            // Client side validation rules
+            $("#form").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        maxlength: 50
+                    },
+                    description: {
+                        required: true,
+                        maxlength: 5000
+                    },
+                    postalCode: {
+                        required: true,
+                        number: true
+                    }
+                }
+            });
+            // Read city record from database using cities API and fill the form
+            $.ajax({
+                url: "/api/cities/" + id,
+                method: "GET",
+                success: function (responseData, textStatus, jqXHR) {
+                    $("#name").val(responseData.name);
+                    $("#description").val(responseData.description);
+                    $("#postalCode").val(responseData.postalCode);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Something wrong happend.");
+                }
+            });
+            // On submit : take values from form, put it in object and send that object to cities API
+            $("#form").submit(function (event) {
+                event.preventDefault();
+                // If form is valid, send data to API
+                if ($("#form").valid()) {
+                    $.ajax({
+                        url: "/api/cities/" + id,
+                        method: "PUT",
+                        data: {
+                            name: $("#name").val(),
+                            description: $("#description").val(),
+                            postalCode: $("#postalCode").val()
+                        },
+                        success: function (responseData, textStatus, jqXHR) {
+                            getCities();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert("Something wrong happend.");
+                        }
+                    });
+                }
+            });
+        }
+
+        // DELETE : Delete record in database using cities API
+        function deleteCity(id) {
+            $.ajax({
+                url: "/api/cities/" + id,
+                method: "DELETE",
+                success: function (responseData, textStatus, jqXHR) {
+                    getCities();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Something wrong happend.");
+                }
+            });
+        }
+    </script>
 }
