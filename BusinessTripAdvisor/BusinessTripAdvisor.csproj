@@ -275,6 +275,7 @@
     <Content Include="FrontEnd\BTA\img\icons8-instagram-48.png" />
     <Content Include="FrontEnd\BTA\img\icons8-twitter-circled-48.png" />
     <Content Include="FrontEnd\BTA\index.html" />
+    <Content Include="FrontEnd\BTA\Linkovi.html" />
     <Content Include="FrontEnd\BTA\script.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
