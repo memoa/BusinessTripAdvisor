@@ -5,214 +5,225 @@
 
 <h2>Cities CRUD</h2>
 
-@*<div id="body"></div>*@
+<!-- Cities Table -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal" onclick="clearForm();">New city</button>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Postal code</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+    <!-- Data will be added dynamically, on cities API call -->
+    <!-- Loading Table Spinner -->
+    <tr id="loadingTableSpinner">
+      <td colspan="6">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Loading table...
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<div id="tableDiv" style="display:none;">
-  <button class="btn btn-primary" onclick="newCity();">New city</button>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Postal code</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
+<!-- City Form Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formModalLabel">City form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form content -->
+        <form id="form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="postalCode">Postal code</label>
+            <input type="text" id="postalCode" name="postalCode" class="form-control" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="formSubmit()">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<form id="form" method="POST">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" class="form-control" />
+<!-- Confirm Delete City Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Delete city</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this city?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteCity();">Yes</button>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="postalCode">Postal code</label>
-    <input type="text" id="postalCode" name="postalCode" class="form-control" />
-  </div>
-  <div class="btn-toolbar">
-    <input type="submit" class="btn btn-success" value="Save" />
-    <button class="btn btn-danger" onclick="getCities()">Discart changes</button>
-  </div>
-</form>
-
+</div>
 
 @section scripts {
-  @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryval")
 
-  <script>
-    // Dynamic Cities Table Backend View - dynamically creating HTML content,
-    //   table and form needed for interaction with database using jQuery
-    //   and AJAX for API calls
+<script>
+  // Dynamic Cities Table Backend View - using bootstrap, jQuery and cities API
+  // When document is ready, data about cities is taken from API and put in the table
+  // Spinner is rotating while waiting for API to give data
+  // If New city or Edit button is clicked, the modal form is shown
+  // In form modal, Save changes button valdates and submits form
+  // On exit from form modal all validation error messages will be cleared
+  // In table, when delete button is clicked, confirm delete modal will be shown
+  // and only if clicked on Yes button, record will be deleted
 
-    // Read all cities from database after creating page
-    $(document).ready(function () {
-      getCities();
+  // Global variables
+  var id; // id of current record
+  var validator; // container of validation rules, used to reset error messages after validation
+
+  // Read all cities from database after creating page
+  $(document).ready(function () {
+    getCities(); // read all cities from API and put data in table
+
+    // Client side validation rules
+    validator = $("#form").validate({
+      rules: {
+        name: {
+          required: true,
+          maxlength: 50
+        },
+        description: {
+          required: true,
+          maxlength: 5000
+        },
+        postalCode: {
+          required: true,
+          number: true
+        }
+      }
     });
+  });
 
-    // READ : Get all cities from database using cities API, draw table in #body,
-    //   fill rows and columns with data
-    function getCities() {
-      $("#form").hide();
-      $("#tableDiv").show();
-      // Empties #body and draws button New City
-      //$("#body").empty()
-      //    .append(`<button class="btn btn-primary" onclick="newCity();">New city</button>`);
-      // Get all cities, table draw in #body
+  // READ : Get all cities from database using cities API, draw table in #body,
+  //   fill rows and columns with data
+  function getCities() {
+    $("#loadingTableSpinner").show();
+    // Get all cities, table draw in #body
+    $.ajax({
+      url: "/api/cities",
+      method: "GET",
+      success: function (responseData, textStatus, jqXHR) {
+        $("#tableBody tr.record").remove();
+        // Draw rows for each record in cities table, draw buttons edit and delete
+        for (var i = 0; i < responseData.length; ++i) {
+          var record = responseData[i];
+          $("#tableBody").append(`<tr class="record"><td>${record.id}</td><td>${record.name}</td><td>${record.description}</td><td>${record.postalCode}</td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal" onclick="fillForm(${record.id});">Edit</button></td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" onclick="setId(${record.id});">Delete</button></td></tr>`);
+        }
+        $("#loadingTableSpinner").hide();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        $("#loadingTableSpinner").hide();
+        alert("Something wrong happend.");
+      }
+    });
+  }
+
+  // Clear data in form
+  function clearForm() {
+    id = null; // id is not set, for submitting new city
+    $("#name").val("");
+    $("#description").val("");
+    $("#postalCode").val("");
+  }
+
+  // Fill the form with data taken from API
+  function fillForm(recordId) {
+    id = recordId; // set current id, for submitting modified city
+    // Read city record from database using cities API and fill the form
+    $.ajax({
+      url: "/api/cities/" + id,
+      method: "GET",
+      success: function (responseData, textStatus, jqXHR) {
+        $("#name").val(responseData.name);
+        $("#description").val(responseData.description);
+        $("#postalCode").val(responseData.postalCode);
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        alert("Something wrong happend.");
+      }
+    });
+  }
+
+  // Check if form is valid and update city data or create new city
+  // If global variable id == null -> create new city
+  // else, update city with id same as global variable id
+  function formSubmit() {
+    // If form is valid, send data to API
+    if ($("#form").valid()) {
       $.ajax({
-        url: "/api/cities",
-        method: "GET",
+        url: "/api/cities/" + (id === null ? "" : id),
+        method: id === null ? "POST" : "PUT",
+        data: {
+          name: $("#name").val(),
+          description: $("#description").val(),
+          postalCode: $("#postalCode").val()
+        },
         success: function (responseData, textStatus, jqXHR) {
-          $("#tableBody").empty();
-          // Cities get successfully, draw table header (city property names)
-          //$("#body").append(`<table id="table" class="table"><tr><th>Id</th><th>Name</th><th>Description</th><th>Postal code</th><th></th><th></th></tr></table>`);
-          // Draw rows for each record in cities table, draw buttons edit and delete
-          for (var i = 0; i < responseData.length; ++i) {
-            var record = responseData[i];
-            $("#tableBody").append(`<tr><td>${record.id}</td><td>${record.name}</td><td>${record.description}</td><td>${record.postalCode}</td><td><a class="btn-link" onclick="editCity(${record.id})">Edit</a></td><td><a class="btn-link" onclick="deleteCity(${record.id})">Delete</a></td></tr>`);
-          }
+          getCities(); // read all cities from API and put data in table
         },
         error: function (jqXHR, textStatus, errorThrown) {
           alert("Something wrong happend.");
         }
       });
+      $("#formModal").modal("hide");
     }
+  }
 
-    // CREATE : Draw form for new city properties input, submit and put city in database over cities API
-    function newCity() {
-      $("#name").val("");
-      $("#description").val("");
-      $("#postalCode").val("");
-      $("#tableDiv").hide();
-      $("#form").show();
-      // Empty #body and draw form inside
-      //$("#body").empty()
-      //    .append(`<form id="form" method="POST"><div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" class="form-control"/></div><div class="form-group"><label for="description">Description</label><textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea></div><div class="form-group"><label for="postalCode">Postal code</label><input type="text" id="postalCode" name="postalCode" class="form-control"/></div><div class="btn-toolbar"><input type="submit" class="btn btn-success" value="Save"/><button class="btn btn-danger" onclick="getCities()">Discart changes</button></div></form>`);
-      // Client side validation rules
-      $("#form").validate({
-        rules: {
-          name: {
-            required: true,
-            maxlength: 50
-          },
-          description: {
-            required: true,
-            maxlength: 5000
-          },
-          postalCode: {
-            required: true,
-            number: true
-          }
-        }
-      });
-      // On submit : take values from form, put it in object and send that object to cities API
-      $(form).submit(function (event) {
-        event.preventDefault();
-        // If form is valid, send data to API
-        if ($("#form").valid()) {
-          $.ajax({
-            url: "/api/cities",
-            method: "POST",
-            data: {
-              name: $("#name").val(),
-              description: $("#description").val(),
-              postalCode: $("#postalCode").val()
-            },
-            success: function (responseData, textStatus, jqXHR) {
-              getCities();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              alert("Something wrong happend.");
-            }
-          });
-        }
-      });
-    }
+  // Reset validation error messages in form after closing form modal
+  $('#formModal').on('hide.bs.modal', function (e) {
+    validator.resetForm();
+  })
 
-    // UPDATE : Get city data from database with specific id, using cities API,
-    //   draw and fill form with that data, and send modified data to database, using cities API
-    function editCity(id) {
-      $("#name").val("");
-      $("#description").val("");
-      $("#postalCode").val("");
-      $("#tableDiv").hide();
-      $("#form").show();
-      // Empty #body and draw form
-      //$("#body").empty()
-      //    .append(`<form id="form" method="POST"><div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" class="form-control"/></div><div class="form-group"><label for="description">Description</label><textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea></div><div class="form-group"><label for="postalCode">Postal code</label><input type="text" id="postalCode" name="postalCode" class="form-control"/></div><div class="btn-toolbar"><input type="submit" class="btn btn-success" value="Save"/><button class="btn btn-danger" onclick="getCities()">Discart changes</button></div></form>`);
-      // Client side validation rules
-      $("#form").validate({
-        rules: {
-          name: {
-            required: true,
-            maxlength: 50
-          },
-          description: {
-            required: true,
-            maxlength: 5000
-          },
-          postalCode: {
-            required: true,
-            number: true
-          }
-        }
-      });
-      // Read city record from database using cities API and fill the form
-      $.ajax({
-        url: "/api/cities/" + id,
-        method: "GET",
-        success: function (responseData, textStatus, jqXHR) {
-          $("#name").val(responseData.name);
-          $("#description").val(responseData.description);
-          $("#postalCode").val(responseData.postalCode);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          alert("Something wrong happend.");
-        }
-      });
-      // On submit : take values from form, put it in object and send that object to cities API
-      $("#form").submit(function (event) {
-        event.preventDefault();
-        // If form is valid, send data to API
-        if ($("#form").valid()) {
-          $.ajax({
-            url: "/api/cities/" + id,
-            method: "PUT",
-            data: {
-              name: $("#name").val(),
-              description: $("#description").val(),
-              postalCode: $("#postalCode").val()
-            },
-            success: function (responseData, textStatus, jqXHR) {
-              getCities();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              alert("Something wrong happend.");
-            }
-          });
-        }
-      });
-    }
+  // Set value for global variable id, used for delete city function, called from delete buttons
+  // for each city in table
+  function setId(newId) {
+    id = newId;
+  }
 
-    // DELETE : Delete record in database using cities API
-    function deleteCity(id) {
-      $.ajax({
-        url: "/api/cities/" + id,
-        method: "DELETE",
-        success: function (responseData, textStatus, jqXHR) {
-          getCities();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          alert("Something wrong happend.");
-        }
-      });
-    }
-  </script>
+  // DELETE : Delete record in database using cities API
+  function deleteCity() {
+    $.ajax({
+      url: "/api/cities/" + id,
+      method: "DELETE",
+      success: function (responseData, textStatus, jqXHR) {
+        getCities();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        alert("Something wrong happend.");
+      }
+    });
+  }
+</script>
 }
