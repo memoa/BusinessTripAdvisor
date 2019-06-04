@@ -269,6 +269,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131230.jpg" />
+    <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131240.jpg" />
+    <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131248.jpg" />
+    <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131258.jpg" />
+    <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131313.jpg" />
+    <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131433.jpg" />
+    <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131442.jpg" />
+    <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131450.jpg" />
+    <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131455.jpg" />
     <Content Include="FrontEnd\BTA\Css\homeStyle.css" />
     <Content Include="FrontEnd\BTA\Css\style.css" />
     <Content Include="FrontEnd\BTA\Home.html" />
