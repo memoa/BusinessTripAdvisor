@@ -1,41 +1,126 @@
 ﻿@model BusinessTripAdvisor.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    Layout = "";
 }
 
-<h2>@ViewBag.Title.</h2>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>LogIn/Register</title>
+        <link href="~/FrontEnd/BTA/Css/style.css" rel="stylesheet" />
+    </head>
+    <body id="body-index">
+        <div id="sign-up-div">
+            <h2 class="h2-index">Create Account</h2>
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-index", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+                @Html.LabelFor(m => m.FirstName)
+                @Html.ValidationMessageFor(m => m.FirstName)
+                @Html.TextBoxFor(m => m.FirstName)
+                <br />
 
+                @Html.LabelFor(m => m.LastName)
+                @Html.ValidationMessageFor(m => m.LastName)
+                @Html.TextBoxFor(m => m.LastName)
+                <br />
+
+                @Html.LabelFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+                <br />
+
+                @Html.LabelFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                <br />
+
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+                <br />
+
+                <button type="submit" id="btn-sign-up" class="btn-main">Sign up</button>
+            }
+        </div>
+        <!--
+            <div id="log-in-div">
+                <h2 class="h2-index">Log in</h2>
+                <form id="log-in-form" class="form-index">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                    <br>
+                    <label for="password1">Password</label>
+                    <input type="password" id="password" minlength="5" required>
+
+                    <button type="submit" id="btn-log-in" class="btn-main">Log in</button>
+                    <p>Not registred? <button class="btn-text" id="btn-to-sign-up">Sign up</button></p>
+                </form>
+            </div>
+        -->
+        <script src="~/FrontEnd/BTA/script.js"></script>
+    </body>
+    </html>
+
+@*
+    <h2>@ViewBag.Title.</h2>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
+        </div>
+    }
+*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201906021058500_DeleteCommentTypeModel.Designer.cs">
       <DependentUpon>201906021058500_DeleteCommentTypeModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906040754572_UpdateUserModel.cs" />
+    <Compile Include="Migrations\201906040754572_UpdateUserModel.Designer.cs">
+      <DependentUpon>201906040754572_UpdateUserModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationFeedback.cs" />
@@ -422,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906021058500_DeleteCommentTypeModel.resx">
       <DependentUpon>201906021058500_DeleteCommentTypeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906040754572_UpdateUserModel.resx">
+      <DependentUpon>201906040754572_UpdateUserModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

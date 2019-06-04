@@ -49,6 +49,8 @@ namespace BusinessTripAdvisor
                 //Here we create a Admin super user who will maintain the website				
 
                 var user = new ApplicationUser();
+                user.FirstName = "Optimus";
+                user.LastName = "Prime";
                 user.UserName = "admin@bta.com";
                 user.Email = "admin@bta.com";
 

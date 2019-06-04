@@ -35,9 +35,9 @@
     border-radius: 1rem;
     box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.7), 0 2rem 2rem 0 rgba(0, 0, 0, 0.7);
 }
-#log-in-div {
+/*#log-in-div {
     display: none;
-}
+}*/
 .h2-index {
     margin-bottom: 1rem;
     color: #0e89a5;
@@ -134,4 +134,8 @@ form.form-index input[type=number]::-webkit-outer-spin-button {
 form.form-index p {
     font-size: 1.4rem;
     text-align: center;
+}
+
+.field-validation-error {
+    color: red;
 }
