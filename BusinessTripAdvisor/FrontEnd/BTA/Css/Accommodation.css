@@ -76,7 +76,7 @@ nav ul li{
     display: inline-block;
     padding: 20px;
 }
-nav ul li a{
+nav .menu ul li a{
     text-decoration: none;
     color: #0e89a5;
     font-size: 16px;
@@ -114,7 +114,6 @@ p{
     margin: 0;
     padding: 0;
     margin: 0;
-    padding: 0;
 }
 
 .middle{
@@ -137,6 +136,9 @@ p{
     position: relative;
     text-decoration: none;
 
+}
+.category .middle .but{
+    text-decoration: none;
 }
 .but i {
    
@@ -224,4 +226,12 @@ h1{
 }
 .menu > ul > li > a > i:hover{
     color: green;
+}
+footer{
+    background-color: black;
+    height: 25vh;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    color: #0e89a5;
 }

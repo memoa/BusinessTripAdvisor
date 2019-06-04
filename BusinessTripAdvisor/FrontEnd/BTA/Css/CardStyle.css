@@ -1,0 +1,162 @@
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+@import 'https://fonts.googleapis.com/css?family=Roboto:700,400';
+/*
+*  Basic Reset
+*/
+ 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/**
+ * Basics Styles
+ */
+html {
+	font-size: 62.5%;
+}
+body {
+	background-color: #eee;
+	font-family: Roboto;
+	font-weight: 400;
+	font-size: 1.6em;
+	line-height: 1.6;
+	color: #666;
+}
+
+a {
+	text-decoration: none;
+	color: #3498db;
+}
+	a:hover {
+		color: #2980b9;
+	}
+
+h2 {
+	line-height: 1.2;
+    margin-bottom: 1.6rem;
+    padding-top: 1.2rem;
+}
+
+.wrapper {
+	max-width: 500px;
+	margin: 50px auto;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+/**
+ * Helpers
+ */
+.text-center { text-align: center; }
+
+.shadowDepth1 {
+   box-shadow: 
+  		0 1px 3px rgba(0,0,0, 0.12),
+    	0 1px 2px rgba(0,0,0, 0.24);      
+}
+
+/**
+ * Card Styles
+ */
+
+.card {
+	margin-bottom: 1.6rem;
+}
+
+.card__content {
+	position: relative;
+}
+
+/* card meta */
+.card__meta time {
+	font-size: 1.5rem;
+	color: black;
+    margin-left: 0.8rem;
+    float: right;
+}
+.card__meta{
+    padding: 1rem;
+    background: #0e89a5;
+}
+.card__meta a{
+    color: black;
+}
+hr{
+    color: black;
+   size: 2;
+    
+}
+/* card article */
+.card__article{
+    padding: 1.6rem;
+}
+.card__article a {
+	text-decoration: none;
+	color: #444;
+    transition: all 0.5s ease;
+}
+	.card__article a:hover {
+		color: #2980b9;
+	}
+
+/* card action */
+.card__action {
+    overflow: hidden;
+    padding: 1rem;
+}
+	
+.card__author img,
+.card__author-content {
+    display: flex;
+    flex-direction: row;
+    float: left;
+    vertical-align: middle;
+}
+.card__author-content p{
+    border: 0;
+    margin: 0;
+    padding: 0 0 0 0.6rem;
+    position: absolute;
+    right: 0.8rem;
+}
+.card__author-content a{
+    padding-left: 0.6rem; 
+}
+.card__author img{
+	border-radius: 50%;
+	margin-right: 0.6em;
+}
+
+/* ------------City Card---------------*/
+
+#card{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    margin: 0 auto;
+    width: 60%;
+    border: 2px solid #0e89a5;
+    box-shadow:  0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.picbox{
+   width: 300px;
+   height: auto;
+}
+.pic{
+    background: url(../img/dublin1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.descriptionBox{
+    width: 67%;
+    padding: 20px 10px;
+}
