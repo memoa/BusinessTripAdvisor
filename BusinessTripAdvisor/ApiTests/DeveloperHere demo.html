@@ -16,16 +16,18 @@
     <form>
       <div class="form-group">
         <label for="inputPlace">Place</label>
-        <input type="text" class="form-control" id="inputPlace" aria-describedby="inputHelp" placeholder="Enter place" onchange="loadPlacesList()">
-        <ul id="placesList"class="list-group"></ul>
-        <small id="inputHelp" class="form-text text-muted">Select your destination.</small>
-        <button id="spinner" class="btn btn-primary" type="button" disabled>
+        <input type="text" class="form-control" id="inputPlace" aria-describedby="inputHelp" placeholder="Enter place" onkeydown="loadPlacesList()">
+        <ul id="placesList"class="list-group">
+          <li id="spinner" class="list-group-item list-group-item-action">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             Loading...
-        </button>
+          </li>
+        </ul>
+        <small id="inputHelp" class="form-text text-muted">Select your destination.</small>
       </div>
     </form>
     <div style="width: 640px; height: 480px" id="mapContainer"></div>
+    <p id="test"></p>
   </div>
   <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -41,8 +43,8 @@
 
     function loadPlacesList() {
       var input = $("#inputPlace").val();
+      $("#placesList li.place").remove();
       if (input.length > 2) {
-        $("#placesList").empty();
         $("#spinner").show();
         $.ajax({
           url: "http://autocomplete.geocoder.api.here.com/6.2/suggest.json",
@@ -54,8 +56,9 @@
           method: "GET",
           success: function(responseData) {
             for (var placeId in responseData.suggestions) {
-              var place = responseData.suggestions[placeId].label;
-              $("#placesList").append(`<li class="list-group-item list-group-item-action">${place}</li>`);
+              var place = responseData.suggestions[placeId];
+              if (place.matchLevel == "city")
+                $("#placesList").append(`<li class="list-group-item list-group-item-action place" onclick="findOnMap('${place.locationId}')">${place.address.city}</li>`);
             }
             $("#spinner").hide();
           },
@@ -67,6 +70,7 @@
       }
     }
 
+    
     // Initialize the platform object:
     var platform = new H.service.Platform({
       'app_id': 'CH8zl7pTYspa961FEXiT',
@@ -87,7 +91,7 @@
       }
       */
     );
-
+    
     // Define a variable holding SVG mark-up that defines an icon image:
     var svgMarkup = '<svg width="24" height="24" ' +
       'xmlns="http://www.w3.org/2000/svg">' +
@@ -95,16 +99,43 @@
       'height="22" /><text x="12" y="18" font-size="12pt" ' +
       'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
       'fill="white">H</text></svg>';
-    // var svgMarkup = '<p>jdfhfjdsh</p>';
-    // Create an icon, an object holding the latitude and longitude, and a marker:
+      // var svgMarkup = '<p>jdfhfjdsh</p>';
+      // Create an icon, an object holding the latitude and longitude, and a marker:
     var icon = new H.map.Icon(svgMarkup),
-      coords = {lat: 52.53075, lng: 13.3851},
-      marker = new H.map.Marker(coords, {icon: icon});
-
+    coords = {lat: 52.53075, lng: 13.3851},
+    marker = new H.map.Marker(coords, {icon: icon});
+    
     // Add the marker to the map and center the map at the location of the marker:
     map.addObject(marker);
     map.setCenter(coords);
     map.setZoom(12);
-  </script>
+    
+    function findOnMap(locationId) {
+      $.ajax({
+        url: "https://geocoder.api.here.com/6.2/geocode.json",
+        data: {
+          app_id: "CH8zl7pTYspa961FEXiT",
+          app_code: "bKCZBDWX2qKO0OPduRJIYA",
+          locationid: locationId
+        },
+        method: "GET",
+        success: function(responseData) {
+          var position = responseData.Response.View[0].Result[0].Location.DisplayPosition;
+          //$("#test").text(position.Latitude);
+          coords = {
+            lat: position.Latitude, 
+            lng: position.Longitude
+          };
+          marker = new H.map.Marker(position, {icon: icon});
+          map.addObject(marker);
+          map.setCenter(position);
+          map.setZoom(12);
+        },
+        error: function() {
+          alert("Something went wrong.");
+        }
+      });
+    }
+    </script>
 </body>
 </html>
