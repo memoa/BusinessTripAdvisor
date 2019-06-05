@@ -9,6 +9,9 @@
   type="text/javascript" charset="utf-8"></script>
   <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
   type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" 
+  type="text/javascript" charset="utf-8"></script>
+  <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
   <title>Document</title>
 </head>
 <body>
@@ -27,13 +30,11 @@
       </div>
     </form>
     <div style="width: 640px; height: 480px" id="mapContainer"></div>
-    <p id="test"></p>
   </div>
   <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
   <script>
     var places;
 
@@ -41,6 +42,7 @@
       $("#spinner").hide();
     });
 
+    // Load all matching cities in a list, add function to find and zoom chosen city in a map
     function loadPlacesList() {
       var input = $("#inputPlace").val();
       $("#placesList li.place").remove();
@@ -55,10 +57,11 @@
           },
           method: "GET",
           success: function(responseData) {
-            for (var placeId in responseData.suggestions) {
-              var place = responseData.suggestions[placeId];
+            places = responseData.suggestions;
+            for (var placeId in places) {
+              var place = places[placeId];
               if (place.matchLevel == "city")
-                $("#placesList").append(`<li class="list-group-item list-group-item-action place" onclick="findOnMap('${place.locationId}')">${place.address.city}</li>`);
+                $("#placesList").append(`<li class="list-group-item list-group-item-action place" onclick="findOnMap('${place.locationId}')">${place.label}</li>`);
             }
             $("#spinner").hide();
           },
@@ -102,14 +105,15 @@
       // var svgMarkup = '<p>jdfhfjdsh</p>';
       // Create an icon, an object holding the latitude and longitude, and a marker:
     var icon = new H.map.Icon(svgMarkup),
-    coords = {lat: 52.53075, lng: 13.3851},
-    marker = new H.map.Marker(coords, {icon: icon});
+    coords = {lat: 52.53075, lng: 13.3851};
+    //marker = new H.map.Marker(coords, {icon: icon});
     
     // Add the marker to the map and center the map at the location of the marker:
-    map.addObject(marker);
+    //map.addObject(marker);
     map.setCenter(coords);
     map.setZoom(12);
     
+    // Find city and zoom it in map using locationId
     function findOnMap(locationId) {
       $.ajax({
         url: "https://geocoder.api.here.com/6.2/geocode.json",
@@ -121,20 +125,71 @@
         method: "GET",
         success: function(responseData) {
           var position = responseData.Response.View[0].Result[0].Location.DisplayPosition;
-          //$("#test").text(position.Latitude);
           coords = {
             lat: position.Latitude, 
             lng: position.Longitude
           };
-          marker = new H.map.Marker(position, {icon: icon});
-          map.addObject(marker);
-          map.setCenter(position);
+          //var marker = new H.map.Marker(coords, {icon: icon});
+          //map.addObject(marker);
+          map.setCenter(coords);
           map.setZoom(12);
+          
+          var cityName = places.filter(place => place.locationId == locationId)[0].address.city;
+          //$("#test").text(cityName);
+          $("#inputPlace").val(cityName);
+          $("#placesList li.place").remove();
         },
         error: function() {
           alert("Something went wrong.");
         }
       });
+    }
+
+    // Enable the event system on the map instance:
+    var mapEvents = new H.mapevents.MapEvents(map);
+
+    // *** Add/remove new marker ***
+
+    // Add event listener:
+    map.addEventListener('tap', function(evt) {
+      var geoCoords = toGeoCoords(map, evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+
+      // Log 'tap' and 'mouse' events:
+      console.log({
+        type: evt.type,
+        currentPointer: evt.currentPointer.type, 
+        viewportX: evt.currentPointer.viewportX,
+        viewportY: evt.currentPointer.viewportY,
+        viewBounds: map.getViewBounds(),
+        viewPort: map.getViewPort(),
+        geoCoords: geoCoords
+      });
+
+      // Create marker with fa - icon on click/tap
+      var domIcon = new H.map.DomIcon('<i class="fas fa-landmark text-primary bg-white rounded"></i>');
+      var marker = new H.map.DomMarker(geoCoords, {icon: domIcon});
+      // Remove marker on longpress
+      marker.addEventListener('longpress', function(evt) {
+        map.removeObject(this);
+      });
+      map.addObject(marker);
+    });
+
+    // Instantiate the default behavior, providing the mapEvents object: 
+    var behavior = new H.mapevents.Behavior(mapEvents);
+
+    // Converts viewport coordinates to geo coordinates
+    function toGeoCoords(map, vX, vY) {
+      var viewBounds = map.getViewBounds();
+      var viewPort = map.getViewPort();
+      var geoHeight = Math.abs(viewBounds.ja - viewBounds.ka);
+      var geoWidth = Math.abs(viewBounds.ga - viewBounds.ha);
+      var ratioW = geoWidth / viewPort.width;
+      var ratioH = geoHeight / viewPort.height;
+      return {
+        lng: Math.min(viewBounds.ga, viewBounds.ha) + vX * ratioW,
+        lat: Math.max(viewBounds.ja, viewBounds.ka) - vY * ratioH
+      }
     }
     </script>
 </body>
