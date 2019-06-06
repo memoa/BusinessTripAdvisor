@@ -164,9 +164,8 @@
         viewPort: map.getViewPort(),
         geoCoords: geoCoords
       });
-
       // Create marker with fa - icon on click/tap
-      var domIcon = new H.map.DomIcon('<i class="fas fa-landmark text-primary bg-white rounded"></i>');
+      var domIcon = new H.map.DomIcon('<i class="fas fa-map-marker-alt fa-2x text-primary" style="top:-32px;left:-10px;"></i>');
       var marker = new H.map.DomMarker(geoCoords, {icon: domIcon});
       // Remove marker on longpress
       marker.addEventListener('longpress', function(evt) {

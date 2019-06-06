@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p id="demo"></p>
+  <img id='image'>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script>
+    /*
+    $.ajax({
+      url: "https://weather.cit.api.here.com/weather/1.0/report.json",
+      data: {
+        app_id: 'CH8zl7pTYspa961FEXiT',
+        app_code: 'bKCZBDWX2qKO0OPduRJIYA',
+        product: 'alerts',
+        name: 'Berlin',
+        jsoncallback: 'myCallbackFunction'
+      },
+      method: 'GET',
+      success: function(responseData) {
+        console.log(responseData);
+        //$("#demo").text(responseData);
+      },
+      error: function() {
+        alert("Something went wrong.");
+      }
+    });
+    */
+
+    var url = "https://weather.cit.api.here.com/weather/1.0/report.json",
+      app_id = 'CH8zl7pTYspa961FEXiT',
+      app_code = 'bKCZBDWX2qKO0OPduRJIYA',
+      product = 'observation',
+      latitude = '52.516',
+      longitude = '13.389',
+      oneobservation = 'true',
+      //name = 'Berlin',
+      jsoncallback = 'myCallbackFunction'
+
+    var s = document.createElement("script");
+    s.src = url + 
+      '?app_id=' + app_id + 
+      '&app_code=' + app_code + 
+      '&product=' + product + 
+      '&latitude='+ latitude +
+      '&longitude=' + longitude +
+      '&oneobservation=' + oneobservation +
+      //'&name=' + name + 
+      '&jsoncallback=' + jsoncallback;
+    document.body.appendChild(s);
+
+    function myCallbackFunction(jsonp) {
+      console.log(jsonp);
+      $("#demo").text(jsonp.observations.location[0].observation[0].temperature + ' degrees C');
+      $("#image").attr('src', jsonp.observations.location[0].observation[0].iconLink);
+    }
+  </script>
+</body>
+</html>
