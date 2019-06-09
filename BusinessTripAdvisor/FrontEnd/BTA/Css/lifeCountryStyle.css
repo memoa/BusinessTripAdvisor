@@ -233,7 +233,7 @@ h1{
 .menu > ul > li > a > i:hover{
     color: green;
 }
-footer{
+footer {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -245,12 +245,11 @@ footer{
     align-items: center;
     color: #0e89a5;
     letter-spacing: 0.3rem;
-
 }
 footer p {
     padding: 0;
 }
-.social{
+.social {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

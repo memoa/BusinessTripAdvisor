@@ -184,12 +184,13 @@
             </section>
             <footer>
                 <p>Follow us on social media:</p>
-
-                <a href="https://www.facebook.com/Lufthansa/" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-facebook-circled-48.png" alt="facebook"/></a>
-                <a href="https://www.instagram.com/lufthansa/" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-instagram-48.png" alt="instagram" /></a>
-                <a href="https://twitter.com/lufthansa" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-twitter-circled-48.png" alt="twitter"/></a>
-                <hr>
-                <p>Copyright 2019 BTA</p>
+                <div class="social">
+                    <a href="https://www.facebook.com/TripAdvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-facebook-circled-48.png" alt="facebook" /></a>
+                    <a href="https://www.instagram.com/tripadvisor/?hl=sr" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-instagram-48.png" alt="instagram" /></a>
+                    <a href="https://twitter.com/tripadvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-twitter-circled-48.png" alt="twitter" /></a>
+                </div>
+                    <hr>
+                    <p>Copyright 2019 BTA</p>
             </footer>
         </div>
 
@@ -198,7 +199,7 @@
             //toogle button
             $(document).ready(function () {
                 $(".menu-icon").on("click", function () {
-                    $("nav ul").toggleClass("showing");
+                    $("nav ul li").toggleClass("showing");
                 });
             });
 
