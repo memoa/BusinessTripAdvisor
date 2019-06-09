@@ -31,11 +31,11 @@
     background-color: transparent;
     margin: 3rem auto;
     padding: 1rem;
-    border: 0.2rem solid black;
+    border: 0.1rem solid #0e89a5;
     border-radius: 1rem;
     box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.7), 0 2rem 2rem 0 rgba(0, 0, 0, 0.7);
 }
-/*#log-in-div {
+/*#log-in-div {  -----------------ovu liniju mozda treba iskljuciti ----------------
     display: none;
 }*/
 .h2-index {
@@ -70,23 +70,12 @@ form.form-index input {
     background-color: transparent;
     outline: none;
 }
-form.form-index input.address {
-    width: 66%;
+form.form-index input.username {
+    width: 100%;
     margin-right: 0;
     padding-right: 0;
 }
-form.form-index select {
-    width: 33%;
-    height: 2.25rem;
-    position: relative;
-    bottom: -0.1rem;
-    left: -0.3rem;
-    font-size: 1.6rem;
-    background-color: transparent;
-    border: 0.2rem solid #0e89a5;
-    border-radius: 1rem 1rem 1rem 0;
-    outline: none;
-}
+
 form.form-index select option {
     background-color: white;
 }
@@ -138,4 +127,40 @@ form.form-index p {
 
 .field-validation-error {
     color: red;
+}
+
+/*----------------------MEDIA QUERY------------------------------*/
+
+@media screen and (max-width: 600px){
+    
+    /*#body-index{
+        background: none;
+    }*/
+    #sign-up-div,
+    #log-in-div{
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        border: 0;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .h2-index{
+        padding-top: 1rem;
+        font-size: 1.5rem;
+    }
+    form.form-index label{
+        font-size: 1.1rem;
+    }
+    form.form-index input{
+        border-bottom: 0.15rem solid #0e89a5;
+    }
+    .btn-main{
+        margin-top: 5rem;
+        width: 60vw;
+        height: 10vh;
+        font-size: 1.3rem;
+    }
+
 }

@@ -41,7 +41,7 @@ header{
     margin: 16px 30px;
     color: #0e89a5;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 1.5rem;
     letter-spacing: 2px;
 }
 nav{
@@ -50,29 +50,38 @@ nav{
     width: 100%;
     z-index: 1;
 }
-nav ul 
-{
+nav ul{
     list-style: none;
     background: rgba(0, 0, 0, 0);
     overflow: hidden;
-    color: white;
     padding: 0;
     text-align: center;
     margin: 0;
-    transition: 1s;
+    transition: 1s ease-in;
 }
+
 nav.black ul{
     background: #000;
 }
-
+.menu{
+    transition: 1s;
+}
 nav ul li{
     display: inline-block;
     padding: 20px;
+    transition: 0.7s ease-in;
+}
+nav ul li:hover{
+    background: #0e89a5;
+}
+
+nav ul li a:hover{
+    color: black;
 }
 nav ul li a{
     text-decoration: none;
     color: #0e89a5;
-    font-size: 16px;
+    font-size: 1rem;
 }
 .statment{
     position: absolute;
@@ -83,17 +92,134 @@ nav ul li a{
 }
 .statment h1{
     color: #0e89a5;
-    font-size: 5em;
+    font-size: 5rem;
     font-weight: 500;
     letter-spacing: 5px;
 }
 
 .statment p{
     color: #0e89a5;
-    font-size: 2.5em;
+    font-size: 2.5rem;
     font-weight: lighter;
     letter-spacing: 3px;
 }
+main{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 2rem auto;
+}
+h2{
+    padding: 1rem 0;
+    letter-spacing: 0.2rem;
+    color: #0e89a5;
+}
+.explain{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.oneExplain{
+    width: 33%;
+    border-right: 1px solid #0e89a5;
+    border-left: 1px solid #0e89a5;
+    margin-top: 2rem;
+}
+.oneExplain p{
+    padding: 2rem;
+    text-align: justify;
+}
+i{
+    color: #0e89a5;
+}
+h1{
+    letter-spacing: 0.2rem;
+    padding: 4rem 0 ;
+    color: #0e89a5;
+}
+h3{
+    letter-spacing: 0.3rem;
+    padding: 1.5rem 0;
+    color: #0e89a5;
+}
+section{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 2rem auto;
+    text-align: center;
+    padding: 40px 0;
+}
+section h1{
+    letter-spacing: 0.2rem;
+    padding: 2rem 0 ;
+    color: #0e89a5;
+    font-size: 2.5rem;
+}
+.testimonials{
+    text-align: justify;
+    overflow: hidden;
+    margin: auto;
+    padding: 0 20px;
+}
+.testimonials h1,h3{
+    text-align: center;
+}
+.border{
+    width: 45rem;
+    height: 2px;
+    background: #0e89a5;
+    margin: 3rem auto;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.col{
+    flex: 33.33%;
+    max-width: 33%;
+    box-sizing: border-box;
+    padding: 15px;
+    text-align: justify;
+    
+}
+.testimonial{
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #0e89a5;
+    box-shadow: 0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
+  
+}
+.testimonial img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+.testimonial .name, .stars{
+    display: flex;
+    justify-content: center;
+}
+.name{
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 20px 0;
+}
+.stars{
+    color: #0e89a5;
+    margin-bottom: 20px;
+}
+.testimonial p{
+    font-family: 'Titillium Web', sans-serif;
+}
+
 #slika2{
     border: 0;
     margin: 0;
@@ -111,10 +237,161 @@ nav ul li a{
 }
 
 footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     background-color: black;
     height: 25vh;
     width: 100%;
     text-align: center;
-    padding: 20px 0;
+    align-content: center;
+    align-items: center;
     color: #0e89a5;
+    letter-spacing: 0.3rem;
+}
+footer p {
+    padding: 0;
+}
+.social{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+.social a{
+    padding: 0 0.7rem;
+}
+hr{
+    color: white;
+    width: 40%;
+    border-bottom: 2px solid #0e89a5;
+}
+
+/*--------------------MEDIA QUERY FOR TABLET---------------------------*/
+
+@media screen and (max-width:960px){
+    .col{
+        flex: 100%;
+        max-width: 80%;
+    }
+}
+
+/*--------------------MEDIA QUERY FOR MOBILE---------------------------*/
+@media screen and (max-width: 600px){
+
+    nav ul li {
+       display: none;
+        background: #000;
+        
+    }
+    
+    .showing{
+        display: flex;
+        flex-direction: column;
+        transition: 1s ease-in;
+        }
+        
+    .logo{
+        position: fixed;
+        top: 0;
+        font-size: 1rem;
+        margin: 16px 0 16px 16px;
+        }
+    .menu-icon{
+        display: block;
+        font-size: 0.8rem;
+        }
+
+    .col{
+        flex: 100%;
+        max-width: 100%;
+    }
+    nav ul li{
+        max-height: 100vh;
+        background: #000;
+    }
+
+    main{
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+    main > h1{
+      font-size: 0.7rem;
+      transform: translate(15%);
+    }
+    .statment h1{
+        font-size: 2rem;
+    }
+    .statment p{
+        font-size: 1.3rem;
+    }
+    main h1{
+        font-size: 1.5rem;
+    }
+    .explain{
+        display: flex;
+        flex-direction: column;
+    }
+    .explain .oneExplain{
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+    }
+    .oneExplain{
+        font-size: 0.8rem;
+        border-top: 1px solid #0e89a5;
+        border-bottom: 1px solid #0e89a5;
+        border-left: 0;
+        border-right: 0;
+    }
+    section{
+        margin: 0;
+        width: 100vw;
+        padding: 0;
+        border: 0;
+    }
+    .border{
+       display: none;
+    }
+    section .testimonials{
+        width: 100vw;
+        padding: 0;
+    }
+    .testimonials .testimonial{
+        width: 100vw;
+        margin: 1rem 0;
+    }
+    .testimonial{
+        font-size: 0.8rem;
+    }
+    .testimonials h1{
+        font-size: 1.5rem;
+    }
+    .testimonials h3{
+        font-size: 1rem;
+        padding: 24px 10px;
+    }
+    .testimonial .name{
+        font-size: 1rem;
+    }
+    .col{
+        width: 80vw;
+        padding: 0;
+    }
+    footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin-top: 1.5rem;
+        height: 40vh;
+    }
+    footer > p{
+        letter-spacing: 0;
+        font-size: 1rem;
+    }
+   
 }

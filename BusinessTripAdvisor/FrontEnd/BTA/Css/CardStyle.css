@@ -138,14 +138,22 @@ hr{
     align-items: center;
     justify-items: center;
     margin: 0 auto;
-    width: 60%;
+    width: 50%;
+    height: 10%;
     border: 2px solid #0e89a5;
     box-shadow:  0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
     box-sizing: border-box;
     overflow: hidden;
 }
+.card-title{
+    color: #0e89a5;
+    letter-spacing: 0.2rem;
+}
+.cardText{
+    font-size: 1.5rem;
+}
 .picbox{
-   width: 300px;
+   width: 33%;
    height: auto;
 }
 .pic{

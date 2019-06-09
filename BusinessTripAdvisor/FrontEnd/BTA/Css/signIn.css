@@ -106,3 +106,30 @@ h3{
 p{
     font-size: 1.2rem;
 }
+
+/*----------------------MEDIA QUERY------------------------------*/
+
+@media screen and (max-width: 600px){
+
+    h1{
+        font-size: 1.5rem;
+        padding-bottom: 1.2rem;
+    }
+    h3{
+        font-size: 1.1rem;
+        padding-bottom: 1rem;
+    }
+    p{
+        font-size: 1rem;
+    }
+    footer{
+        display: flex;
+        flex-direction: row;
+    }
+    .levo{
+        width: 50vw;
+    }
+    .desno{
+        width: 50vw;
+    }
+}

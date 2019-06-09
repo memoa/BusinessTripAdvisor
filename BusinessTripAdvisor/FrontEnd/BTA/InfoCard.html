@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BTA | InfoCard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="Css/InfoCard.css">
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+  type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+  type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" 
+  type="text/javascript" charset="utf-8"></script>
+  <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
+</head>
+<body>
+    <div class="komplet">
+        <header>
+            <nav>
+                    <div class="menu-icon">
+                            <i class="fa fa-bars fa-2x"></i>
+                        </div>
+                <div class="logo">
+                     Business Trip Advisor
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="#">Home</a> </li>
+                        <li><a href="#">Life In Different Countries</a> </li>
+                        <li><a href="#">Accommodation</a> </li>
+                        <li><a href="#">Transportation</a> </li>
+                        <li><a href="#">Feedbacks</a> </li>
+                        <li><a href="#">Providers</a> </li>
+                        <li><a href="#">LogOut</a> </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <form>
+                <div class="form-group" style="width: 40%; margin: 2rem auto 2rem auto;">
+                  <label for="inputPlace" style="color: #0e89a5; font-size: 1.3rem">Place</label>
+                  <input type="text" class="form-control" id="inputPlace" aria-describedby="inputHelp" placeholder="Enter place" onkeydown="loadPlacesList()">
+                  <ul id="placesList"class="list-group">
+                    <li id="spinner" class="list-group-item list-group-item-action">
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      Loading...
+                    </li>
+                  </ul>
+                  <small id="inputHelp" style="color: #0e89a5;" class="form-text text-muted" >Select your destination.</small>
+                </div>
+        </form>
+        
+        <div class="cardBox">
+            <div class="sideBtn">
+                <a class="edit" href="#" style="background: ;">Edit <i class="far fa-edit"></i></a>
+                <a class="delete" href="#" style="background: red;">Delete <i class="far fa-trash-alt"></i></a>
+                <a class="save" href="#" style="background: green;">Save <i class="far fa-save"></i></a>
+            </div>
+              <div class="cardBody">
+                  <div class="cardHeader">
+                      Dublin
+                  </div>
+                  <div class="cardPic">
+                    
+                  </div>
+                  <div class="textMap">
+                  <div id="mapContainer">
+                     <img src="img/carte.png">
+                  </div>
+                  <div class="cardText">
+                    <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+                    <span>
+                    <div class="levo">
+                            <a href="#">
+                               Save
+                            </a>
+                        </div>
+                        <div class="desno">
+                            <a href="#">
+                                Cancel
+                            </a>
+                        </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <footer>
+            <p>Follow us on social media:</p>
+            <div class="social">
+                    <a  href="https://www.facebook.com/TripAdvisor/" target="_blank"><img src="img/icons8-facebook-circled-48.png" alt="facebook"></a>
+                    <a  href="https://www.instagram.com/tripadvisor/?hl=sr" target="_blank"><img src="img/icons8-instagram-48.png" alt="instagram"></a>
+                    <a  href="https://twitter.com/tripadvisor" target="_blank"><img src="img/icons8-twitter-circled-48.png" alt="twitter"></a>
+                </div>
+                    <hr>
+            <p>Copyright 2019 BTA</p>
+    </footer>
+    </div>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        //toogle button
+        $(document).ready(function(){
+            $(".menu-icon").on("click",function(){
+                $("nav ul li").toggleClass("showing");
+            });
+        });
+        
+        //scrolling effect
+        $(window).on("scroll", function(){
+            if($(window).scrollTop()){
+                $('nav').addClass('black');
+            }
+            else{
+                $('nav').removeClass('black');
+            }
+        })
+
+        //image upload
+        $('.file-upload').file_upload();
+
+        /*-------------Mapa-----------------------------------*/
+
+        var places;
+
+$(document).ready(function() {
+  $("#spinner").hide();
+});
+
+// Load all matching cities in a list, add function to find and zoom chosen city in a map
+function loadPlacesList() {
+  var input = $("#inputPlace").val();
+  $("#placesList li.place").remove();
+  if (input.length > 2) {
+    $("#spinner").show();
+    $.ajax({
+      url: "http://autocomplete.geocoder.api.here.com/6.2/suggest.json",
+      data: {
+        app_id: "CH8zl7pTYspa961FEXiT",
+        app_code: "bKCZBDWX2qKO0OPduRJIYA",
+        query: input
+      },
+      method: "GET",
+      success: function(responseData) {
+        places = responseData.suggestions;
+        for (var placeId in places) {
+          var place = places[placeId];
+          if (place.matchLevel == "city")
+            $("#placesList").append(`<li class="list-group-item list-group-item-action place" onclick="findOnMap('${place.locationId}')">${place.label}</li>`);
+        }
+        $("#spinner").hide();
+      },
+      error: function() {
+        $("#spinner").hide();
+        alert("Something went wrong.");
+      }
+    });
+  }
+}
+
+
+// Initialize the platform object:
+var platform = new H.service.Platform({
+  'app_id': 'CH8zl7pTYspa961FEXiT',
+  'app_code': 'bKCZBDWX2qKO0OPduRJIYA'
+});
+
+// Obtain the default map types from the platform object
+var maptypes = platform.createDefaultLayers();
+
+// Instantiate (and display) a map object:
+var map = new H.Map(
+  document.getElementById('mapContainer'),
+  maptypes.normal.map,
+  /*
+  {
+    zoom: 10,
+    center: { lng: 13.4, lat: 52.51 }
+  }
+  */
+);
+
+// Define a variable holding SVG mark-up that defines an icon image:
+var svgMarkup = '<svg width="24" height="24" ' +
+  'xmlns="http://www.w3.org/2000/svg">' +
+  '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' +
+  'height="22" /><text x="12" y="18" font-size="12pt" ' +
+  'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
+  'fill="white">H</text></svg>';
+  // var svgMarkup = '<p>jdfhfjdsh</p>';
+  // Create an icon, an object holding the latitude and longitude, and a marker:
+var icon = new H.map.Icon(svgMarkup),
+coords = {lat: 52.53075, lng: 13.3851};
+//marker = new H.map.Marker(coords, {icon: icon});
+
+// Add the marker to the map and center the map at the location of the marker:
+//map.addObject(marker);
+map.setCenter(coords);
+map.setZoom(12);
+
+// Find city and zoom it in map using locationId
+function findOnMap(locationId) {
+  $.ajax({
+    url: "https://geocoder.api.here.com/6.2/geocode.json",
+    data: {
+      app_id: "CH8zl7pTYspa961FEXiT",
+      app_code: "bKCZBDWX2qKO0OPduRJIYA",
+      locationid: locationId
+    },
+    method: "GET",
+    success: function(responseData) {
+      var position = responseData.Response.View[0].Result[0].Location.DisplayPosition;
+      coords = {
+        lat: position.Latitude, 
+        lng: position.Longitude
+      };
+      //var marker = new H.map.Marker(coords, {icon: icon});
+      //map.addObject(marker);
+      map.setCenter(coords);
+      map.setZoom(12);
+      
+      var cityName = places.filter(place => place.locationId == locationId)[0].address.city;
+      //$("#test").text(cityName);
+      $("#inputPlace").val(cityName);
+      $("#placesList li.place").remove();
+    },
+    error: function() {
+      alert("Something went wrong.");
+    }
+  });
+}
+
+// Enable the event system on the map instance:
+var mapEvents = new H.mapevents.MapEvents(map);
+
+// *** Add/remove new marker ***
+
+// Add event listener:
+map.addEventListener('tap', function(evt) {
+  var geoCoords = toGeoCoords(map, evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+
+  // Log 'tap' and 'mouse' events:
+  console.log({
+    type: evt.type,
+    currentPointer: evt.currentPointer.type, 
+    viewportX: evt.currentPointer.viewportX,
+    viewportY: evt.currentPointer.viewportY,
+    viewBounds: map.getViewBounds(),
+    viewPort: map.getViewPort(),
+    geoCoords: geoCoords
+  });
+  // Create marker with fa - icon on click/tap
+  var domIcon = new H.map.DomIcon('<i class="fas fa-map-marker-alt fa-2x text-primary" style="top:-32px;left:-10px;"></i>');
+  var marker = new H.map.DomMarker(geoCoords, {icon: domIcon});
+  // Remove marker on longpress
+  marker.addEventListener('longpress', function(evt) {
+    map.removeObject(this);
+  });
+  map.addObject(marker);
+});
+
+// Instantiate the default behavior, providing the mapEvents object: 
+var behavior = new H.mapevents.Behavior(mapEvents);
+
+// Converts viewport coordinates to geo coordinates
+function toGeoCoords(map, vX, vY) {
+  var viewBounds = map.getViewBounds();
+  var viewPort = map.getViewPort();
+  var geoHeight = Math.abs(viewBounds.ja - viewBounds.ka);
+  var geoWidth = Math.abs(viewBounds.ga - viewBounds.ha);
+  var ratioW = geoWidth / viewPort.width;
+  var ratioH = geoHeight / viewPort.height;
+  return {
+    lng: Math.min(viewBounds.ga, viewBounds.ha) + vX * ratioW,
+    lat: Math.max(viewBounds.ja, viewBounds.ka) - vY * ratioH
+  }
+}
+        </script>
+</body>
+</html>
