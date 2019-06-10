@@ -22,7 +22,7 @@ header{
     margin: 0;
     width: 100%;
     min-height: 70vh;
-    background: linear-gradient( rgba(218, 213, 213, 0.7), rgba(218, 213, 213, 0.7) ), url("../img/hotel-man.jpg");
+    background: linear-gradient( rgba(218, 213, 213, 0.7), rgba(218, 213, 213, 0.7) ), url("../img/aeroplane-aircraft-aircraft-wing-723240.jpg");
     color: white;
     background-size: cover;
     background-position: top center;
@@ -60,13 +60,12 @@ nav{
 nav ul 
 {
     list-style: none;
-    background: linear-gradient( #0e89a5(218, 213, 213, 0.7), #0e89a5(218, 213, 213, 0.7) );
+    background: rgba(0, 0, 0, 0);
     overflow: hidden;
-    color: white;
     padding: 0;
     text-align: center;
     margin: 0;
-    transition: 1s;
+    transition: 1s ease-in;
 }
 nav.black ul{
     background: #000;
@@ -81,6 +80,12 @@ nav .menu ul li a{
     color: #0e89a5;
     font-size: 16px;
 }
+nav ul li:hover{
+    background: #0e89a5;
+}
+nav ul li a:hover{
+    color: black;
+}
 .choosecity{
     height: 15vh;
     width: 60%;
@@ -91,7 +96,9 @@ nav .menu ul li a{
     flex-direction: row;
     box-shadow: 0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);  
 }
-
+.first,.second{
+    width: 50%;
+}
 .fromTo{
     margin: 0;
     padding: 0 20px 0 20px;
@@ -102,7 +109,7 @@ nav .menu ul li a{
 }
 
 #from{
-    width: 35%;
+    width: 65%;
     height: 2rem;
     border-bottom: 1px solid black;
     background-color: transparent;
@@ -112,7 +119,7 @@ nav .menu ul li a{
     margin: auto 0;
 }
 #to{
-    width: 35%;
+    width: 70%;
     height: 2rem;
     border-bottom: 1px solid black;
     background-color: transparent;
@@ -209,19 +216,69 @@ nav .menu ul li a{
 h1{
     padding-bottom: 1rem;
 }
+
 #ponuda{
     padding-top: 40px;
     width: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    align-content: space-around;
-    border: 1px solid black;
+    padding: 1rem 0 1rem 0;
 }
+
 .card{
     margin-bottom: 40px;
 }
+.ip{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+/* ------------City Card---------------*/
+
+#card{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    margin: 0 auto;
+    width: 80%;
+    height: 80%;
+    border: 2px solid #0e89a5;
+    box-shadow:  0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+.card-title{
+    color: #0e89a5;
+    letter-spacing: 0.2rem;
+}
+.cardText{
+    font-size: 1rem;
+    text-align: justify;
+    padding-bottom: 0.5rem;
+}
+.picbox{
+   width: 33%;
+   height: auto;
+}
+.pic{
+    background: url(../img/dublin1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.descriptionBox{
+    width: 67%;
+    padding: 20px 10px;
+}
+/*------------------------------------------------*/
 .menu > ul > li > a > i{
     position: absolute;
     right: 1.5rem;
@@ -229,14 +286,202 @@ h1{
 .menu > ul > li > a > i:hover{
     color: green;
 }
-footer{
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     background-color: black;
     height: 25vh;
     width: 100%;
     text-align: center;
-    padding: 20px 0;
+    align-content: center;
+    align-items: center;
     color: #0e89a5;
+    letter-spacing: 0.3rem;
+}
+footer p {
+    padding: 0;
+}
+.social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+.social a{
+    padding: 0 0.7rem;
+}
+hr{
+    color: white;
+    width: 40%;
+    border-bottom: 2px solid #0e89a5;
 }
 .category .middle .but{
     text-decoration: none;
+}
+
+
+/*--------------------MEDIA QUERY FOR TABLET---------------------------*/
+
+@media screen and (max-width:960px){
+    .col{
+        flex: 100%;
+        max-width: 80%;
+    }
+}
+
+/*--------------------MEDIA QUERY FOR MOBILE---------------------------*/
+@media screen and (max-width: 600px){
+
+    nav ul li {
+       display: none;
+        background: #000;
+        
+    }
+    
+    .showing{
+        display: flex;
+        flex-direction: column;
+        transition: 1s ease-in;
+        }
+        
+    .logo{
+        position: fixed;
+        top: 0;
+        font-size: 1rem;
+        margin: 16px 0 16px 16px;
+        }
+    .menu-icon{
+        display: block;
+        font-size: 0.8rem;
+        }
+
+    .col{
+        flex: 100%;
+        max-width: 100%;
+    }
+    nav ul li{
+        max-height: 100vh;
+        background: #000;
+    }
+    .menu ul li a i{
+        display: flex;
+        justify-content: space-between;
+        transform: translate(-100%,-40%);
+    }
+    .weather{
+        margin: 0;
+        border: 0;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+        padding-left: 1rem;
+        width: 13%;
+     }
+     #demo{
+         font-size: 1rem;
+     }
+     .choosecity{
+        width: 100vw;
+        padding: 0 0.3rem;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .first,.second{
+        margin: 0;
+        border: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .fromTo{
+        font-size: 1rem;
+    }
+    #from{
+        width: 60%;
+    }
+    #to{
+        width: 70%;
+    }
+     .but{
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: 2px 0 auto 0;
+    }
+    .but .ctg{
+        font-size: 0.6rem;
+        padding: 0;
+        margin: 0;
+        margin: auto 0;
+    }
+    .but i{
+        font-size: 1rem;
+        display: flex;
+        padding: 0;
+        margin: auto 0;
+    }
+    .statment h1{
+        font-size: 1.5rem;
+    }
+    .statment h2{
+       font-size: 1.2rem;
+    }
+    .statment p{
+        font-size: 0.8rem;
+        text-align: justify;
+        padding: 0.3rem;
+    }
+    #ponuda{
+        width: 100vw;
+        padding: 0.5rem 0;
+        height: 200vh;
+    }
+    #card{
+        width: 100vw;
+        height: 100vh;
+    }
+    .card-title{
+        font-size: 1rem;
+        margin: 0;
+        padding-bottom: 0.3rem;
+    }
+    .cardText{
+        font-size: 0.7rem;
+        padding: 0;
+    }
+    .btn-primary{
+        width: 5rem;
+        height: 2rem;
+        font-size: 0.7rem;
+        padding-top: 0.3rem;
+    }
+    .descriptionBox{
+        height: 100%;
+        padding: 0.2rem 0.4rem 0 0;
+    }
+    .pic{
+        height: 100%;
+        background-size: 100% 100%;
+    }
+    .row{
+        height: 100%;
+    }
+    .card-block{
+        height: 100%;
+        padding-left: 0;
+    }
+   footer{
+       margin-top: 1.5rem;
+       height: 40vh;
+   }
+   footer > p{
+       letter-spacing: 0;
+       font-size: 1rem;
+   }
+
 }

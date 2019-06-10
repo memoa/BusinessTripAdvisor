@@ -60,13 +60,12 @@ nav{
 nav ul 
 {
     list-style: none;
-    background: linear-gradient( #0e89a5(218, 213, 213, 0.7), #0e89a5(218, 213, 213, 0.7) );
+    background: rgba(0, 0, 0, 0);
     overflow: hidden;
-    color: white;
     padding: 0;
     text-align: center;
     margin: 0;
-    transition: 1s;
+    transition: 1s ease-in;
 }
 nav.black ul{
     background: #000;
@@ -75,6 +74,7 @@ nav.black ul{
 nav ul li{
     display: inline-block;
     padding: 20px;
+    transition: 0.7s ease-in;
 }
 nav .menu ul li a{
     text-decoration: none;
@@ -419,7 +419,8 @@ hr{
      .but i{
          font-size: 1rem;
          display: flex;
-         padding: 0;
+         text-align:center;
+         padding-top: 0;
          margin: auto 0;
      }
      .statment h1{

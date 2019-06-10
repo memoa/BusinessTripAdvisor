@@ -60,27 +60,37 @@ nav{
 nav ul 
 {
     list-style: none;
-    background: linear-gradient( #0e89a5(218, 213, 213, 0.7), #0e89a5(218, 213, 213, 0.7) );
+    background: rgba(0, 0, 0, 0);
     overflow: hidden;
-    color: white;
     padding: 0;
     text-align: center;
     margin: 0;
-    transition: 1s;
+    transition: 1s ease-in;
 }
 nav.black ul{
     background: #000;
 }
-
+.menu{
+    transition: 1s;
+}
 nav ul li{
     display: inline-block;
     padding: 20px;
+    transition: 0.7s ease-in;
 }
-nav .menu ul li a{
+nav ul li:hover{
+    background: #0e89a5;
+}
+nav ul li a:hover{
+    color: black;
+    text-decoration: none;
+}
+nav ul li a{
     text-decoration: none;
     color: #0e89a5;
-    font-size: 16px;
+    font-size: 1rem;
 }
+
 .choosecity{
     height: 15vh;
     width: 60%;
@@ -212,13 +222,54 @@ h1{
     width: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    align-content: space-around;
-    border: 1px solid black;
+    padding: 1rem 0 1rem 0;
 }
+
 .card{
     margin-bottom: 40px;
+}
+/* ------------Accommodation Card---------------*/
+
+#card{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    margin: 0 auto;
+    width: 80%;
+    height: 80%;
+    border: 2px solid #0e89a5;
+    box-shadow:  0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+.card-title{
+    color: #0e89a5;
+    letter-spacing: 0.2rem;
+}
+.cardText{
+    font-size: 1rem;
+    text-align: justify;
+    padding-bottom: 0.5rem;
+}
+.picbox{
+   width: 33%;
+   height: auto;
+}
+.pic{
+    background: url(../img/dublin1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.descriptionBox{
+    width: 67%;
+    padding: 20px 10px;
 }
 .menu > ul > li > a > i{
     position: absolute;
@@ -227,11 +278,344 @@ h1{
 .menu > ul > li > a > i:hover{
     color: green;
 }
-footer{
+.ip{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     background-color: black;
     height: 25vh;
     width: 100%;
     text-align: center;
-    padding: 20px 0;
+    align-content: center;
+    align-items: center;
     color: #0e89a5;
+    letter-spacing: 0.3rem;
+}
+footer p {
+    padding: 0;
+}
+.social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+.social a{
+    padding: 0 0.7rem;
+}
+hr{
+    color: white;
+    width: 40%;
+    border-bottom: 2px solid #0e89a5;
+}
+
+/*--------------------MEDIA QUERY FOR TABLET---------------------------*/
+
+@media screen and (max-width:960px){
+    .col{
+        flex: 100%;
+        max-width: 100%;
+    }
+    nav ul li {
+        display: none;
+        background: #000;
+    }
+
+    .showing {
+        display: flex;
+        flex-direction: column;
+        transition: 1s ease-in;
+    }
+
+    .logo {
+        position: fixed;
+        top: 0;
+        font-size: 1.3rem;
+        margin: 16px 0 16px 16px;
+    }
+
+    .menu-icon {
+        display: block;
+        font-size: 0.8rem;
+    }
+    nav ul li {
+        max-height: 100vh;
+        background: #000;
+    }
+
+    .menu ul li a i {
+        display: flex;
+        justify-content: space-between;
+        transform: translate(-100%,-40%);
+    }
+    .weather {
+        margin: 0;
+        border: 0;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+        padding-left: 1rem;
+        width: 13%;
+    }
+
+    #demo {
+        font-size: 1rem;
+    }
+
+    .choosecity {
+        width: 100vw;
+        padding: 0 0.3rem;
+    }
+
+    .choosecity p {
+            font-size: 1.5rem;
+            padding-left: 2rem;
+    }
+
+    #town {
+        width: 65%;
+    }
+
+    .but {
+        width: 5rem;
+        height: 5rem;
+        margin: 2px 0 auto 0;
+    }
+
+    .but .ctg {
+            font-size: 0.8rem;
+            padding: 0;
+            margin: 0;
+            margin: auto 0;
+    }
+
+    .but i {
+            font-size: 1rem;
+            display: flex;
+            padding: 10px; /*Ovde centriram ikonice u dugmicima*/
+            margin: auto 0;
+    }
+    .statment h1 {
+        font-size: 1.8rem;
+    }
+
+    .statment h2 {
+        font-size: 1.4rem;
+    }
+
+    .statment p {
+        font-size: 1rem;
+        text-align: justify;
+        padding: 1rem;
+    }
+    #ponuda {
+        width: 80vw;
+        padding: 0.5rem 0;
+        height: 200vh;
+    }
+
+    #card {
+        width: 80vw;
+        height: 100vh;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin: 0;
+        padding-bottom: 0.5rem;
+    }
+
+    .cardText {
+        font-size: 0.9rem;
+        padding-bottom: 1rem;
+    }
+
+    .btn-primary {
+        width: 5rem;
+        height: 2rem;
+        font-size: 0.7rem;
+        padding-top: 0.4rem;
+    }
+
+    .descriptionBox {
+        height: 100%;
+        padding: 0.2rem 0.4rem 0 0;
+    }
+
+    .pic {
+        height: 100%;
+        background-size: 100% 100%;
+    }
+
+    .row {
+        height: 100%;
+    }
+
+    .card-block {
+        height: 100%;
+        padding-left: 0;
+    }
+    footer {
+        margin-top: 1.5rem;
+        height: 40vh;
+    }
+
+    footer > p {
+            letter-spacing: 0.2rem;
+            font-size: 1rem;
+    }
+}
+
+/*--------------------MEDIA QUERY FOR MOBILE---------------------------*/
+@media screen and (max-width: 600px){
+
+    nav ul li {
+       display: none;
+        background: #000;
+        
+    }
+    
+    .showing{
+        display: flex;
+        flex-direction: column;
+        transition: 1s ease-in;
+        }
+        
+    .logo{
+        position: fixed;
+        top: 0;
+        font-size: 1rem;
+        margin: 16px 0 16px 16px;
+        }
+    .menu-icon{
+        display: block;
+        font-size: 0.8rem;
+        }
+
+    .col{
+        flex: 100%;
+        max-width: 100%;
+    }
+    nav ul li{
+        max-height: 100vh;
+        background: #000;
+    }
+    .menu ul li a i{
+        display: flex;
+        justify-content: space-between;
+        transform: translate(-100%,-40%);
+    }
+    .weather{
+       margin: 0;
+       border: 0;
+       display: flex;
+       flex-direction: row;
+       text-align: center;
+       align-content: center;
+       align-items: center;
+       padding-left: 1rem;
+       width: 13%;
+    }
+    #demo{
+        font-size: 1rem;
+    }
+
+    .choosecity{
+        width: 100vw;
+        padding: 0 0.3rem;
+    }
+    .choosecity p{
+       font-size: 0.9rem;
+     
+    }
+    #town{
+        width: 40%;
+    }
+    .but{
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: 2px 0 auto 0;
+    }
+    .but .ctg{
+        font-size: 0.6rem;
+        padding: 0;
+        margin: 0;
+        margin: auto 0;
+    }
+    .but i{
+        font-size: 1rem;
+        display: flex;
+        padding: 0;
+        margin: auto 0;
+    }
+    .statment h1{
+        font-size: 1.5rem;
+    }
+    .statment h2{
+       font-size: 1.2rem;
+    }
+    .statment p{
+        font-size: 0.8rem;
+        text-align: justify;
+        padding: 0.3rem;
+    }
+    #ponuda{
+        width: 100vw;
+        padding: 0.5rem 0;
+        height: 200vh;
+    }
+    #card{
+        width: 100vw;
+        height: 100vh;
+    }
+    .card-title{
+        font-size: 1rem;
+        margin: 0;
+        padding-bottom: 0.3rem;
+    }
+    .cardText{
+        font-size: 0.7rem;
+        padding: 0;
+    }
+    .btn-primary{
+        width: 5rem;
+        height: 2rem;
+        font-size: 0.7rem;
+        padding-top: 0.3rem;
+    }
+    .descriptionBox{
+        height: 100%;
+        padding: 0.2rem 0.4rem 0 0;
+    }
+    .pic{
+        height: 100%;
+        background-size: 100% 100%;
+    }
+    .row{
+        height: 100%;
+    }
+    .card-block{
+        height: 100%;
+        padding-left: 0;
+    }
+    footer{
+        margin-top: 1.5rem;
+        height: 40vh;
+    }
+    footer > p{
+        letter-spacing: 0;
+        font-size: 1rem;
+    }
 }
