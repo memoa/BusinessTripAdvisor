@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BTA | InfoCard</title>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 
+      title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="Css/InfoCard.css">
     <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
@@ -39,39 +41,48 @@
             </nav>
         </header>
 
-        <form>
-                <div class="form-group" style="width: 40%; margin: 2rem auto 2rem auto;">
-                  <label for="inputPlace" style="color: #0e89a5; font-size: 1.3rem">Place</label>
-                  <input type="text" class="form-control" id="inputPlace" aria-describedby="inputHelp" placeholder="Enter place" onkeydown="loadPlacesList()">
-                  <ul id="placesList"class="list-group">
-                    <li id="spinner" class="list-group-item list-group-item-action">
-                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                      Loading...
-                    </li>
-                  </ul>
-                  <small id="inputHelp" style="color: #0e89a5;" class="form-text text-muted" >Select your destination.</small>
-                </div>
-        </form>
-        
+
+        <div class="cardSection">
         <div class="cardBox">
-            <div class="sideBtn">
-                <a class="edit" href="#" style="background: #0e89a5;">Edit <i class="far fa-edit"></i></a>
-                <a class="delete" href="#" style="background: red;">Delete <i class="far fa-trash-alt"></i></a>
-                <a class="save" href="#" style="background: green;">Save <i class="far fa-save"></i></a>
-            </div>
-              <div class="cardBody">
-                  <div class="cardHeader">
-                      Dublin
-                  </div>
-                  <div class="cardPic">
-                    
-                  </div>
-                  <div class="textMap">
-                  <div id="mapContainer">
-                     <img src="img/carte.png">
-                  </div>
-                  <div class="cardText">
-                    <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+          <div class="cardHeader">Dublin-City</div> 
+          <div class="cardMap">
+          
+          </div>
+          <div class="carousel">
+           <!--START------CAROUSEL-->
+           
+           <div class="carousel">
+
+              <button class="carousel_button carousel_button--left is-hidden">
+               <img src="img/back.svg">
+              </button>
+                 <div class="carousel_track-container">
+                   <ul class="carousel_track">
+                     <li class="carousel_slide current-slide">
+                       <img class="carousel_img" src="img/lisabon1.jpg" alt="dublin">
+                     </li>
+                     <li class="carousel_slide">
+                      <img class="carousel_img" src="img/budapest1.jpg" alt="budapest">
+                     </li>
+                     <li class="carousel_slide">
+                      <img class="carousel_img" src="img/rabat1.jpg" alt="rabat">
+                     </li>
+                   </ul>
+                 </div>
+              <button class="carousel_button carousel_button--right">
+                <img src="img/right-arrow.svg">
+              </button>
+              <div class="carousel_nav">
+                <button class="carousel_indicator current-slide"></button>
+                <button class="carousel_indicator"></button>
+                <button class="carousel_indicator"></button>
+              </div>
+          </div>
+
+           <!--END------CAROUSEL-->
+          </div>
+          <div class="cardText">
+            <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
                     <span>
                     <div class="levo">
                             <a href="#">
@@ -84,10 +95,10 @@
                             </a>
                         </div>
                     </span>
-                  </div>
-                </div>
-              </div>
+          </div>
         </div>
+      </div>
+
         <footer>
             <p>Follow us on social media:</p>
             <div class="social">
@@ -281,6 +292,94 @@ function toGeoCoords(map, vX, vY) {
     lat: Math.max(viewBounds.ja, viewBounds.ka) - vY * ratioH
   }
 }
+
+// CAROUSEL ------------------CAROUSEL------------------------------CAROUSEL
+
+const track = document.querySelector('.carousel_track');
+    const slides = Array.from(track.children);
+    //console.log(slides);
+    const nextButton = document.querySelector('.carousel_button--right');
+    const prevButton = document.querySelector('.carousel_button--left');
+    const dotsNav = document.querySelector('.carousel_nav');
+    const dots = Array.from(dotsNav.children);
+
+    const slideWidth = slides[0].getBoundingClientRect().width;
+   //console.log(slideWidth);
+
+
+    //ARRANGE THE SLIDES NEXT TO ONE ANOTHER ----------------------------------
+    const setSlidePosition =(slide, index) => {
+    slide.style.left = slideWidth * index + 'px';
+    }
+     slides.forEach(setSlidePosition);
+    
+    const moveToSlide = (track, currentSlide, targetSlide) => {
+        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+        currentSlide.classList.remove('current-slide');
+        targetSlide.classList.add('current-slide');
+    }
+
+    const updateDots = (currentDot, targetDot) => {
+        currentDot.classList.remove('current-slide');
+        targetDot.classList.add('current-slide');
+    }
+
+    const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
+        if(targetIndex === 0){
+            prevButton.classList.add('is-hidden');
+            nextButton.classList.remove('is-hidden');
+
+        }else if(targetIndex === slides.length -1){
+            prevButton.classList.remove('is-hidden');
+            nextButton.classList.add('is-hidden');
+        }else{
+            prevButton.classList.remove('is-hidden');
+            nextButton.classList.remove('is-hidden');
+        }
+    }
+
+
+    //WHEN I CLICK LEFT, MOVE SLIDE TO LEFT -------------------------------------
+    prevButton.addEventListener('click', e =>{
+        const currentSlide = track.querySelector('.current-slide');
+        const prevSlide = currentSlide.previousElementSibling;
+        const currentDot = dotsNav.querySelector('.current-slide');
+        const prevDot = currentDot.previousElementSibling;
+        const prevIndex = slides.findIndex(slide => slide === prevSlide);
+
+        moveToSlide(track, currentSlide, prevSlide);
+        updateDots(currentDot, prevDot);
+        hideShowArrows(slides, prevButton, nextButton, prevIndex);
+    });
+ 
+    // WHEN I CLICK RIGHT, MOVE SLIDE TO RIGHT------------------------------------
+    nextButton.addEventListener('click', e =>{
+        const currentSlide = track.querySelector('.current-slide');
+        const nextSlide = currentSlide.nextElementSibling;
+        const currentDot = dotsNav.querySelector('.current-slide');
+        const nextDot = currentDot.nextElementSibling;
+        const nextIndex = slides.findIndex(slide => slide === nextSlide);
+
+        moveToSlide(track, currentSlide, nextSlide);
+        updateDots(currentDot, nextDot);
+        hideShowArrows(slides, prevButton, nextButton, nextIndex);
+    });
+     
+    //WHEN I CLICK NAV INDICATOR, MOVE TO THAT SLIDE --------------------------------------
+    dotsNav.addEventListener('click', e => {
+        //what indicator was clicked on
+        const targetDot = e.target.closest('button');
+
+        const currentSlide =track.querySelector('.current-slide');
+        const currentDot = dotsNav.querySelector('.current-slide');
+        const targetIndex = dots.findIndex(dot => dot === targetDot);
+        const targetSlide = slides[targetIndex];
+
+        moveToSlide(track, currentSlide, targetSlide);
+        updateDots(currentDot, targetDot);
+        hideShowArrows(slides, prevButton, nextButton, targetIndex);
+
+    })
         </script>
 </body>
 </html>
