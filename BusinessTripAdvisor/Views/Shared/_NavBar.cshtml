@@ -1,0 +1,32 @@
+﻿<nav>
+    <div class="menu-icon">
+        <i class="fa fa-bars fa-2x"></i>
+    </div>
+    <div class="logo">
+        Business Trip Advisor
+    </div>
+    <div class="menu">
+        <ul id="navList">
+            <li><a href="/">Home</a> </li>
+            <li><a href="/Home/LifeInDifferentCountries">Life In Different Countries</a> </li>
+            <li><a href="/Home/Accommodations">Accommodation</a> </li>
+            <li><a href="/Home/Transportation">Transportation</a> </li>
+            <li><a href="/Home/Feedbacks">Feedbacks</a> </li>
+            <li><a href="#">Providers</a> </li>
+            <li>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+
+                }
+            </li>
+            <!--<li><a href="#">LogOut</a> </li>-->
+            @*
+        <li><a href="/Home/CitiesCRUD"><i class="fas fa-plus-square fa-2x"></i></a></li>
+            *@
+        </ul>
+
+    </div>
+
+</nav>

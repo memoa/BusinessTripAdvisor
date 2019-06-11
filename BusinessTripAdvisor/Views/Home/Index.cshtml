@@ -23,33 +23,37 @@
     <body>
         <div class="container">
             <header>
-                <nav>
-                    <div class="menu-icon">
-                        <i class="fa fa-bars fa-2x"></i>
-                    </div>
-                    <div class="logo">
-                        Business Trip Advisor
-                    </div>
-                    <div class="menu">
-                        <ul>
-                            <li><a href="/">Home</a> </li>
-                            <li><a href="/Home/LifeInDifferentCountries">Life In Different Countries</a> </li>
-                            <li><a href="/Home/Accommodations">Accommodation</a> </li>
-                            <li><a href="#">Transportation</a> </li>
-                            <li><a href="#">Feedbacks</a> </li>
-                            <li><a href="#">Providers</a> </li>
-                            <li>
-                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                @*
+            <nav>
+                <div class="menu-icon">
+                    <i class="fa fa-bars fa-2x"></i>
+                </div>
+                <div class="logo">
+                    Business Trip Advisor
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="/">Home</a> </li>
+                        <li><a href="/Home/LifeInDifferentCountries">Life In Different Countries</a> </li>
+                        <li><a href="/Home/Accommodations">Accommodation</a> </li>
+                        <li><a href="#">Transportation</a> </li>
+                        <li><a href="#">Feedbacks</a> </li>
+                        <li><a href="#">Providers</a> </li>
+                        <li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
 
-                                }
-                            </li>
-                            <!--<li><a href="#">LogOut</a> </li>-->
-                         </ul>
-                    </div>
-                </nav>
+                            }
+                        </li>
+                        <!--<li><a href="#">LogOut</a> </li>-->
+                     </ul>
+                </div>
+            </nav>
+                *@
+                @Html.Partial("_NavBar")
+
                 <div class="statment">
                     <h1>Where to travel</h1>
                     <p>Explore bla bla</p>
@@ -110,8 +114,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="testimonial">
-                                
-                                <img src="~/FrontEnd/BTA/img/Podrick.jpg" alt="podrick payne"/>
+
+                                <img src="~/FrontEnd/BTA/img/Podrick.jpg" alt="podrick payne" />
                                 <div class="name">Podrick Payne</div>
                                 <div class="stars">
                                     <i class="fas fa-star" aria-hidden="true"></i>
@@ -133,8 +137,8 @@
                         <!--Second Testimonial-->
                         <div class="col">
                             <div class="testimonial">
-                                <img src="~/FrontEnd/BTA/img/Ayra.jpg" alt="arya stark"/>
-                                
+                                <img src="~/FrontEnd/BTA/img/Ayra.jpg" alt="arya stark" />
+
                                 <div class="name">Arya Stark</div>
                                 <div class="stars">
                                     <i class="fas fa-star" aria-hidden="true"></i>
@@ -156,8 +160,8 @@
                         <!--Third Testimonial-->
                         <div class="col">
                             <div class="testimonial">
-                                <img src="~/FrontEnd/BTA/img/Hound.jpg" alt="The hound"/>
-                               
+                                <img src="~/FrontEnd/BTA/img/Hound.jpg" alt="The hound" />
+
                                 <div class="name">Sandor Clegane</div>
                                 <div class="stars">
                                     <i class="fas fa-star" aria-hidden="true"></i>
@@ -182,16 +186,20 @@
                 </div>
 
             </section>
-            <footer>
-                <p>Follow us on social media:</p>
-                <div class="social">
-                    <a href="https://www.facebook.com/TripAdvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-facebook-circled-48.png" alt="facebook" /></a>
-                    <a href="https://www.instagram.com/tripadvisor/?hl=sr" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-instagram-48.png" alt="instagram" /></a>
-                    <a href="https://twitter.com/tripadvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-twitter-circled-48.png" alt="twitter" /></a>
-                </div>
-                    <hr>
-                    <p>Copyright 2019 BTA</p>
-            </footer>
+            @*
+        <footer>
+            <p>Follow us on social media:</p>
+            <div class="social">
+                <a href="https://www.facebook.com/TripAdvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-facebook-circled-48.png" alt="facebook" /></a>
+                <a href="https://www.instagram.com/tripadvisor/?hl=sr" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-instagram-48.png" alt="instagram" /></a>
+                <a href="https://twitter.com/tripadvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-twitter-circled-48.png" alt="twitter" /></a>
+            </div>
+                <hr>
+                <p>Copyright 2019 BTA</p>
+        </footer>
+            *@
+            @Html.Partial("_Footer")
+
         </div>
 
         <script src="~/FrontEnd/BTA/script.js"></script>

@@ -7,24 +7,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>BTA | Life In Country</title>
-  <script src="https://code.jquery.com/jquery-3.4.0.js"
-          integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
-          crossorigin="anonymous">
-  </script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="~/FrontEnd/BTA/Css/lifeCountryStyle.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="https://kit.fontawesome.com/966e3b6ec4.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BTA | Life In Country</title>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+    <script src="https://code.jquery.com/jquery-3.4.0.js"
+            integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+            crossorigin="anonymous">
+    </script>
+    <script src="https://kit.fontawesome.com/966e3b6ec4.js"></script>
+
+    <link href="~/FrontEnd/BTA/Css/lifeCountryStyle.css" rel="stylesheet" />
+    @*
+        <link href="~/FrontEnd/BTA/Css/InfoCard.css" rel="stylesheet" />
+    *@
 </head>
 <body>
     <div class="komplet">
         <header>
+            @*
             <nav>
                 <div class="menu-icon">
                     <i class="fa fa-bars fa-2x"></i>
@@ -55,6 +60,8 @@
                 </div>
 
             </nav>
+            *@
+            @Html.Partial("_NavBar")
             <div class="choosecity">
                 <span>
                     <p>Where to go ?</p>
@@ -94,6 +101,9 @@
                 Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
             </p>
         </div>
+
+        <!-- Index page - All cities listed -->
+
         <div id="ponuda">
             <div id="card">
                 <div class="row ">
@@ -183,57 +193,53 @@
                 </div>
             </div>
 
-            @*
-            <div class="card" style="width: 35rem;">
-              <img class="card-img-top" src="~/FrontEnd/BTA/img/budapest1.jpg" alt="Card image cap" />
-              <div class="card-body">
-                <p class="card-text">
-                  Budapest great place for adventure.
-                  Fantastic cousine and friendly people
-                  Lorem Ipsum is simply dummy text of the
-                  printing and typesetting industry.
-                  Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s,
-                  when an unknown printer took a galley
-                </p>
-              </div>
-            </div>
-
-            <div class="card" style="width: 35rem;">
-              <img class="card-img-top" src="~/FrontEnd/BTA/img/dublin1.jpg" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">
-                  Dublin great place for adventure.
-                  Fantastic cousine and friendly people
-                  Lorem Ipsum is simply dummy text of the
-                  printing and typesetting industry.
-                  Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s,
-                  when an unknown printer took a galley
-                </p>
-              </div>
-            </div>
-
-            <div class="card" style="width: 35rem;">
-              <img class="card-img-top" src="~/FrontEnd/BTA/img/rabat1.jpg" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">
-                  Rabat great place for adventure.
-                  Fantastic cousine and friendly people
-                  Lorem Ipsum is simply dummy text of the
-                  printing and typesetting industry.
-                  Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s,
-                  when an unknown printer took a galley
-                </p>
-              </div>
-            </div>
-            *@
         </div>
+
+        <!-- END - Index page - All cities listed -->
+        <!-- Info Card - City Details -->
+        @*
+        <div id="details" class="cardBox">
+            <div class="sideBtn">
+                <a class="edit" href="#" style="background: #0e89a5;">Edit <i class="far fa-edit"></i></a>
+                <a class="delete" href="#" style="background: red;">Delete <i class="far fa-trash-alt"></i></a>
+                <a class="save" href="#" style="background: green;">Save <i class="far fa-save"></i></a>
+            </div>
+            <div class="cardBody">
+                <div class="cardHeader">
+                    Dublin
+                </div>
+                <div class="cardPic">
+
+                </div>
+                <div class="textMap">
+                    <div id="mapContainer">
+                        <img src="img/carte.png">
+                    </div>
+                    <div class="cardText">
+                        <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+                        <span>
+                            <div class="levo">
+                                <a href="#">
+                                    Save
+                                </a>
+                            </div>
+                            <div class="desno">
+                                <a href="#">
+                                    Cancel
+                                </a>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        *@
+        <!-- END - Info Card - City Details -->
+        @*
         <footer>
             <p>Follow us on social media:</p>
             <div class="social">
-                
+
                 <a href="https://www.facebook.com/TripAdvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-facebook-circled-48.png" alt="facebook" /></a>
                 <a href="https://www.instagram.com/tripadvisor/?hl=sr" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-instagram-48.png" alt="instagram"/></a>
                 <a href="https://twitter.com/tripadvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-twitter-circled-48.png" alt="twitter"/></a>
@@ -241,15 +247,23 @@
             <hr>
             <p>Copyright 2019 BTA</p>
         </footer>
+        *@
+        @Html.Partial("_Footer")
     </div>
 
   <script src="~/FrontEnd/BTA/script.js"></script>
   <script type="text/javascript">
     //toogle button
     $(document).ready(function () {
+        $("#details").hide();
+
       $(".menu-icon").on("click", function () {
+
         $("nav ul li").toggleClass("showing");
       });
+
+      $("#navList").append('<li><a href="/Home/CitiesCRUD"><i class="fas fa-plus-square fa-2x"><br><p class="ip">Add city</p></i></a></li>');
+
     });
 
     //scrolling effect
@@ -270,8 +284,10 @@
           $("#ponuda").append("<p>There are no cities in database.");
         else {
           for (var i = 0; i < responseData.length; ++i) {
-            var city = responseData[i];
-            $("#ponuda").append(`<div class="card" style="width: 35rem;"><img class="card-img-top" src="/FrontEnd/BTA/img/lisabon1.jpg" alt="Card image cap"><div class="card-body"><h5 class="card-title">${city.name}</h5><p class="card-text">${city.description}</p></div></div>`);
+              var city = responseData[i];
+
+              $("#ponuda").append(`<div id="card"><div class="row "><div class="picbox"><div class="pic"></div></div><div class="descriptionBox"><div class="card-block px-3"><h2 class="card-title">${city.name}</h2><p class="cardText">${city.description}</p><a href="#" class="btn btn-primary">Read More</a></div></div></div></div>`);
+            //$("#ponuda").append(`<div class="card" style="width: 35rem;"><img class="card-img-top" src="/FrontEnd/BTA/img/lisabon1.jpg" alt="Card image cap"><div class="card-body"><h5 class="card-title">${city.name}</h5><p class="card-text">${city.description}</p></div></div>`);
           }
         }
       }

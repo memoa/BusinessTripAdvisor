@@ -6,8 +6,10 @@ using System.Web.Mvc;
 
 namespace BusinessTripAdvisor.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -38,6 +40,16 @@ namespace BusinessTripAdvisor.Controllers
         }
 
         public ActionResult Accommodations()
+        {
+            return View();
+        }
+
+        public ActionResult Transportation()
+        {
+            return View();
+        }
+
+        public ActionResult Feedbacks()
         {
             return View();
         }
