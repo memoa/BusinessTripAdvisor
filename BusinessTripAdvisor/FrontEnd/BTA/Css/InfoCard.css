@@ -96,7 +96,6 @@ nav ul li a{
 }
 .cardMap{
     grid-row: 2 / -1;
-    background: url("../img/carte.png");
     border-radius: 5px;
 }
 

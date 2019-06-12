@@ -7,8 +7,11 @@
     <title>BTA | InfoCard</title>
     <div>Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 
       title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+      
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
     <link rel="stylesheet" href="Css/InfoCard.css">
+    
     <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
   type="text/javascript" charset="utf-8"></script>
   <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
@@ -16,6 +19,7 @@
   <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" 
   type="text/javascript" charset="utf-8"></script>
   <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
+
 </head>
 <body>
     <div class="komplet">
@@ -45,7 +49,7 @@
         <div class="cardSection">
         <div class="cardBox">
           <div class="cardHeader">Dublin-City</div> 
-          <div class="cardMap">
+          <div id="mapContainer" class="cardMap">
           
           </div>
           <div class="carousel">
@@ -77,8 +81,8 @@
                 <button class="carousel_indicator"></button>
                 <button class="carousel_indicator"></button>
               </div>
-          </div>
 
+            </div>
            <!--END------CAROUSEL-->
           </div>
           <div class="cardText">
@@ -110,17 +114,108 @@
             <p>Copyright 2019 BTA</p>
     </footer>
     </div>
+
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+
+
     <script type="text/javascript">
+
+// CAROUSEL ------------------CAROUSEL------------------------------CAROUSEL
+
+    const track = document.querySelector('.carousel_track');
+    const slides = Array.from(track.children);
+    //console.log(slides);
+    const nextButton = document.querySelector('.carousel_button--right');
+    const prevButton = document.querySelector('.carousel_button--left');
+    const dotsNav = document.querySelector('.carousel_nav');
+    const dots = Array.from(dotsNav.children);
+
+    const slideWidth = slides[0].getBoundingClientRect().width;
+   //console.log(slideWidth);
+
+
+    //ARRANGE THE SLIDES NEXT TO ONE ANOTHER ----------------------------------
+    const setSlidePosition =(slide, index) => {
+    slide.style.left = slideWidth * index + 'px';
+    }
+     slides.forEach(setSlidePosition);
+    
+    const moveToSlide = (track, currentSlide, targetSlide) => {
+        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+        currentSlide.classList.remove('current-slide');
+        targetSlide.classList.add('current-slide');
+    }
+
+    const updateDots = (currentDot, targetDot) => {
+        currentDot.classList.remove('current-slide');
+        targetDot.classList.add('current-slide');
+    }
+
+    const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
+        if(targetIndex === 0){
+            prevButton.classList.add('is-hidden');
+            nextButton.classList.remove('is-hidden');
+
+        }else if(targetIndex === slides.length -1){
+            prevButton.classList.remove('is-hidden');
+            nextButton.classList.add('is-hidden');
+        }else{
+            prevButton.classList.remove('is-hidden');
+            nextButton.classList.remove('is-hidden');
+        }
+    }
+
+    // Initialize the platform object:
+    var platform = new H.service.Platform({
+      'app_id': 'CH8zl7pTYspa961FEXiT',
+      'app_code': 'bKCZBDWX2qKO0OPduRJIYA'
+    });
+
+    // Obtain the default map types from the platform object
+    var maptypes = platform.createDefaultLayers();
+    var mapContainer = document.getElementById('mapContainer');
+
+
+// Instantiate (and display) a map object:
+var map = new H.Map(
+  mapContainer,
+  maptypes.normal.map,
+  {
+    zoom: 10,
+    center: { lng: 13.4, lat: 52.51 }
+  }
+);
+
+
+// Define a variable holding SVG mark-up that defines an icon image:
+var svgMarkup = '<svg width="24" height="24" ' +
+  'xmlns="http://www.w3.org/2000/svg">' +
+  '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' +
+  'height="22" /><text x="12" y="18" font-size="12pt" ' +
+  'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
+  'fill="white">H</text></svg>';
+  // var svgMarkup = '<p>jdfhfjdsh</p>';
+  // Create an icon, an object holding the latitude and longitude, and a marker:
+var icon = new H.map.Icon(svgMarkup),
+coords = {lat: 52.53075, lng: 13.3851};
+//marker = new H.map.Marker(coords, {icon: icon});
+
+// Add the marker to the map and center the map at the location of the marker:
+//map.addObject(marker);
+map.setCenter(coords);
+map.setZoom(12);
+
+
         //toogle button
         $(document).ready(function(){
             $(".menu-icon").on("click",function(){
                 $("nav ul li").toggleClass("showing");
             });
+
+            $("#spinner").hide();
         });
         
         //scrolling effect
@@ -134,16 +229,16 @@
         })
 
         //image upload
-        $('.file-upload').file_upload();
+        //$('.file-upload').file_upload();
 
         /*-------------Mapa-----------------------------------*/
 
         var places;
-
+/*
 $(document).ready(function() {
-  $("#spinner").hide();
-});
 
+});
+*/
 // Load all matching cities in a list, add function to find and zoom chosen city in a map
 function loadPlacesList() {
   var input = $("#inputPlace").val();
@@ -174,46 +269,6 @@ function loadPlacesList() {
     });
   }
 }
-
-
-// Initialize the platform object:
-var platform = new H.service.Platform({
-  'app_id': 'CH8zl7pTYspa961FEXiT',
-  'app_code': 'bKCZBDWX2qKO0OPduRJIYA'
-});
-
-// Obtain the default map types from the platform object
-var maptypes = platform.createDefaultLayers();
-
-// Instantiate (and display) a map object:
-var map = new H.Map(
-  document.getElementById('mapContainer'),
-  maptypes.normal.map,
-  /*
-  {
-    zoom: 10,
-    center: { lng: 13.4, lat: 52.51 }
-  }
-  */
-);
-
-// Define a variable holding SVG mark-up that defines an icon image:
-var svgMarkup = '<svg width="24" height="24" ' +
-  'xmlns="http://www.w3.org/2000/svg">' +
-  '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' +
-  'height="22" /><text x="12" y="18" font-size="12pt" ' +
-  'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
-  'fill="white">H</text></svg>';
-  // var svgMarkup = '<p>jdfhfjdsh</p>';
-  // Create an icon, an object holding the latitude and longitude, and a marker:
-var icon = new H.map.Icon(svgMarkup),
-coords = {lat: 52.53075, lng: 13.3851};
-//marker = new H.map.Marker(coords, {icon: icon});
-
-// Add the marker to the map and center the map at the location of the marker:
-//map.addObject(marker);
-map.setCenter(coords);
-map.setZoom(12);
 
 // Find city and zoom it in map using locationId
 function findOnMap(locationId) {
@@ -293,51 +348,6 @@ function toGeoCoords(map, vX, vY) {
   }
 }
 
-// CAROUSEL ------------------CAROUSEL------------------------------CAROUSEL
-
-const track = document.querySelector('.carousel_track');
-    const slides = Array.from(track.children);
-    //console.log(slides);
-    const nextButton = document.querySelector('.carousel_button--right');
-    const prevButton = document.querySelector('.carousel_button--left');
-    const dotsNav = document.querySelector('.carousel_nav');
-    const dots = Array.from(dotsNav.children);
-
-    const slideWidth = slides[0].getBoundingClientRect().width;
-   //console.log(slideWidth);
-
-
-    //ARRANGE THE SLIDES NEXT TO ONE ANOTHER ----------------------------------
-    const setSlidePosition =(slide, index) => {
-    slide.style.left = slideWidth * index + 'px';
-    }
-     slides.forEach(setSlidePosition);
-    
-    const moveToSlide = (track, currentSlide, targetSlide) => {
-        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-        currentSlide.classList.remove('current-slide');
-        targetSlide.classList.add('current-slide');
-    }
-
-    const updateDots = (currentDot, targetDot) => {
-        currentDot.classList.remove('current-slide');
-        targetDot.classList.add('current-slide');
-    }
-
-    const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
-        if(targetIndex === 0){
-            prevButton.classList.add('is-hidden');
-            nextButton.classList.remove('is-hidden');
-
-        }else if(targetIndex === slides.length -1){
-            prevButton.classList.remove('is-hidden');
-            nextButton.classList.add('is-hidden');
-        }else{
-            prevButton.classList.remove('is-hidden');
-            nextButton.classList.remove('is-hidden');
-        }
-    }
-
 
     //WHEN I CLICK LEFT, MOVE SLIDE TO LEFT -------------------------------------
     prevButton.addEventListener('click', e =>{
@@ -379,7 +389,7 @@ const track = document.querySelector('.carousel_track');
         updateDots(currentDot, targetDot);
         hideShowArrows(slides, prevButton, nextButton, targetIndex);
 
-    })
+    });
         </script>
 </body>
 </html>
