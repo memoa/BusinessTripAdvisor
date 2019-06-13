@@ -77,13 +77,13 @@ nav ul li a{
 }
     */
 /*-----------------InfoCard-------------------------------------*/
-.cardSection{
+.cardSection {
     height: 50%;
     width: 60%;
     margin: 2rem auto;
-
+    
 }
-.cardBox{
+.cardBox {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 2.5rem 15rem 15rem;
@@ -95,6 +95,12 @@ nav ul li a{
     line-height: 2.5rem;
     margin: 0 auto;
     font-size: 1.6rem;
+    background-color: #0e89a5;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    
 }
 .cardMap{
     grid-row: 2 / -1;
@@ -150,14 +156,15 @@ border: 0;
 cursor: pointer;
 }
 .carousel_button--left{
-left: -40px;
+left: -30px;
 }
 .carousel_button--right{
-right: -40px;
+right: -30px;
 }
 .carousel_button img{
 width: 1rem;
-
+border: none;
+color: #0e89a5;
 }
 .carousel_nav{
 
@@ -165,36 +172,38 @@ display: flex;
 justify-content: center;
 padding: 10px 0;
 }
-.carousel_indicator{
-border: 0;
-border-radius: 50%;
-width: 15px;
-height: 15px;
-background: rgba(0, 0, 0, .3);
-margin: 0 12px;
-cursor: pointer;
+.carousel_indicator {
+    border: 0;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: rgba(14, 137, 165, .3);
+    margin: 0 12px;
+    cursor: pointer;
 }
-.carousel_indicator.current-slide{
-background: rgba(0, 0, 0, .75);
+.carousel_indicator.current-slide {
+    background: rgba(14, 137, 165, .75);
 }
 .is-hidden{
 display: none;
 }
 
 /*--------------END CAROUSEL STYLE---------------------------*/
-.cardText{
+.cardTextInfo{
     grid-column: 2 / -1;
 }
-.levo{
+
+.levo {
     float: left;
     width: 50%;
     display: flex;
     align-items: center;
-    justify-content: center;  
-    background-color: green; 
+    justify-content: center;
+    background-color: green;
     cursor: pointer;
     position: relative;
     z-index: 1;
+    font-size: 1.2rem;
 }
 .levo::after{
     content: '';
@@ -211,17 +220,18 @@ display: none;
     transform: scaleX(1);
     transform-origin: left;
 }
-.desno{
+.desno {
     float: left;
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;    
+    background-color: red;
     cursor: pointer;
     position: relative;
     z-index: 1;
     border-bottom-right-radius: 5px;
+    font-size: 1.2rem;
 }
 .desno::after{
     content: '';
@@ -260,12 +270,47 @@ a:hover{
 }
 textarea {
     width: 100%;
-    height: 90%;
+    height: 88%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
-  }
+}
+
+/*------------------MEDIA QUERY MOBILE-----------------------*/
+
+@media screen and (max-width: 600px){
+    .cardSection {
+        width: 95vw;
+        height: 100vh;
+        margin: 0;
+    }
+    .cardBox {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cardTextInfo{
+        height: 100%;
+        margin-top: 2rem;
+    }
+    textarea{
+        height: 30vh;
+    }
+    .levo, .desno{
+        height: 2rem;
+    }
+    .carousel_button--left{
+        left: -23px;
+        
+    }
+    .carousel_button--right {
+        right: -23px;
+    }
+    #mapContainer:nth-child(1){
+
+    }
+}
 
 /*-----------END InfoCard-------------------------------*/
 
