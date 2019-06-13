@@ -15,6 +15,8 @@ namespace BusinessTripAdvisor.Models
         [Required]
         [StringLength(5000)]
         public string Description { get; set; }
-        public int PostalCode { get; set; }
+
+        public int Latitude { get; set; }
+        public int Longitude { get; set; }
     }
 }

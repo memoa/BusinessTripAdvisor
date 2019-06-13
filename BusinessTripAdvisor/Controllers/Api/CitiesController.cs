@@ -63,7 +63,8 @@ namespace BusinessTripAdvisor.Controllers.Api
 
             cityInDb.Name = city.Name;
             cityInDb.Description = city.Description;
-            cityInDb.PostalCode = city.PostalCode;
+            cityInDb.Latitude = city.Latitude;
+            cityInDb.Longitude = city.Longitude;
 
             _context.SaveChanges();
 

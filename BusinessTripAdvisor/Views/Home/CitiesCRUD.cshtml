@@ -13,7 +13,8 @@
       <th>Id</th>
       <th>Name</th>
       <th>Description</th>
-      <th>Postal code</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
       <th></th>
       <th></th>
     </tr>
@@ -42,20 +43,24 @@
       </div>
       <div class="modal-body">
         <!-- Form content -->
-        <form id="form">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="postalCode">Postal code</label>
-            <input type="text" id="postalCode" name="postalCode" class="form-control" />
-          </div>
-        </form>
+          <form id="form">
+              <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" class="form-control" />
+              </div>
+              <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                  <label for="latitude">Latitude</label>
+                  <input type="text" id="latitude" name="latitude" class="form-control" />
+              </div>
+              <div class="form-group">
+                  <label for="longitude">Longitude</label>
+                  <input type="text" id="longitude" name="longitude" class="form-control" />
+              </div>
+          </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -118,7 +123,11 @@
           required: true,
           maxlength: 5000
         },
-        postalCode: {
+        latitude: {
+          required: true,
+          number: true
+        },
+        longitude: {
           required: true,
           number: true
         }
@@ -139,7 +148,7 @@
         // Draw rows for each record in cities table, draw buttons edit and delete
         for (var i = 0; i < responseData.length; ++i) {
           var record = responseData[i];
-          $("#tableBody").append(`<tr class="record"><td>${record.id}</td><td>${record.name}</td><td>${record.description}</td><td>${record.postalCode}</td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal" onclick="fillForm(${record.id});">Edit</button></td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" onclick="setId(${record.id});">Delete</button></td></tr>`);
+            $("#tableBody").append(`<tr class="record"><td>${record.id}</td><td>${record.name}</td><td>${record.description}</td><td>${record.latitude}</td><td>${record.longitude}</td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal" onclick="fillForm(${record.id});">Edit</button></td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDeleteModal" onclick="setId(${record.id});">Delete</button></td></tr>`);
         }
         $("#loadingTableSpinner").hide();
       },
@@ -155,7 +164,8 @@
     id = null; // id is not set, for submitting new city
     $("#name").val("");
     $("#description").val("");
-    $("#postalCode").val("");
+    $("#latitude").val("");
+    $("#longitude").val("");
   }
 
   // Fill the form with data taken from API
@@ -168,7 +178,8 @@
       success: function (responseData, textStatus, jqXHR) {
         $("#name").val(responseData.name);
         $("#description").val(responseData.description);
-        $("#postalCode").val(responseData.postalCode);
+        $("#latitude").val(responseData.latitude);
+        $("#longitude").val(responseData.longitude);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         alert("Something wrong happend.");
@@ -188,7 +199,8 @@
         data: {
           name: $("#name").val(),
           description: $("#description").val(),
-          postalCode: $("#postalCode").val()
+          latitude: $("#latitude").val(),
+          longitude: $("#longitude").val()
         },
         success: function (responseData, textStatus, jqXHR) {
           getCities(); // read all cities from API and put data in table
