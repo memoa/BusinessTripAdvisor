@@ -541,6 +541,14 @@
             $("#ponuda").hide();
             $("#infoCardCityName").text(city.name);
             $("#subject").text(city.description);
+            coords = {
+                lat: city.latitude,
+                lng: city.longitude
+            };
+            console.log(coords);
+            map.setCenter(coords);
+            map.setZoom(12);
+            
             $("#details").show();
         }
     </script>
