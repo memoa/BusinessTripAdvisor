@@ -175,7 +175,7 @@
             <!-- Info Card - City Details -->
             <div id="details" class="cardSection">
                 <div class="cardBox">
-                    <div class="cardHeader">Dublin-City</div>
+                    <div id="infoCardCityName" class="cardHeader"></div>
                     <div id="mapContainer" class="cardMap"></div>
                     <div class="carousel">
                         <!--START------CAROUSEL-->
@@ -256,22 +256,31 @@
             }
         });
 
+        // *************************************************************
+        // *** Life in different countries - Index - show all cities ***
+        // *************************************************************
+
+        var citiesInDb;
+
         $.ajax({
             url: "/api/cities",
             method: "GET",
             success: function (responseData) {
+                citiesInDb = responseData;
                 if (responseData.length == 0)
                     $("#ponuda").append("<p>There are no cities in database.</p>");
                 else {
                     for (var i = 0; i < responseData.length; ++i) {
                         var city = responseData[i];
 
-                        $("#ponuda").append(`<div id="card"><div class="row "><div class="picbox"><div class="pic"></div></div><div class="descriptionBox"><div class="card-block px-3"><h2 class="card-title">${city.name}</h2><p class="cardText">${city.description}</p><button class="btn btn-primary" onclick="details()">Read More</button></div></div></div></div>`);
+                        $("#ponuda").append(`<div id="card"><div class="row "><div class="picbox"><div class="pic"></div></div><div class="descriptionBox"><div class="card-block px-3"><h2 class="card-title">${city.name}</h2><p class="cardText">${city.description}</p><button class="btn btn-primary" onclick="details(${city.id})">Read More</button></div></div></div></div>`);
                         //$("#ponuda").append(`<div class="card" style="width: 35rem;"><img class="card-img-top" src="/FrontEnd/BTA/img/lisabon1.jpg" alt="Card image cap"><div class="card-body"><h5 class="card-title">${city.name}</h5><p class="card-text">${city.description}</p></div></div>`);
                     }
                 }
             }
         });
+
+        // *** Info card - carousel initialization ***
 
         // CAROUSEL ------------------CAROUSEL------------------------------CAROUSEL
 
@@ -285,7 +294,6 @@
 
         const slideWidth = slides[0].getBoundingClientRect().width;
         //console.log(slideWidth);
-
 
         //ARRANGE THE SLIDES NEXT TO ONE ANOTHER ----------------------------------
         const setSlidePosition = (slide, index) => {
@@ -317,6 +325,8 @@
                 nextButton.classList.remove('is-hidden');
             }
         }
+
+        // *** Create map object ***
 
         // Initialize the platform object:
         var platform = new H.service.Platform({
@@ -368,6 +378,7 @@
 
         });
         */
+
         // Load all matching cities in a list, add function to find and zoom chosen city in a map
         function loadPlacesList() {
             var input = $("#inputPlace").val();
@@ -477,6 +488,7 @@
             }
         }
 
+        // *** Carousel functionality ***
 
         //WHEN I CLICK LEFT, MOVE SLIDE TO LEFT -------------------------------------
         prevButton.addEventListener('click', e => {
@@ -520,10 +532,15 @@
 
         });
 
+        // **********************************
         // *** Details view functionality ***
+        // **********************************
         
-        function details() {
+        function details(id) {
+            var city = citiesInDb.filter(c => c.id == id)[0];
             $("#ponuda").hide();
+            $("#infoCardCityName").text(city.name);
+            $("#subject").text(city.description);
             $("#details").show();
         }
     </script>
