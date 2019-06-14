@@ -23,38 +23,7 @@
 <body>
     <div class="komplet">
         <header>
-            @*
-            <nav>
-                <div class="menu-icon">
-                    <i class="fa fa-bars fa-2x"></i>
-                </div>
-                <div class="logo">
-                    Business Trip Advisor
-                </div>
-                <div class="menu">
-                    <ul>
-                        <li><a href="/">Home</a> </li>
-                        <li><a href="/Home/LifeInDifferentCountries">Life In Different Countries</a> </li>
-                        <li><a href="/Home/Accommodations">Accommodation</a> </li>
-                        <li><a href="#">Transportation</a> </li>
-                        <li><a href="#">Feedbacks</a> </li>
-                        <li><a href="#">Providers</a> </li>
-                        <li>
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
 
-                            }
-                        </li>
-                        <!--<li><a href="#">LogOut</a> </li>-->
-                        <li><a href="/Home/CitiesCRUD"><i class="fas fa-plus-square fa-2x"></i></a></li>
-                    </ul>
-
-                </div>
-
-            </nav>
-            *@
             @Html.Partial("_NavBar")
 
             <div class="choosecity">
@@ -181,19 +150,7 @@
                 </div>
             </div>
         </div>
-        @*
-        <footer>
-            <p>Follow us on social media:</p>
-            <div class="social">
 
-                <a href="https://www.facebook.com/TripAdvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-facebook-circled-48.png" alt="facebook" /></a>
-                <a href="https://www.instagram.com/tripadvisor/?hl=sr" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-instagram-48.png" alt="instagram" /></a>
-                <a href="https://twitter.com/tripadvisor" target="_blank"><img src="~/FrontEnd/BTA/img/icons8-twitter-circled-48.png" alt="twitter" /></a>
-            </div>
-            <hr>
-            <p>Copyright 2019 BTA</p>
-        </footer>
-        *@
         @Html.Partial("_Footer")
 
     </div>
