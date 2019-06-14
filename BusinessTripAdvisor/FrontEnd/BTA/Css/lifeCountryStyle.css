@@ -88,7 +88,9 @@ nav ul li:hover{
 nav ul li a:hover{
     color: black;
 }
-.choosecity{
+.choosecity {
+    display: flex;
+    flex-wrap: wrap;
     height: 15vh;
     width: 60%;
     background: linear-gradient( rgba(14, 137, 165, 0.7), rgba(14, 137, 165, 0.7) );
@@ -97,7 +99,6 @@ nav ul li a:hover{
     display: flex;
     flex-direction: row;
     box-shadow: 0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
-  
 }
 span{
     display: inline-block;
@@ -113,7 +114,8 @@ p{
 }
 
 #town{
-    width: 70%;
+
+    width: 40vw;
     height: 2rem;
     border-bottom: 1px solid black;
     background-color: transparent;
@@ -229,6 +231,7 @@ h1{
 }
 .menu > ul > li > a > i{
     position: absolute;
+    top: 0.5rem;
     right: 1.5rem;
 }
 .menu > ul > li > a > i:hover{
@@ -294,7 +297,7 @@ hr{
 }
 .ip{
     font-family: 'Titillium Web', sans-serif;
-    font-size: 14px;
+    font-size: 0.8rem;
     padding: 0;
     margin: 0;
     border: 0;
@@ -315,6 +318,10 @@ hr{
     box-sizing: border-box;
     overflow: hidden;
     margin: 1rem 0;
+}
+.row{
+    width: 100%;
+    height: 100%;
 }
 .card-title{
     color: #0e89a5;
@@ -339,7 +346,11 @@ hr{
 }
 .descriptionBox{
     width: 67%;
-    padding: 20px 10px;
+    height:90%;
+    padding: 30px 10px;
+}
+.btn-primary{
+    display:block;
 }
 
 /*--------------------MEDIA QUERY FOR MOBILE---------------------------*/
@@ -379,9 +390,10 @@ hr{
          line-height: normal;
      }
      .menu ul li a i{
+         position: unset;
          display: flex;
          justify-content: space-between;
-         transform: translate(-100%,-40%);
+         transform: translate(-40%,40%);
      }
      .weather{
         margin: 0;
