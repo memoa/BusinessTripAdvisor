@@ -80,7 +80,8 @@ nav ul li{
 nav .menu ul li a{
     text-decoration: none;
     color: #0e89a5;
-    font-size: 16px;
+    font-size: 1rem;
+    padding: 20px 0;
 }
 nav ul li:hover{
     background: #0e89a5;
