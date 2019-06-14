@@ -108,6 +108,8 @@ function loadPlacesList() {
     }
 }
 
+var chosenCity;
+
 // Find city and zoom it in map using locationId
 function findOnMap(locationId) {
     $.ajax({
@@ -131,8 +133,16 @@ function findOnMap(locationId) {
 
             var cityName = places.filter(place => place.locationId == locationId)[0].address.city;
             //$("#test").text(cityName);
+            $('#infoCardCityName').text(cityName);
             $("#inputPlace").val(cityName);
             $("#placesList li.place").remove();
+
+            chosenCity = {
+                name: cityName,
+                description: '',
+                latitude: position.Latitude,
+                longitude: position.Longitude
+            };
         },
         error: function () {
             alert("Something went wrong.");
@@ -183,5 +193,23 @@ function toGeoCoords(map, vX, vY) {
     return {
         lng: Math.min(viewBounds.ga, viewBounds.ha) + vX * ratioW,
         lat: Math.max(viewBounds.ja, viewBounds.ka) - vY * ratioH
+    }
+}
+
+function onSave() {
+    if (chosenCity !== undefined) {
+        chosenCity.description = $('#subject').val();
+        $.ajax({
+            url: "/api/cities",
+            method: "POST",
+            data: chosenCity,
+            success: function (responseData, textStatus, jqXHR) {
+                //getCities(); // read all cities from API and put data in table
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Something wrong happend.");
+            }
+        });
+
     }
 }

@@ -1,8 +1,25 @@
-﻿        <!-- Info Card - City Details -->
+﻿<!-- Info Card - City Details -->
+
 <div id="details" class="cardSection">
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="inputPlace">Place</label>
+            <input type="text" class="form-control" id="inputPlace" aria-describedby="inputHelp" placeholder="Enter place" onkeydown="loadPlacesList()">
+            <ul id="placesList" class="list-group">
+                <li id="spinner" class="list-group-item list-group-item-action">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </li>
+            </ul>
+            <small id="inputHelp" class="form-text text-muted">Select your destination.</small>
+        </div>
+    </form>
+</div>
     <div class="cardBox">
         <div id="infoCardCityName" class="cardHeader"></div>
         <div id="mapContainer" class="cardMap"></div>
+
         <div class="carousel">
             <!--START------CAROUSEL-->
 
@@ -39,12 +56,8 @@
         <div class="cardTextInfo">
             <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
             <span>
-                <div class="levo">
-                    <a href="#">Save</a>
-                </div>
-                <div class="desno">
-                    <a href="#">Cancel</a>
-                </div>
+                <button class="levo" onclick="onSave();">Save</button>
+                <button class="desno">Cancel</button>
             </span>
         </div>
 
