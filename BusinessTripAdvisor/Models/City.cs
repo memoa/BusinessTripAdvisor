@@ -16,7 +16,7 @@ namespace BusinessTripAdvisor.Models
         [StringLength(5000)]
         public string Description { get; set; }
 
-        public int Latitude { get; set; }
-        public int Longitude { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
     }
 }

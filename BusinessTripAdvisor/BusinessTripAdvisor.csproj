@@ -251,6 +251,10 @@
     <Compile Include="Migrations\201906131042174_AddedLatitudeAndLongitudeRemovedPostalCodeCityModel.Designer.cs">
       <DependentUpon>201906131042174_AddedLatitudeAndLongitudeRemovedPostalCodeCityModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906141002128_UpdatedCityModelFloatLatitudeLongitude.cs" />
+    <Compile Include="Migrations\201906141002128_UpdatedCityModelFloatLatitudeLongitude.Designer.cs">
+      <DependentUpon>201906141002128_UpdatedCityModelFloatLatitudeLongitude.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationFeedback.cs" />
@@ -456,6 +460,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906131042174_AddedLatitudeAndLongitudeRemovedPostalCodeCityModel.resx">
       <DependentUpon>201906131042174_AddedLatitudeAndLongitudeRemovedPostalCodeCityModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906141002128_UpdatedCityModelFloatLatitudeLongitude.resx">
+      <DependentUpon>201906141002128_UpdatedCityModelFloatLatitudeLongitude.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
