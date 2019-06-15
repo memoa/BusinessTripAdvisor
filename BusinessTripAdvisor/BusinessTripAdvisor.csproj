@@ -405,6 +405,7 @@
     <Content Include="Views\Home\Transportation.cshtml" />
     <Content Include="Views\Home\Feedbacks.cshtml" />
     <Content Include="Views\Home\LifeInDifferentCountries\_InfoCard.cshtml" />
+    <Content Include="Views\Home\LifeInDifferentCountries\_Feedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

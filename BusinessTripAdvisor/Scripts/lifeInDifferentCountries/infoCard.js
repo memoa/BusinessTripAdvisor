@@ -66,7 +66,7 @@ function onSave() {
         // Validations
         if (chosenCity.name === 'Choose city')
             alert('Choose the city first.');
-        else if (citiesInDb.some(city => city.name == chosenCity.name))
+        else if (chosenCity.id === undefined && citiesInDb.some(city => city.name == chosenCity.name))
             alert('This city already exists in database.');
         else if (chosenCity.description === '')
             alert('Add some information about city.');
