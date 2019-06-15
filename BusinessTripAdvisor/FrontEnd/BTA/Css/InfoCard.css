@@ -77,6 +77,35 @@ nav ul li a{
 }
     */
 /*-----------------InfoCard-------------------------------------*/
+.side{
+    position:absolute;
+   /* top: 100%;*/
+    left: 0;
+    transform: translateY(50%);
+}
+.side a {
+   color: white;
+   font-size: 22px;
+   display: block;
+   width: 130px;
+   padding: 12px 5px;
+   text-decoration: none;
+   font-size: 18px;
+   margin: 8px 0;
+   border-bottom-right-radius: 5px;
+   border-top-right-radius: 5px;
+   margin-left: -90px;
+   transition: 0.6s all;
+}
+.side a:hover{
+   margin-left: 0;
+}
+.side a i{
+    float: right;
+    padding-right: 0.6rem;
+    line-height: 26px;
+}
+
 .cardSection {
     height: 50%;
     width: 60%;
