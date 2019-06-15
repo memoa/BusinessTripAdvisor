@@ -83,7 +83,7 @@ nav ul li a{
     left: 0;
     transform: translateY(50%);
 }
-.side a {
+.side button {
    color: white;
    font-size: 22px;
    display: block;
@@ -97,10 +97,10 @@ nav ul li a{
    margin-left: -90px;
    transition: 0.6s all;
 }
-.side a:hover{
+.side button:hover{
    margin-left: 0;
 }
-.side a i{
+.side button i{
     float: right;
     padding-right: 0.6rem;
     line-height: 26px;
