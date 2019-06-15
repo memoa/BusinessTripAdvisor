@@ -194,7 +194,7 @@
     // If form is valid, send data to API
     if ($("#form").valid()) {
       $.ajax({
-        url: "/api/cities/" + (id === null ? "" : id),
+        url: "/api/cities" + (id === null ? "" : '/' + id),
         method: id === null ? "POST" : "PUT",
         data: {
           name: $("#name").val(),

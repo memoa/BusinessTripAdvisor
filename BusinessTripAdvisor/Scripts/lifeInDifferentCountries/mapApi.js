@@ -1,28 +1,4 @@
-﻿// *************************************************************
-// *** Life in different countries - Index - show all cities ***
-// *************************************************************
-
-var citiesInDb;
-
-$.ajax({
-    url: "/api/cities",
-    method: "GET",
-    success: function (responseData) {
-        citiesInDb = responseData;
-        if (responseData.length == 0)
-            $("#ponuda").append("<p>There are no cities in database.</p>");
-        else {
-            for (var i = 0; i < responseData.length; ++i) {
-                var city = responseData[i];
-
-                $("#ponuda").append(`<div id="card"><div class="row "><div class="picbox"><div class="pic"></div></div><div class="descriptionBox"><div class="card-block px-3"><h2 class="card-title">${city.name}</h2><p class="cardText">${city.description}</p><button class="btn btn-primary" onclick="details(${city.id})">Read More</button></div></div></div></div>`);
-                //$("#ponuda").append(`<div class="card" style="width: 35rem;"><img class="card-img-top" src="/FrontEnd/BTA/img/lisabon1.jpg" alt="Card image cap"><div class="card-body"><h5 class="card-title">${city.name}</h5><p class="card-text">${city.description}</p></div></div>`);
-            }
-        }
-    }
-});
-
-// *** Info card - carousel initialization ***
+﻿// *** Info card - carousel initialization ***
 
 // *** Create map object ***
 
@@ -65,17 +41,14 @@ var icon = new H.map.Icon(svgMarkup),
 map.setCenter(coords);
 map.setZoom(12);
 
-//image upload
-//$('.file-upload').file_upload();
+// Enable the event system on the map instance:
+var mapEvents = new H.mapevents.MapEvents(map);
 
-/*-------------Mapa-----------------------------------*/
+// Instantiate the default behavior, providing the mapEvents object:
+var behavior = new H.mapevents.Behavior(mapEvents);
 
 var places;
-/*
-$(document).ready(function() {
-
-});
-*/
+var chosenCity;
 
 // Load all matching cities in a list, add function to find and zoom chosen city in a map
 function loadPlacesList() {
@@ -107,8 +80,6 @@ function loadPlacesList() {
         });
     }
 }
-
-var chosenCity;
 
 // Find city and zoom it in map using locationId
 function findOnMap(locationId) {
@@ -150,9 +121,6 @@ function findOnMap(locationId) {
     });
 }
 
-// Enable the event system on the map instance:
-var mapEvents = new H.mapevents.MapEvents(map);
-
 // *** Add/remove new marker ***
 
 // Add event listener:
@@ -179,9 +147,6 @@ map.addEventListener('tap', function (evt) {
     map.addObject(marker);
 });
 
-// Instantiate the default behavior, providing the mapEvents object:
-var behavior = new H.mapevents.Behavior(mapEvents);
-
 // Converts viewport coordinates to geo coordinates
 function toGeoCoords(map, vX, vY) {
     var viewBounds = map.getViewBounds();
@@ -193,23 +158,5 @@ function toGeoCoords(map, vX, vY) {
     return {
         lng: Math.min(viewBounds.ga, viewBounds.ha) + vX * ratioW,
         lat: Math.max(viewBounds.ja, viewBounds.ka) - vY * ratioH
-    }
-}
-
-function onSave() {
-    if (chosenCity !== undefined) {
-        chosenCity.description = $('#subject').val();
-        $.ajax({
-            url: "/api/cities",
-            method: "POST",
-            data: chosenCity,
-            success: function (responseData, textStatus, jqXHR) {
-                //getCities(); // read all cities from API and put data in table
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert("Something wrong happend.");
-            }
-        });
-
     }
 }
