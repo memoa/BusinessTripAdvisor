@@ -296,6 +296,12 @@ hr{
     border: 0;
     padding: 0;
 }
+.addBtn{
+    position: absolute;
+    right: 1rem;
+    top: 0.4rem;
+    color: #0e89a5;
+}
 .ip{
     font-family: 'Titillium Web', sans-serif;
     font-size: 0.8rem;
@@ -387,15 +393,24 @@ hr{
      nav ul li{
          max-height: 100vh;
          background: #000;
-         padding: 20px;
+         padding: 7px;
          line-height: normal;
      }
-     .menu ul li a i{
+     .addBtn{
          position: unset;
-         display: flex;
-         justify-content: space-between;
-         transform: translate(-40%,40%);
      }
+    .menu ul li i{
+        padding-top:1rem;
+    }
+    .menu ul li i:hover {
+        color: black;
+    }
+    .menu ul li i > p {
+        padding-top: 0;
+        display: flex;
+        justify-content: space-between;
+        transform: translate(-40%,-40%);
+    }
      .weather{
         margin: 0;
         border: 0;
@@ -453,7 +468,7 @@ hr{
      #ponuda{
          width: 100vw;
          padding: 0.5rem 0;
-         height: 200vh;
+         height: 100vh;
      }
      #card{
          width: 95vw;
@@ -497,4 +512,9 @@ hr{
         letter-spacing: 0;
         font-size: 1rem;
     }
+   /* .addBtn{
+        position: unset;
+        display: flex;
+        justify-content:space-between;
+    }*/
 }
