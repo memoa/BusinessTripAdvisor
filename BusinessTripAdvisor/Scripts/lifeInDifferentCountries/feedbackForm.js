@@ -54,7 +54,7 @@ $('#feedbackModal').on('shown.bs.modal', function (e) {
         var geoCoords = toGeoCoords(feedbackMap, evt.currentPointer.viewportX, evt.currentPointer.viewportY);
 
         // Log 'tap' and 'mouse' events:
-        console.log(feedbackMarker);
+        //console.log(feedbackMarker);
 
         // Remove previous marker
         if (feedbackMarker !== undefined)
