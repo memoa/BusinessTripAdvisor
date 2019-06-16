@@ -255,6 +255,18 @@
     <Compile Include="Migrations\201906141002128_UpdatedCityModelFloatLatitudeLongitude.Designer.cs">
       <DependentUpon>201906141002128_UpdatedCityModelFloatLatitudeLongitude.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906160610444_UpdateCityLifeFeedback.cs" />
+    <Compile Include="Migrations\201906160610444_UpdateCityLifeFeedback.Designer.cs">
+      <DependentUpon>201906160610444_UpdateCityLifeFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906160614500_AddFaIconNameToTag.cs" />
+    <Compile Include="Migrations\201906160614500_AddFaIconNameToTag.Designer.cs">
+      <DependentUpon>201906160614500_AddFaIconNameToTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906160619550_SeedTags.cs" />
+    <Compile Include="Migrations\201906160619550_SeedTags.Designer.cs">
+      <DependentUpon>201906160619550_SeedTags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationFeedback.cs" />
@@ -465,6 +477,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906141002128_UpdatedCityModelFloatLatitudeLongitude.resx">
       <DependentUpon>201906141002128_UpdatedCityModelFloatLatitudeLongitude.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906160610444_UpdateCityLifeFeedback.resx">
+      <DependentUpon>201906160610444_UpdateCityLifeFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906160614500_AddFaIconNameToTag.resx">
+      <DependentUpon>201906160614500_AddFaIconNameToTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906160619550_SeedTags.resx">
+      <DependentUpon>201906160619550_SeedTags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
