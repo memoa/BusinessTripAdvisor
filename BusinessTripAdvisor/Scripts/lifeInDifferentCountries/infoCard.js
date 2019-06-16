@@ -115,7 +115,3 @@ function onDelete() {
         });
     }
 }
-
-function onFeedback() {
-    $('#feedbackModal').modal('show');
-}

@@ -12,6 +12,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>BTA | Life In Country</title>
 
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
@@ -26,6 +28,7 @@
           type="text/javascript" charset="utf-8"></script>
   <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
           type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
   <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
 </head>
 <body>
@@ -179,8 +182,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   <script src="~/Scripts/lifeInDifferentCountries/carousel.js"></script>
-  <script src="~/Scripts/lifeInDifferentCountries/mapApi.js"></script>
+  <script src="~/Scripts/lifeInDifferentCountries/mapApi.js" type="text/javascript" charset="UTF-8"></script>
   <script src="~/Scripts/lifeInDifferentCountries/infoCard.js"></script>
+  <script src="~/Scripts/lifeInDifferentCountries/feedbackForm.js"></script>
   @if (User.IsInRole("Administrator"))
   {
     <script>

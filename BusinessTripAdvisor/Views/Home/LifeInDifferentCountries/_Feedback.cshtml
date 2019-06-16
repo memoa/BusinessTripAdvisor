@@ -9,29 +9,42 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="feedbackModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="feedbackModalLabel">Add new feedback</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <!-- Form content -->
-        <form id="form">
+        <form id="feedbackForm">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" class="form-control" />
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="form-control" />
           </div>
           <div class="form-group">
-            <label for="description">Description</label>
-            <textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea>
+            <label for="comment">Comment</label>
+            <textarea rows="10" cols="80" type="textarea" id="comment" name="comment" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="tag">Category</label>
+            <input type="text" id="tag" name="tag" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating</label>
+            <input type="text" id="rating" name="rating" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Map</label>
+            <div id="feedbackMapContainer" style="height:320px;"></div>
+            <small class="form-text text-muted">Click on the map to choose location for feedback.</small>
           </div>
           <div class="form-group">
             <label for="latitude">Latitude</label>
-            <input type="text" id="latitude" name="latitude" class="form-control" />
+            <input type="text" id="latitude" name="latitude" class="form-control" readonly />
           </div>
           <div class="form-group">
             <label for="longitude">Longitude</label>
-            <input type="text" id="longitude" name="longitude" class="form-control" />
+            <input type="text" id="longitude" name="longitude" class="form-control" readonly />
           </div>
         </form>
       </div>

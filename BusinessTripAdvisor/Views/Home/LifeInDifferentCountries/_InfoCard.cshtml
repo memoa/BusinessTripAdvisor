@@ -1,90 +1,90 @@
 ﻿<!-- Info Card - City Details -->
 
-    <div id="details" class="cardSection">
-        <div class="side">
-            @if (User.IsInRole("Administrator"))
-            {
-                <button class="saveBtn" style="background-color: forestgreen;" onclick="onSave();">Save<i class="far fa-save"></i></button>
-                <button id="deleteBtn" style="background-color: red;" onclick="onDelete();">Delete<i class="far fa-trash-alt"></i></button>
+<div id="details" class="cardSection">
+  <div class="side">
+    @if (User.IsInRole("Administrator"))
+    {
+      <button class="saveBtn" style="background-color: forestgreen;" onclick="onSave();">Save<i class="far fa-save"></i></button>
+      <button id="deleteBtn" style="background-color: red;" onclick="onDelete();">Delete<i class="far fa-trash-alt"></i></button>
 
-            }
-            <button class="cancelBtn" style="background-color: palevioletred;" onclick="onCancel();">Cancel<i class="far fa-window-close"></i></button>
-            <button id="feedBtn" class="feedBtn" style="background-color: #0e89a5;" onclick="onFeedback();">Add Feed<i class="far fa-comment-dots"></i></button>
+    }
+    <button class="cancelBtn" style="background-color: palevioletred;" onclick="onCancel();">Cancel<i class="far fa-window-close"></i></button>
+    <button id="feedBtn" class="feedBtn" style="background-color: #0e89a5;" onclick="onFeedback();">Add Feed<i class="far fa-comment-dots"></i></button>
+  </div>
+  @if (User.IsInRole("Administrator"))
+  {
+    <div id="chooseCity" class="container">
+      <form>
+        <div class="form-group">
+          <label for="inputPlace">Place</label>
+          <input type="text" class="form-control" id="inputPlace" aria-describedby="inputHelp" placeholder="Enter place" onkeydown="loadPlacesList()">
+          <ul id="placesList" class="list-group">
+            <li id="spinner" class="list-group-item list-group-item-action">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Loading...
+            </li>
+          </ul>
+          <small id="inputHelp" class="form-text text-muted">Select your destination.</small>
         </div>
-        @if (User.IsInRole("Administrator"))
-        {
-            <div id="chooseCity" class="container">
-                <form>
-                    <div class="form-group">
-                        <label for="inputPlace">Place</label>
-                        <input type="text" class="form-control" id="inputPlace" aria-describedby="inputHelp" placeholder="Enter place" onkeydown="loadPlacesList()">
-                        <ul id="placesList" class="list-group">
-                            <li id="spinner" class="list-group-item list-group-item-action">
-                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                Loading...
-                            </li>
-                        </ul>
-                        <small id="inputHelp" class="form-text text-muted">Select your destination.</small>
-                    </div>
-                </form>
-            </div>
-        }
-        <div class="cardBox">
+      </form>
+    </div>
+  }
+<div class="cardBox">
 
-            <div id="infoCardCityName" class="cardHeader"></div>
-            <div id="mapContainer" class="cardMap"></div>
+  <div id="infoCardCityName" class="cardHeader"></div>
+  <div id="mapContainer" class="cardMap"></div>
 
-            <div class="carousel">
-                <!--START------CAROUSEL-->
+  <div class="carousel">
+    <!--START------CAROUSEL-->
 
-                <div class="carousel">
+    <div class="carousel">
 
-                    <button class="carousel_button carousel_button--left is-hidden">
-                        <img src="~/FrontEnd/BTA/img/back.svg" />
-                    </button>
-                    <div class="carousel_track-container">
-                        <ul class="carousel_track">
-                            <li class="carousel_slide current-slide">
-                                <img class="carousel_img" src="~/FrontEnd/BTA/img/lisabon1.jpg" alt="dublin">
-                            </li>
-                            <li class="carousel_slide">
-                                <img class="carousel_img" src="~/FrontEnd/BTA/img/budapest1.jpg" alt="budapest">
-                            </li>
-                            <li class="carousel_slide">
-                                <img class="carousel_img" src="~/FrontEnd/BTA/img/rabat1.jpg" alt="rabat">
-                            </li>
-                        </ul>
-                    </div>
-                    <button class="carousel_button carousel_button--right">
-                        <img src="~/FrontEnd/BTA/img/right-arrow.svg">
-                    </button>
-                    <div class="carousel_nav">
-                        <button class="carousel_indicator current-slide"></button>
-                        <button class="carousel_indicator"></button>
-                        <button class="carousel_indicator"></button>
-                    </div>
-
-                </div>
-                <!--END------CAROUSEL-->
-            </div>
-
-            <div class="cardTextInfo">
-                <textarea id="subject" name="subject" placeholder="Write something.." readonly></textarea>
-                @*<span>
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <button class="levo" onclick="onSave();">Save</button>
-                    }
-                    <button class="desno" onclick="onCancel();">Cancel</button>
-                </span>
-                @if (User.IsInRole("Administrator"))
-                {
-                    <button id="deleteBtn" class="btn btn-danger" onclick="onDelete();">Delete</button>
-                }*@
-            </div>
-
-        </div>
+      <button class="carousel_button carousel_button--left is-hidden">
+        <img src="~/FrontEnd/BTA/img/back.svg" />
+      </button>
+      <div class="carousel_track-container">
+        <ul class="carousel_track">
+          <li class="carousel_slide current-slide">
+            <img class="carousel_img" src="~/FrontEnd/BTA/img/lisabon1.jpg" alt="dublin">
+          </li>
+          <li class="carousel_slide">
+            <img class="carousel_img" src="~/FrontEnd/BTA/img/budapest1.jpg" alt="budapest">
+          </li>
+          <li class="carousel_slide">
+            <img class="carousel_img" src="~/FrontEnd/BTA/img/rabat1.jpg" alt="rabat">
+          </li>
+        </ul>
+      </div>
+      <button class="carousel_button carousel_button--right">
+        <img src="~/FrontEnd/BTA/img/right-arrow.svg">
+      </button>
+      <div class="carousel_nav">
+        <button class="carousel_indicator current-slide"></button>
+        <button class="carousel_indicator"></button>
+        <button class="carousel_indicator"></button>
+      </div>
 
     </div>
+    <!--END------CAROUSEL-->
+  </div>
+
+  <div class="cardTextInfo">
+    <textarea id="subject" name="subject" placeholder="Write something.." readonly></textarea>
+    @*<span>
+          @if (User.IsInRole("Administrator"))
+          {
+              <button class="levo" onclick="onSave();">Save</button>
+          }
+          <button class="desno" onclick="onCancel();">Cancel</button>
+      </span>
+      @if (User.IsInRole("Administrator"))
+      {
+          <button id="deleteBtn" class="btn btn-danger" onclick="onDelete();">Delete</button>
+      }*@
+  </div>
+
+</div>
+
+</div>
 
 <!-- END - Info Card - City Details -->

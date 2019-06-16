@@ -2,6 +2,44 @@
 
 // *** Create map object ***
 
+/**
+ * Boilerplate map initialization code starts below:
+ */
+
+//Step 1: initialize communication with the platform
+var platform = new H.service.Platform({
+    app_id: 'CH8zl7pTYspa961FEXiT',
+    app_code: 'bKCZBDWX2qKO0OPduRJIYA',
+    useHTTPS: true
+});
+
+var pixelRatio = window.devicePixelRatio || 1;
+var defaultLayers = platform.createDefaultLayers({
+    tileSize: pixelRatio === 1 ? 256 : 512,
+    ppi: pixelRatio === 1 ? undefined : 320
+});
+
+//Step 2: initialize a map  - not specificing a location will give a whole world view.
+var map = new H.Map(
+    document.getElementById('mapContainer'),
+    defaultLayers.normal.map, { pixelRatio: pixelRatio }
+);
+
+// Enable the event system on the map instance:
+var mapEvents = new H.mapevents.MapEvents(map);
+
+// Instantiate the default behavior, providing the mapEvents object:
+var behavior = new H.mapevents.Behavior(mapEvents);
+/*
+//Step 3: make the map interactive
+// MapEvents enables the event system
+// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+*/
+// Create the default UI components
+var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+/*
 // Initialize the platform object:
 var platform = new H.service.Platform({
     'app_id': 'CH8zl7pTYspa961FEXiT',
@@ -22,7 +60,7 @@ var map = new H.Map(
         center: { lng: 13.4, lat: 52.51 }
     }
 );
-
+*/
 // Define a variable holding SVG mark-up that defines an icon image:
 var svgMarkup = '<svg width="24" height="24" ' +
     'xmlns="http://www.w3.org/2000/svg">' +
@@ -40,12 +78,6 @@ var icon = new H.map.Icon(svgMarkup),
 //map.addObject(marker);
 map.setCenter(coords);
 map.setZoom(12);
-
-// Enable the event system on the map instance:
-var mapEvents = new H.mapevents.MapEvents(map);
-
-// Instantiate the default behavior, providing the mapEvents object:
-var behavior = new H.mapevents.Behavior(mapEvents);
 
 var places;
 var chosenCity;
@@ -119,44 +151,4 @@ function findOnMap(locationId) {
             alert("Something went wrong.");
         }
     });
-}
-
-// *** Add/remove new marker ***
-
-// Add event listener:
-map.addEventListener('tap', function (evt) {
-    var geoCoords = toGeoCoords(map, evt.currentPointer.viewportX, evt.currentPointer.viewportY);
-
-    // Log 'tap' and 'mouse' events:
-    console.log({
-        type: evt.type,
-        currentPointer: evt.currentPointer.type,
-        viewportX: evt.currentPointer.viewportX,
-        viewportY: evt.currentPointer.viewportY,
-        viewBounds: map.getViewBounds(),
-        viewPort: map.getViewPort(),
-        geoCoords: geoCoords
-    });
-    // Create marker with fa - icon on click/tap
-    var domIcon = new H.map.DomIcon('<i class="fas fa-map-marker-alt fa-2x text-primary" style="top:-32px;left:-10px;"></i>');
-    var marker = new H.map.DomMarker(geoCoords, { icon: domIcon });
-    // Remove marker on longpress
-    marker.addEventListener('longpress', function (evt) {
-        map.removeObject(this);
-    });
-    map.addObject(marker);
-});
-
-// Converts viewport coordinates to geo coordinates
-function toGeoCoords(map, vX, vY) {
-    var viewBounds = map.getViewBounds();
-    var viewPort = map.getViewPort();
-    var geoHeight = Math.abs(viewBounds.ja - viewBounds.ka);
-    var geoWidth = Math.abs(viewBounds.ga - viewBounds.ha);
-    var ratioW = geoWidth / viewPort.width;
-    var ratioH = geoHeight / viewPort.height;
-    return {
-        lng: Math.min(viewBounds.ga, viewBounds.ha) + vX * ratioW,
-        lat: Math.max(viewBounds.ja, viewBounds.ka) - vY * ratioH
-    }
 }
