@@ -7,175 +7,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BTA | Life In Country</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BTA | Life In Country</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    <script src="https://kit.fontawesome.com/966e3b6ec4.js"></script>
+  <script src="https://kit.fontawesome.com/966e3b6ec4.js"></script>
 
-    <link href="~/FrontEnd/BTA/Css/lifeCountryStyle.css" rel="stylesheet" />
-    <link href="~/FrontEnd/BTA/Css/InfoCard.css" rel="stylesheet" />
+  <link href="~/FrontEnd/BTA/Css/lifeCountryStyle.css" rel="stylesheet" />
+  <link href="~/FrontEnd/BTA/Css/InfoCard.css" rel="stylesheet" />
 
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
-            type="text/javascript" charset="utf-8"></script>
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
-            type="text/javascript" charset="utf-8"></script>
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
-            type="text/javascript" charset="utf-8"></script>
-    <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+          type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+          type="text/javascript" charset="utf-8"></script>
+  <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
+          type="text/javascript" charset="utf-8"></script>
+  <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
 </head>
 <body>
-    <div class="komplet">
-        <header>
-            @Html.Partial("_NavBar")
-            <div class="choosecity">
-                <span>
-                    <p>Where to go ?</p>
-                    <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list">
-                </span>
-            </div>
-        </header>
+  <div class="komplet">
+    <header>
+      @Html.Partial("_NavBar")
+      <div class="choosecity">
+        <span>
+          <p>Where to go ?</p>
+          <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list">
+        </span>
+      </div>
+    </header>
 
-        <div class="category">
-            <div class="middle">
-                <a class="but" href="#">
-                    <i class="fas fa-hamburger"></i>
-                    <p class="ctg">Food</p>
+    <div class="category">
+      <div class="middle">
+        <a class="but" href="#">
+          <i class="fas fa-hamburger"></i>
+          <p class="ctg">Food</p>
 
-                </a>
-                <a class="but" href="#">
-                    <i class="fas fa-user-shield"></i>
-                    <p class="ctg">Safety</p>
-                </a>
-                <a class="but" href="#">
-                    <i class="fas fa-university"></i>
-                    <p class="ctg">Local Culture</p>
-                </a>
-                <a class="but" href="#">
-                    <i class="fas fa-bus"></i>
-                    <p class="ctg">Local Transport</p>
-                </a>
-                <a class="but" href="#">
-                    <i class="fas fa-plane"></i>
-                    <p class="ctg">Airport</p>
-                </a>
-            </div>
-        </div>
-        <div class="statment">
-            <h1>Discover your city with</h1><br>
-            <h1>Bussines Trip Advisor</h1>
-            <p class="fewwords">
-                Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-            </p>
-        </div>
-
-        <!-- Index page - All cities listed -->
-
-        <div id="ponuda">
-            <div id="card">
-                <div class="row ">
-                    <div class="picbox">
-                        <div class="pic">
-
-                        </div>
-                    </div>
-                    <div class="descriptionBox">
-                        <div class="card-block px-3">
-                            <h2 class="card-title">Dublin</h2>
-                            <p class="cardText">
-                                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            </p>
-                            <a href="#" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!--Second Card-->
-            <div id="card">
-                <div class="row ">
-                    <div class="picbox">
-                        <div class="pic">
-
-                        </div>
-                    </div>
-                    <div class="descriptionBox">
-                        <div class="card-block px-3">
-                            <h2 class="card-title">Dublin</h2>
-                            <p class="cardText">
-                                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            </p>
-                            <a href="#" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!--Third Card-->
-            <div id="card">
-                <div class="row ">
-                    <div class="picbox">
-                        <div class="pic">
-
-                        </div>
-                    </div>
-                    <div class="descriptionBox">
-                        <div class="card-block px-3">
-                            <h2 class="card-title">Dublin</h2>
-                            <p class="cardText">
-                                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            </p>
-                            <a href="#" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!--Fourth Card-->
-            <div id="card">
-                <div class="row ">
-                    <div class="picbox">
-                        <div class="pic">
-
-                        </div>
-                    </div>
-                    <div class="descriptionBox">
-                        <div class="card-block px-3">
-                            <h2 class="card-title">Dublin</h2>
-                            <p class="cardText">
-                                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            </p>
-                            <a href="#" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-        <!-- END - Index page - All cities listed -->
-
-        @Html.Partial("~/Views/Home/LifeInDifferentCountries/_InfoCard.cshtml")
-
-
-        @Html.Partial("_Footer")
+        </a>
+        <a class="but" href="#">
+          <i class="fas fa-user-shield"></i>
+          <p class="ctg">Safety</p>
+        </a>
+        <a class="but" href="#">
+          <i class="fas fa-university"></i>
+          <p class="ctg">Local Culture</p>
+        </a>
+        <a class="but" href="#">
+          <i class="fas fa-bus"></i>
+          <p class="ctg">Local Transport</p>
+        </a>
+        <a class="but" href="#">
+          <i class="fas fa-plane"></i>
+          <p class="ctg">Airport</p>
+        </a>
+      </div>
     </div>
-        @Html.Partial("~/Views/Home/LifeInDifferentCountries/_Feedback.cshtml")
+    <div class="statment">
+      <h1>Discover your city with</h1><br>
+      <h1>Bussines Trip Advisor</h1>
+      <p class="fewwords">
+        Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+      </p>
+    </div>
+
+    <!-- Index page - All cities listed -->
+
+    <div id="ponuda">
+      <div id="card">
+        <div class="row ">
+          <div class="picbox">
+            <div class="pic">
+
+            </div>
+          </div>
+          <div class="descriptionBox">
+            <div class="card-block px-3">
+              <h2 class="card-title">Dublin</h2>
+              <p class="cardText">
+                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              </p>
+              <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--Second Card-->
+      <div id="card">
+        <div class="row ">
+          <div class="picbox">
+            <div class="pic">
+
+            </div>
+          </div>
+          <div class="descriptionBox">
+            <div class="card-block px-3">
+              <h2 class="card-title">Dublin</h2>
+              <p class="cardText">
+                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              </p>
+              <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--Third Card-->
+      <div id="card">
+        <div class="row ">
+          <div class="picbox">
+            <div class="pic">
+
+            </div>
+          </div>
+          <div class="descriptionBox">
+            <div class="card-block px-3">
+              <h2 class="card-title">Dublin</h2>
+              <p class="cardText">
+                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              </p>
+              <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--Fourth Card-->
+      <div id="card">
+        <div class="row ">
+          <div class="picbox">
+            <div class="pic">
+
+            </div>
+          </div>
+          <div class="descriptionBox">
+            <div class="card-block px-3">
+              <h2 class="card-title">Dublin</h2>
+              <p class="cardText">
+                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              </p>
+              <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- END - Index page - All cities listed -->
+
+    @Html.Partial("~/Views/Home/LifeInDifferentCountries/_InfoCard.cshtml")
+
+
+    @Html.Partial("_Footer")
+  </div>
+  @Html.Partial("~/Views/Home/LifeInDifferentCountries/_Feedback.cshtml")
 
   @Scripts.Render("~/bundles/jquery")
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
   <script src="~/Scripts/lifeInDifferentCountries/carousel.js"></script>
   <script src="~/Scripts/lifeInDifferentCountries/mapApi.js"></script>
   <script src="~/Scripts/lifeInDifferentCountries/infoCard.js"></script>

@@ -1,8 +1,9 @@
-﻿<!-- Button trigger modal -->
+﻿@*
+<!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#feedbackModal">
   Launch demo modal
 </button>
-
+  *@
 <!-- Modal -->
 <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -14,7 +15,25 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <!-- Form content -->
+        <form id="form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea rows="10" cols="80" type="textarea" id="description" name="description" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="text" id="latitude" name="latitude" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input type="text" id="longitude" name="longitude" class="form-control" />
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

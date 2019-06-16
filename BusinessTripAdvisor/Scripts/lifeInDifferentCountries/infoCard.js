@@ -11,6 +11,7 @@ function details(id) {
 
             $('#chooseCity').hide();
             $('#deleteBtn').show();
+            $('#feedBtn').show();
             // Fill Info Card
             $("#infoCardCityName").text(chosenCity.name);
             $("#subject").val(chosenCity.description);
@@ -40,6 +41,7 @@ function details(id) {
         $("#ponuda").hide();
 
         $('#deleteBtn').hide();
+        $('#feedBtn').hide();
 
         $('#inputPlace').val('');
         $('#chooseCity').show();
@@ -112,4 +114,8 @@ function onDelete() {
             }
         });
     }
+}
+
+function onFeedback() {
+    $('#feedbackModal').modal('show');
 }

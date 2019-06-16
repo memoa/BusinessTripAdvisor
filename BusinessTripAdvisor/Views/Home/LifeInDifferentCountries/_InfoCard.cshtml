@@ -9,7 +9,7 @@
 
             }
             <button class="cancelBtn" style="background-color: palevioletred;" onclick="onCancel();">Cancel<i class="far fa-window-close"></i></button>
-            <button class="feedBtn" style="background-color: #0e89a5;">Add Feed<i class="far fa-comment-dots"></i></button>
+            <button id="feedBtn" class="feedBtn" style="background-color: #0e89a5;" onclick="onFeedback();">Add Feed<i class="far fa-comment-dots"></i></button>
         </div>
         @if (User.IsInRole("Administrator"))
         {
