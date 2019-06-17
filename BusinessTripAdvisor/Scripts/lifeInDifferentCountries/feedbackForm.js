@@ -24,6 +24,38 @@ function toGeoCoords(map, vX, vY) {
     }
 }
 
+// Client side validation rules
+var feedbackValidator = $("#feedbackForm").validate({
+    rules: {
+        title: {
+            required: true,
+            maxlength: 50
+        },
+        comment: {
+            required: true,
+            maxlength: 5000
+        },
+        tag: {
+            required: true,
+            number: true
+        },
+        rating: {
+            required: true,
+            number: true,
+            range: [1, 5]
+        },
+        latitude: {
+            required: true,
+            number: true
+        },
+        longitude: {
+            required: true,
+            number: true
+        }
+    }
+});
+
+
 $('#feedbackModal').on('shown.bs.modal', function (e) {
     // Create map inside a form
     feedbackMap = new H.Map(
@@ -71,6 +103,7 @@ $('#feedbackModal').on('shown.bs.modal', function (e) {
 });
 
 $('#feedbackModal').on('hidden.bs.modal', function (e) {
+    feedbackValidator.resetForm();
     // Clear form
     $('#feedbackForm #title').val('');
     $('#feedbackForm #comment').val('');
@@ -88,6 +121,35 @@ $('#feedbackModal').on('hidden.bs.modal', function (e) {
     feedbackMapEvents = undefined;
     feedbackMap = undefined;
 });
+
+function saveFeedback() {
+    if ($("#feedbackForm").valid()) {
+        $.ajax({
+            url: "/api/cityLifeFeedbacks", //+ (id === null ? "" : '/' + id),
+            method: "POST", //id === null ? "POST" : "PUT",
+            data: {
+                cityId: chosenCity.id,
+                rating: $("#rating").val(),
+                title: $("#title").val(),
+                comment: $("#comment").val(),
+                AspNetUserId: $("#aspNetUserId").val(),
+                tagId: $("#tag").val(),
+                latitude: $("#latitude").val(),
+                longitude: $("#longitude").val(),
+                time: $("#time").val()
+            },
+            success: function (responseData, textStatus, jqXHR) {
+                alert("Feedback saved.");
+                $("#feedbackModal").modal("hide");
+                //getCities(); // read all cities from API and put data in table
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Something wrong happend.");
+            }
+        });
+
+    }
+}
 
 function onFeedback() {
     $('#feedbackModal').modal('show');

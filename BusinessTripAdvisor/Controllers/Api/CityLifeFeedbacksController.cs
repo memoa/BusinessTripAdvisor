@@ -52,7 +52,7 @@ namespace BusinessTripAdvisor.Controllers.Api
             cityLifeFeedback.Time = DateTime.Now;
 
             if (!ModelState.IsValid)
-                return BadRequest();
+                return BadRequest(ModelState.Values.ToList()[0].Errors[0].ErrorMessage);
 
             _context.CityLIfeFeedbacks.Add(cityLifeFeedback);
             _context.SaveChanges();
