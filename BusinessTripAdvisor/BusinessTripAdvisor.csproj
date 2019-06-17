@@ -183,6 +183,7 @@
     <Compile Include="Controllers\Api\CitiesController.cs" />
     <Compile Include="Controllers\Api\CityLifeFeedbacksController.cs" />
     <Compile Include="Controllers\Api\ImagesController.cs" />
+    <Compile Include="Controllers\Api\TagsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,6 +287,8 @@
     <Compile Include="Models\TransportationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CityLifeFeedbackViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApiTests\Developer here weather demo.html" />

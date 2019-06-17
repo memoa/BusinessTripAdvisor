@@ -10,6 +10,7 @@ using BusinessTripAdvisor.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using BusinessTripAdvisor.ViewModels;
 
 
 namespace BusinessTripAdvisor.Controllers.Api
@@ -17,21 +18,54 @@ namespace BusinessTripAdvisor.Controllers.Api
     public class CityLifeFeedbacksController : ApiController
     {
         private ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
 
         public CityLifeFeedbacksController()
         {
             _context = new ApplicationDbContext();
-            //_userManager = userManager;
-            //_signInManager = new ApplicationSignInManager();
         }
 
         // GET api/cityLifeFeedbacks
         public IHttpActionResult GetCityLifeFeedbacks()
         {
+            var citiesInDb = _context.Cities.ToList();
+            var tagsInDb = _context.Tags.ToList();
+
+            var usersInDb = _context.Users.ToList();
+            var userVMs = new List<UserViewModel>();
+            foreach(var user in usersInDb)
+            {
+                var userVM = new UserViewModel
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName
+                };
+                userVMs.Add(userVM);
+            }
+
             var cityLifeFeedbacks = _context.CityLIfeFeedbacks.ToList();
 
-            return Ok(cityLifeFeedbacks);
+            var cityLifeFeedbackVMs = new List<CityLifeFeedbackViewModel>();
+
+            foreach(var cityLifeFeedback in cityLifeFeedbacks)
+            {
+                var cityLifeFeedbackVM = new CityLifeFeedbackViewModel
+                {
+                    Id = cityLifeFeedback.Id,
+                    City = citiesInDb.SingleOrDefault(c => c.Id == cityLifeFeedback.CityId),
+                    Time = cityLifeFeedback.Time,
+                    Rating = cityLifeFeedback.Rating,
+                    Title = cityLifeFeedback.Title,
+                    Comment = cityLifeFeedback.Comment,
+                    User = userVMs.SingleOrDefault(u => u.Id == cityLifeFeedback.AspNetUserId),
+                    Tag = tagsInDb.SingleOrDefault(t => t.Id == cityLifeFeedback.TagId),
+                    Latitude = cityLifeFeedback.Latitude,
+                    Longitude = cityLifeFeedback.Longitude
+                };
+                cityLifeFeedbackVMs.Add(cityLifeFeedbackVM);
+            }
+
+            return Ok(cityLifeFeedbackVMs);
         }
 
         // GET api/cityLifeFeedbacks/1
@@ -49,10 +83,8 @@ namespace BusinessTripAdvisor.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateCityLifeFeedback(CityLIfeFeedback cityLifeFeedback)
         {
-            cityLifeFeedback.Time = DateTime.Now;
-
             if (!ModelState.IsValid)
-                return BadRequest(ModelState.Values.ToList()[0].Errors[0].ErrorMessage);
+                return BadRequest();
 
             _context.CityLIfeFeedbacks.Add(cityLifeFeedback);
             _context.SaveChanges();
