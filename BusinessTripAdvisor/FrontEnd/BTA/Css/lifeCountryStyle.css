@@ -299,8 +299,14 @@ hr{
 .addBtn{
     position: absolute;
     right: 1rem;
-    top: 0.4rem;
+    /*top: 0.4rem;*/
     color: #0e89a5;
+}
+.addBtn i{
+    padding-top: 0.4rem;
+}
+.addBtn:hover{
+    color: black;
 }
 .ip{
     font-family: 'Titillium Web', sans-serif;
