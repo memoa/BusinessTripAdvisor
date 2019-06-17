@@ -21,7 +21,7 @@
 
     <link href="~/FrontEnd/BTA/Css/lifeCountryStyle.css" rel="stylesheet" />
     <link href="~/FrontEnd/BTA/Css/InfoCard.css" rel="stylesheet" />
-    <link href="~/FrontEnd/BTA/Css/Feedbacks.css" rel="stylesheet" />
+    <link href="~/FrontEnd/BTA/Css/CommentCard.css" rel="stylesheet" />
 
     <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
             type="text/javascript" charset="utf-8"></script>
@@ -378,7 +378,7 @@
 
                 var cityFeedbacks = feedbacksInDb.filter(feedback => feedback.city.id === city.id);
                 console.log(cityFeedbacks);
-                $('#ponuda').append(`<div id="feedbackWrapper${city.id}" class="card-wrapperf">`);
+                $('#ponuda').append(`<div id="feedbackWrapper${city.id}" class="card-f">`);
 
                 cityFeedbacks.forEach(function (feedback) {
                     console.log(city.name + ': feedback id: ' + feedback.id);
@@ -392,7 +392,7 @@
                             </div>
 
                             <article class="card__article">
-                                <h2><a href="#">${feedback.title}</a></h2>
+                                <h5><a href="#">${feedback.title}</a></h5>
 
                                 <p>${feedback.comment}</p>
                             </article>
