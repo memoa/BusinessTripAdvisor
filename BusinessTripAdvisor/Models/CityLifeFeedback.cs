@@ -21,8 +21,11 @@ namespace BusinessTripAdvisor.Models
         [Required]
         [StringLength(5000)]
         public string Comment { get; set; }
+        
         [Required]
-        public ApplicationUser User { get; set; }
+        [StringLength(128)]
+        public string AspNetUserId { get; set; }
+        public ApplicationUser AspNetUser { get; set; }
         public Tag Tag { get; set; }
         public int TagId { get; set; }
         public float Latitude { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,6 +10,7 @@ using BusinessTripAdvisor.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+
 
 namespace BusinessTripAdvisor.Controllers.Api
 {
@@ -47,37 +49,10 @@ namespace BusinessTripAdvisor.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateCityLifeFeedback(CityLIfeFeedback cityLifeFeedback)
         {
-            /*
-            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true)
-            {
-                var auth_users = System.Web.HttpContext.Current.User;
-                if (auth_users != null)
-                {
-                    var userid = Convert.ToInt32(auth_users..UserId);
-                }
-            }
-            */
-            //string currentUserId = _userManager. .GetUserId();
-            /*
-            string currentUserId = SignInManager
-                .AuthenticationManager
-                .AuthenticationResponseGrant.Identity.GetUserId();
-                */
-            //ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentUserId);
-
-            //var sysUser = System.Web.HttpContext.Current.User;
-            /*
-            object httpContext;
-            actionContext.Request.Properties.TryGetValue("MS_HttpContext", out httpContext);
-            ((HttpContext)context).
-            string currentUserId = RequestContext.Principal.Identity.GetUserId();
-            */
-            var currentUserId = HttpContext.Current.User.Identity.GetUserId();
-            cityLifeFeedback.User = _context.Users.FirstOrDefault(x => x.Id == currentUserId);
+            cityLifeFeedback.Time = DateTime.Now;
 
             if (!ModelState.IsValid)
-                //return BadRequest(ModelState.Values.ToList()[0].Errors[0].ErrorMessage);
-            return BadRequest(currentUserId.ToString());
+                return BadRequest();
 
             _context.CityLIfeFeedbacks.Add(cityLifeFeedback);
             _context.SaveChanges();
@@ -101,7 +76,8 @@ namespace BusinessTripAdvisor.Controllers.Api
             cityLifeFeedbackInDb.Time = cityLifeFeedback.Time;
             cityLifeFeedbackInDb.Rating = cityLifeFeedback.Rating;
             cityLifeFeedbackInDb.Title = cityLifeFeedback.Title;
-            cityLifeFeedbackInDb.User = cityLifeFeedback.User;
+            cityLifeFeedbackInDb.Comment = cityLifeFeedback.Comment;
+            cityLifeFeedbackInDb.AspNetUserId = cityLifeFeedback.AspNetUserId;
             cityLifeFeedbackInDb.TagId = cityLifeFeedback.TagId;
             cityLifeFeedbackInDb.Latitude = cityLifeFeedback.Latitude;
             cityLifeFeedbackInDb.Longitude = cityLifeFeedback.Longitude;
