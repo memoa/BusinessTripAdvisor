@@ -39,7 +39,7 @@
       <div class="choosecity">
         <span>
           <p>Where to go ?</p>
-          <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list">
+          <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list" onkeydown="citiesInDbAutocomlete();">
         </span>
       </div>
     </header>
@@ -357,89 +357,97 @@
       var citiesInDb;
       var feedbacksInDb;
 
-    function loadCities() {
-        $('#ponuda').empty();
+      function loadCities() {
+          $('#ponuda').empty();
 
-        // Get all feedbacks from database
-        $.ajax({
-            url: '/api/cityLifeFeedbacks',
-            method: 'GET',
-            success: function (responseData) {
-                feedbacksInDb = responseData;
+          // Get all feedbacks from database
+          $.ajax({
+              url: '/api/cityLifeFeedbacks',
+              method: 'GET',
+              success: function (responseData) {
+                  feedbacksInDb = responseData;
 
-      // Get all cities from database and fill cities list
-      $.ajax({
-        url: "/api/cities",
-        method: "GET",
-        success: function (responseData) {
-          citiesInDb = responseData;
-          if (responseData.length == 0)
-            $("#ponuda").append("<p>There are no cities in database.</p>");
-          else {
-            for (var i = 0; i < responseData.length; ++i) {
-              var city = responseData[i];
+                  // Get all cities from database and fill cities list
+                  $.ajax({
+                      url: "/api/cities",
+                      method: "GET",
+                      success: function (responseData) {
+                          citiesInDb = responseData;
+                          if (responseData.length == 0)
+                              $("#ponuda").append("<p>There are no cities in database.</p>");
+                          else {
+                              for (var i = 0; i < responseData.length; ++i) {
+                                  var city = responseData[i];
 
-              // Add new card for each city in database
-                $("#ponuda").append(`<div id="card"><div class="row "><div class="picbox"><div class="pic"></div></div><div class="descriptionBox"><div class="card-block px-3"><h2 class="card-title">${city.name}</h2><p class="cardText">${city.description}</p><button class="btn btn-primary" onclick="details(${city.id})">Read More</button></div></div></div></div>`);
+                                  // Add new card for each city in database
+                                  $("#ponuda").append(`<div id="card"><div class="row "><div class="picbox"><div class="pic"></div></div><div class="descriptionBox"><div class="card-block px-3"><h2 class="card-title">${city.name}</h2><p class="cardText">${city.description}</p><button class="btn btn-primary" onclick="details(${city.id})">Read More</button></div></div></div></div>`);
 
-                var cityFeedbacks = feedbacksInDb.filter(feedback => feedback.city.id === city.id);
-                console.log(cityFeedbacks);
-                $('#ponuda').append(`<div id="feedbackWrapper${city.id}" class="card-f">`);
+                                  var cityFeedbacks = feedbacksInDb.filter(feedback => feedback.city.id === city.id);
+                                  //console.log(cityFeedbacks);
+                                  $('#ponuda').append(`<div id="feedbackWrapper${city.id}" class="card-f">`);
 
-                cityFeedbacks.forEach(function (feedback) {
-                    console.log(city.name + ': feedback id: ' + feedback.id);
-                    $('#feedbackWrapper' + city.id).append(`
-                    <div class="card radius shadowDepth1">
+                                  cityFeedbacks.forEach(function (feedback) {
+                                      //console.log(city.name + ': feedback id: ' + feedback.id);
+                                      var time = new Date(feedback.time);
+                                      $('#feedbackWrapper' + city.id).append(`
+                                        <div class="card radius shadowDepth1">
 
-                        <div class="card__content card__padding">
-                            <div class="card__meta">
-                                <a href="#">${feedback.tag.name}</a>
-                                <time>${feedback.time}</time>
-                            </div>
+                                            <div class="card__content card__padding">
+                                                <div class="card__meta">
+                                                    <a href="#">${feedback.tag.name}</a>
+                                                    <time>${time.toLocaleDateString()}</time>
+                                            </div>
 
-                            <article class="card__article">
-                                <h5><a href="#">${feedback.title}</a></h5>
+                                            <article class="card__article">
+                                                <h5><a href="#">${feedback.title}</a></h5>
 
-                                <p>${feedback.comment}</p>
-                            </article>
-                        </div>
-                        <hr>
-                        <div class="card__action">
+                                                <p>${feedback.comment}</p>
+                                            </article>
+                                        </div>
+                                        <hr>
+                                        <div class="card__action">
 
-                            <div class="card__author">
-                                <img src="http://lorempixel.com/40/40/sports/" alt="user">
-                                <div class="card__author-content">
+                                            <div class="card__author">
+                                                <img src="http://lorempixel.com/40/40/sports/" alt="user">
+                                                <div class="card__author-content">
 
-                                    By: <a href="#">${feedback.user.firstName + ' ' + feedback.user.lastName}</a>
-                                    <p>Ocena : ${feedback.rating}</p>
+                                                    By: <a href="#">${feedback.user.firstName + ' ' + feedback.user.lastName}</a>
+                                                    <p>Ocena : ${feedback.rating}</p>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    `);
+                                  });
 
-                    `);
-                });
+                                  $('#ponuda').append('</div><hr/>');
 
-                $('#ponuda').append('</div><hr/>');
+                              }
+                          }
+                      },
+                      error: function () {
+                          alert('Something wrong happend.');
+                      }
+                  });
 
-            }
+              },
+              error: function () {
+                  alert('Something wrong happend.');
+              }
+          });
+
+      }
+
+      loadCities();
+
+      function citiesInDbAutocomlete() {
+          var typedCity = $('#town').val();
+
+          if (typedCity.length() > 2) {
+              $('#')
           }
-        },
-        error: function () {
-          alert('Something wrong happend.');
-        }
-      });
-
-                            },
-            error: function () {
-                alert('Something wrong happend.');
-            }
-        });
-
-    }
-
-    loadCities();
+      }
   </script>
 </body>
 </html>
