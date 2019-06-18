@@ -339,6 +339,28 @@ textarea {
     #mapContainer:nth-child(1){
 
     }
+  
+
+    .side {
+       display:flex;
+       flex-direction: row;
+       transition:0;
+       transform: none;
+       width: 100%;
+       margin:0;
+       position: absolute;
+       bottom: -150px;
+    }
+        .side button {
+            transition: 0;
+            transform: none;
+            margin-left: 0;
+            width: 50vw;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            font-size: 0.9rem;
+        }
+    
 }
 
 /*-----------END InfoCard-------------------------------*/

@@ -396,6 +396,41 @@ hr{
          max-height: 100vh;
          background: #000;
      }
+
+    .but {
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: 2px 0 auto 0;
+    }
+
+    .but .ctg {
+        font-size: 0.6rem;
+        padding: 0;
+        margin: 0;
+        margin: 0;
+    }
+
+    .but i {
+        font-size: 1rem;
+        display: flex;
+        text-align: center;
+        padding-top: 5px;
+        margin: auto 0;
+    }
+    .statment h1 {
+        font-size: 1.5rem;
+    }
+
+    .statment h2 {
+        font-size: 1.2rem;
+    }
+
+    .statment p {
+        font-size: 0.8rem;
+        text-align: justify;
+        padding: 0.3rem;
+    }
+
     .card-wrapper{
         flex-direction: row;
         flex-wrap: wrap;
@@ -405,6 +440,15 @@ hr{
     .card{
         margin: 2rem;
     }
+    footer {
+        margin-top: 1.5rem;
+        height: 40vh;
+    }
+
+        footer > p {
+            letter-spacing: 0;
+            font-size: 1rem;
+        }
 
     @keyframes fadeIn{
         0%{

@@ -471,13 +471,13 @@ hr{
          font-size: 0.6rem;
          padding: 0;
          margin: 0;
-         margin: auto 0;
+         margin: 0;
      }
      .but i{
          font-size: 1rem;
          display: flex;
          text-align:center;
-         padding-top: 0;
+         padding-top: 5px;
          margin: auto 0;
      }
      .statment h1{
@@ -492,13 +492,15 @@ hr{
          padding: 0.3rem;
      }
      #ponuda{
+         display: flex;
+         flex-direction: column;
          width: 100vw;
          padding: 0.5rem 0;
-         height: 100vh;
+         height: 50%;
      }
      #card{
          width: 95vw;
-         height: 150vh;
+         height: 30vh;
      }
      .card-title{
          font-size: 1rem;

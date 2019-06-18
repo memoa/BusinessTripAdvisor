@@ -545,21 +545,24 @@ hr{
     #town{
         width: 40%;
     }
-    .but{
+    .but {
         width: 3.5rem;
         height: 3.5rem;
         margin: 2px 0 auto 0;
     }
-    .but .ctg{
+
+    .but .ctg {
         font-size: 0.6rem;
         padding: 0;
         margin: 0;
-        margin: auto 0;
+        margin: 0;
     }
-    .but i{
+
+    .but i {
         font-size: 1rem;
         display: flex;
-        padding: 0;
+        text-align: center;
+        padding-top: 5px;
         margin: auto 0;
     }
     .statment h1{
