@@ -35,7 +35,7 @@ var feedbackValidator = $("#feedbackForm").validate({
             required: true,
             maxlength: 5000
         },
-        tag: {
+        tagId: {
             required: true,
             number: true
         },
@@ -55,6 +55,22 @@ var feedbackValidator = $("#feedbackForm").validate({
     }
 });
 
+function fillTagsDropDown() {
+    $.ajax({
+        url: '/api/tags',
+        method: 'GET',
+        success: function (responseData) {
+            responseData.forEach(function (tag) {
+                $('#tagId').append(`<option value="${tag.id}">${tag.name}</option>`);
+            });
+        },
+        error: function () {
+            alert('Something went wrong.');
+        }
+    });
+}
+
+fillTagsDropDown();
 
 $('#feedbackModal').on('shown.bs.modal', function (e) {
     // Create map inside a form
@@ -110,6 +126,7 @@ $('#feedbackModal').on('hidden.bs.modal', function (e) {
     $('#feedbackForm #rating').val('');
     $('#feedbackForm #latitude').val('');
     $('#feedbackForm #longitude').val('');
+    $('#feedbackForm #tagId').val('');
 
     // Remove previous marker
     if (feedbackMarker !== undefined)
@@ -124,6 +141,7 @@ $('#feedbackModal').on('hidden.bs.modal', function (e) {
 
 function saveFeedback() {
     if ($("#feedbackForm").valid()) {
+        console.log('TagId: ' + $("#tagId").val());
         $.ajax({
             url: "/api/cityLifeFeedbacks", //+ (id === null ? "" : '/' + id),
             method: "POST", //id === null ? "POST" : "PUT",
@@ -133,7 +151,7 @@ function saveFeedback() {
                 title: $("#title").val(),
                 comment: $("#comment").val(),
                 AspNetUserId: $("#aspNetUserId").val(),
-                tagId: $("#tag").val(),
+                tagId: $("#tagId").val(),
                 latitude: $("#latitude").val(),
                 longitude: $("#longitude").val(),
                 time: $("#time").val()

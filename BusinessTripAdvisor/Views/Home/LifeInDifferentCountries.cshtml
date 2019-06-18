@@ -7,29 +7,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>BTA | Life In Country</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BTA | Life In Country</title>
 
-  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-  <script src="https://kit.fontawesome.com/966e3b6ec4.js"></script>
+    <script src="https://kit.fontawesome.com/966e3b6ec4.js"></script>
 
-  <link href="~/FrontEnd/BTA/Css/lifeCountryStyle.css" rel="stylesheet" />
-  <link href="~/FrontEnd/BTA/Css/InfoCard.css" rel="stylesheet" />
+    <link href="~/FrontEnd/BTA/Css/lifeCountryStyle.css" rel="stylesheet" />
+    <link href="~/FrontEnd/BTA/Css/InfoCard.css" rel="stylesheet" />
+    <link href="~/FrontEnd/BTA/Css/CommentCard.css" rel="stylesheet" />
 
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
-          type="text/javascript" charset="utf-8"></script>
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
-          type="text/javascript" charset="utf-8"></script>
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
-          type="text/javascript" charset="utf-8"></script>
-  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
-  <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+    <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
 </head>
 <body>
   <div class="komplet">
@@ -79,94 +80,220 @@
     <!-- Index page - All cities listed -->
 
     <div id="ponuda">
-      <div id="card">
-        <div class="row ">
-          <div class="picbox">
-            <div class="pic">
+        <div id="card">
+            <div class="row ">
+                <div class="picbox">
+                    <div class="pic">
+
+                    </div>
+                </div>
+                <div class="descriptionBox">
+                    <div class="card-block px-3">
+                        <h2 class="card-title">Dublin</h2>
+                        <p class="cardText">
+                            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
 
             </div>
-          </div>
-          <div class="descriptionBox">
-            <div class="card-block px-3">
-              <h2 class="card-title">Dublin</h2>
-              <p class="cardText">
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              </p>
-              <a href="#" class="btn btn-primary">Read More</a>
+        </div>
+
+        <div class="card-wrapper">
+            <!-- Prva kartica-->
+            <div class="card radius shadowDepth1">
+
+                <div class="card__content card__padding">
+                    <div class="card__meta">
+                        <a href="#">Food</a>
+                        <time>17th March</time>
+                    </div>
+
+                    <article class="card__article">
+                        <h2><a href="#">Food in Berlin</a></h2>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus harum...</p>
+                    </article>
+                </div>
+                <hr>
+                <div class="card__action">
+
+                    <div class="card__author">
+                        <img src="http://lorempixel.com/40/40/sports/" alt="user">
+                        <div class="card__author-content">
+
+                            By: <a href="#">Optimus Prime</a>
+                            <p>Ocena : 4</p>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <!-- Druga kartica-->
+
+            <div class="card radius shadowDepth1">
+
+                <div class="card__content card__padding">
+                    <div class="card__meta">
+                        <a href="#">Food</a>
+                        <time>17th March</time>
+                    </div>
+
+                    <article class="card__article">
+                        <h2><a href="#">Food in Berlin</a></h2>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus harum...</p>
+                    </article>
+                </div>
+                <hr>
+                <div class="card__action">
+
+                    <div class="card__author">
+                        <img src="http://lorempixel.com/40/40/sports/" alt="user">
+                        <div class="card__author-content">
+
+                            By: <a href="#">Optimus Prime</a>
+                            <p>Ocena : 4</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Treca kartica-->
+            <div class="card radius shadowDepth1">
+
+                <div class="card__content card__padding">
+                    <div class="card__meta">
+                        <a href="#">Food</a>
+                        <time>17th March</time>
+                    </div>
+
+                    <article class="card__article">
+                        <h2><a href="#">Food in Berlin</a></h2>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus harum...</p>
+                    </article>
+                </div>
+                <hr>
+                <div class="card__action">
+
+                    <div class="card__author">
+                        <img src="http://lorempixel.com/40/40/sports/" alt="user">
+                        <div class="card__author-content">
+
+                            By: <a href="#">Optimus Prime</a>
+                            <p>Ocena : 4</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cetvrta kartica-->
+            <div class="card radius shadowDepth1">
+
+                <div class="card__content card__padding">
+                    <div class="card__meta">
+                        <a href="#">Food</a>
+                        <time>17th March</time>
+                    </div>
+
+                    <article class="card__article">
+                        <h2><a href="#">Food in Berlin</a></h2>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus harum...</p>
+                    </article>
+                </div>
+                <hr>
+                <div class="card__action">
+
+                    <div class="card__author">
+                        <img src="http://lorempixel.com/40/40/sports/" alt="user">
+                        <div class="card__author-content">
+
+                            By: <a href="#">Optimus Prime</a>
+                            <p>Ocena : 4</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-      </div>
-      <!--Second Card-->
-      <div id="card">
-        <div class="row ">
-          <div class="picbox">
-            <div class="pic">
+
+
+        <!--Second Card-->
+        <div id="card">
+            <div class="row ">
+                <div class="picbox">
+                    <div class="pic">
+
+                    </div>
+                </div>
+                <div class="descriptionBox">
+                    <div class="card-block px-3">
+                        <h2 class="card-title">Dublin</h2>
+                        <p class="cardText">
+                            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
 
             </div>
-          </div>
-          <div class="descriptionBox">
-            <div class="card-block px-3">
-              <h2 class="card-title">Dublin</h2>
-              <p class="cardText">
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              </p>
-              <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-          </div>
-
         </div>
-      </div>
-      <!--Third Card-->
-      <div id="card">
-        <div class="row ">
-          <div class="picbox">
-            <div class="pic">
+        <!--Third Card-->
+        <div id="card">
+            <div class="row ">
+                <div class="picbox">
+                    <div class="pic">
+
+                    </div>
+                </div>
+                <div class="descriptionBox">
+                    <div class="card-block px-3">
+                        <h2 class="card-title">Dublin</h2>
+                        <p class="cardText">
+                            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
 
             </div>
-          </div>
-          <div class="descriptionBox">
-            <div class="card-block px-3">
-              <h2 class="card-title">Dublin</h2>
-              <p class="cardText">
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              </p>
-              <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-          </div>
-
         </div>
-      </div>
-      <!--Fourth Card-->
-      <div id="card">
-        <div class="row ">
-          <div class="picbox">
-            <div class="pic">
+        <!--Fourth Card-->
+        <div id="card">
+            <div class="row ">
+                <div class="picbox">
+                    <div class="pic">
+
+                    </div>
+                </div>
+                <div class="descriptionBox">
+                    <div class="card-block px-3">
+                        <h2 class="card-title">Dublin</h2>
+                        <p class="cardText">
+                            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
 
             </div>
-          </div>
-          <div class="descriptionBox">
-            <div class="card-block px-3">
-              <h2 class="card-title">Dublin</h2>
-              <p class="cardText">
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              </p>
-              <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-          </div>
-
         </div>
-      </div>
-        
+
     </div>
 
     <!-- END - Index page - All cities listed -->
@@ -217,14 +344,28 @@
       }
     });
 
+    $(".addBtn").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#details").offset().top},
+        'slow');
+});
+
     // *************************************************************
     // *** Life in different countries - Index - show all cities ***
     // *************************************************************
 
-    var citiesInDb;
+      var citiesInDb;
+      var feedbacksInDb;
 
     function loadCities() {
-      $('#ponuda').empty();
+        $('#ponuda').empty();
+
+        // Get all feedbacks from database
+        $.ajax({
+            url: '/api/cityLifeFeedbacks',
+            method: 'GET',
+            success: function (responseData) {
+                feedbacksInDb = responseData;
 
       // Get all cities from database and fill cities list
       $.ajax({
@@ -239,7 +380,49 @@
               var city = responseData[i];
 
               // Add new card for each city in database
-              $("#ponuda").append(`<div id="card"><div class="row "><div class="picbox"><div class="pic"></div></div><div class="descriptionBox"><div class="card-block px-3"><h2 class="card-title">${city.name}</h2><p class="cardText">${city.description}</p><button class="btn btn-primary" onclick="details(${city.id})">Read More</button></div></div></div></div>`);
+                $("#ponuda").append(`<div id="card"><div class="row "><div class="picbox"><div class="pic"></div></div><div class="descriptionBox"><div class="card-block px-3"><h2 class="card-title">${city.name}</h2><p class="cardText">${city.description}</p><button class="btn btn-primary" onclick="details(${city.id})">Read More</button></div></div></div></div>`);
+
+                var cityFeedbacks = feedbacksInDb.filter(feedback => feedback.city.id === city.id);
+                console.log(cityFeedbacks);
+                $('#ponuda').append(`<div id="feedbackWrapper${city.id}" class="card-f">`);
+
+                cityFeedbacks.forEach(function (feedback) {
+                    console.log(city.name + ': feedback id: ' + feedback.id);
+                    $('#feedbackWrapper' + city.id).append(`
+                    <div class="card radius shadowDepth1">
+
+                        <div class="card__content card__padding">
+                            <div class="card__meta">
+                                <a href="#">${feedback.tag.name}</a>
+                                <time>${feedback.time}</time>
+                            </div>
+
+                            <article class="card__article">
+                                <h5><a href="#">${feedback.title}</a></h5>
+
+                                <p>${feedback.comment}</p>
+                            </article>
+                        </div>
+                        <hr>
+                        <div class="card__action">
+
+                            <div class="card__author">
+                                <img src="http://lorempixel.com/40/40/sports/" alt="user">
+                                <div class="card__author-content">
+
+                                    By: <a href="#">${feedback.user.firstName + ' ' + feedback.user.lastName}</a>
+                                    <p>Ocena : ${feedback.rating}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    `);
+                });
+
+                $('#ponuda').append('</div><hr/>');
+
             }
           }
         },
@@ -247,6 +430,13 @@
           alert('Something wrong happend.');
         }
       });
+
+                            },
+            error: function () {
+                alert('Something wrong happend.');
+            }
+        });
+
     }
 
     loadCities();
