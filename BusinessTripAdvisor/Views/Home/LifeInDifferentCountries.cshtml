@@ -40,12 +40,7 @@
           <span>
               <p>Where to go ?</p>
               <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list" onkeydown="citiesInDbAutocomlete();">
-              <ul id="placesSearch" class="list-group">
-                  <li class="liIzbor">
-
-
-                  </li>
-              </ul>
+              <ul id="placesSearch" class="list-group"></ul>
 
           </span>
       </div>
@@ -449,10 +444,14 @@
       loadCities();
 
       function citiesInDbAutocomlete() {
+          $('#placesSearch').empty();
           var typedCity = $('#town').val();
 
-          if (typedCity.length() > 2) {
-              $('#')
+          if (typedCity.length > 2) {
+              var filteredCities = citiesInDb.filter(city => city.name.toUpperCase().indexOf(typedCity.toUpperCase()) !== -1);
+              filteredCities.forEach(function (city) { 
+                  $('#placesSearch').append(`<li class="liIzbor">${city.name}</li>`);
+              });
           }
       }
   </script>
