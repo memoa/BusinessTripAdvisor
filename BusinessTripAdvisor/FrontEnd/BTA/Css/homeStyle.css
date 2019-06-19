@@ -283,6 +283,86 @@ hr {
         flex: 100%;
         max-width: 80%;
     }
+    nav ul li {
+        display: none;
+        background: #000;
+    }
+
+    .showing {
+        display: flex;
+        flex-direction: column;
+        transition: 1s ease-in;
+    }
+
+    .logo {
+        position: fixed;
+        top: 0;
+        font-size: 1.3rem;
+        margin: 16px 0 16px 16px;
+    }
+
+    .menu-icon {
+        display: block;
+        font-size: 0.8rem;
+    }
+
+    nav ul li {
+        max-height: 100vh;
+        background: #000;
+    }
+    .statment h1 {
+        font-size: 3rem;
+    }
+
+    .statment p {
+        font-size: 1.8rem;
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 90%;
+    }
+    main > h1{
+        font-size:2rem;
+    }
+    .explain {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1rem;
+ 
+    }
+    .explain .oneExplain {
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+    }
+
+    .oneExplain {
+        font-size: 0.8rem;
+        border-left: 1px solid #0e89a5;
+        border-right: 1px solid #0e89a5;
+ 
+    }
+    section .testimonials {
+        width: 100vw;
+        padding: 0;
+    }
+    section {
+        margin: 0;
+        width: 100vw;
+        padding: 0;
+        border: 0;
+    }
+    footer {
+        margin-top: 1.5rem;
+        height: 40vh;
+    }
+
+    footer > p {
+        letter-spacing: 0.2rem;
+        font-size: 1rem;
+    }
 }
 
 /*--------------------MEDIA QUERY FOR MOBILE---------------------------*/

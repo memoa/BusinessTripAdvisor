@@ -389,11 +389,14 @@ hr{
     #town {
         width: 65%;
     }
+    .category{
+        display: flex;   
+    }
 
     .but {
         width: 5rem;
         height: 5rem;
-        margin: 2px 0 auto 0;
+        margin: 2px 10px auto 10px;
     }
 
     .but .ctg {
