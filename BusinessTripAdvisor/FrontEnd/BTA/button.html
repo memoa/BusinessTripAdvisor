@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style>
+
+    .category{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .middle{
+    position: absolute;
+    top: 70%;
+    /*transform: translate(50%,50%);*/
+    width: 100%;
+    text-align: center;
+}
+.but{
+    display: inline-block;
+    width: 7rem;
+    height: 7rem;
+    background-color: #0e89a5;
+    margin: 10px;
+    border: none;
+    border-radius: 30%;
+    box-shadow: 0.5rem 0.5rem 0.7rem 0 rgba(0, 0, 0, .5);
+    color: white;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+
+}
+.category .middle .but{
+    text-decoration: none;
+}
+.but i {
+   
+    font-size:  26px;
+    transition: 0.2s linear;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.8rem 0 0 0;
+    text-decoration: none;
+}
+.but:hover i{
+    transform: scale(1.3);
+    color: #0e89a5;
+}
+.but:hover .ctg{
+    color: #0e89a5;
+    transform: scale(1.1);
+}
+.but::before{
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: white;
+    transform: rotate(45deg);
+    left: -110%;
+    top: 90%;
+}
+.but:hover::before{
+    animation: aaa 0.7s 1;
+    top: -10%;
+    left: -10%;
+}
+@keyframes aaa{
+    0%{
+        left: -110%;
+        top: 90%;
+    }
+    50%{
+        left: 10%;
+        top: -30%;
+    }
+    100%{
+        left: -10%;
+        top: -10%;
+    }
+}
+.ctg{
+    color: white;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.button-clicked{
+    background: white;
+    color: #0e89a5;
+}
+    </style>
+</head>
+<body>
+    <div class="category">
+        <div class="middle">
+            <button class="but" id="prviVisited">
+                  <i class="fas fa-hamburger"></i>
+                  Food 
+            </button>
+            <button class="but" id="drugiVisited">
+                  <i class="fas fa-user-shield"></i>
+                  <p class="ctg">Safety</p>
+            </button>
+            <a class="but" href="#">
+                  <i class="fas fa-university"></i>
+                  <p class="ctg">Local Culture</p>
+            </a>
+            <a class="but" href="#">
+                  <i class="fas fa-bus"></i>
+                  <p class="ctg">Local Transport</p>
+            </a>
+            <a class="but" href="#">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                  <p class="ctg">Sightseeing</p>
+            </a>
+        </div>
+      </div>
+      <script src="jquery-3.4.0.min.js"></script>
+      <script>
+      $("#prviVisited").click(function() {
+  $("#prviVisited").addClass('button-clicked');
+});
+      </script>
+</body>
+</html>

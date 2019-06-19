@@ -310,6 +310,7 @@
     <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131450.jpg" />
     <Content Include="FrontEnd\AppPRIMER\IMG_20190531_131455.jpg" />
     <Content Include="FrontEnd\BTA\Accommodation.html" />
+    <Content Include="FrontEnd\BTA\button.html" />
     <Content Include="FrontEnd\BTA\Card.html" />
     <Content Include="FrontEnd\BTA\carousel.html" />
     <Content Include="FrontEnd\BTA\Css\Accommodation.css" />
