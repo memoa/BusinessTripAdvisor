@@ -39,7 +39,7 @@
             <div class="choosecity">
                 <span>
                     <p>Where to go ?</p>
-                    <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list" onkeydown="citiesInDbAutocomlete();">
+                    <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list" onkeyup="citiesInDbAutocomlete();">
                     <ul id="placesSearch" class="list-group"></ul>
 
                 </span>
@@ -262,11 +262,19 @@
           $('#placesSearch').empty();
           var typedCity = $('#town').val();
 
-          if (typedCity.length > 2) {
+          if (typedCity !== '') {
               var filteredCities = citiesInDb.filter(city => city.name.toUpperCase().indexOf(typedCity.toUpperCase()) !== -1);
-              filteredCities.forEach(function (city) { 
+              filteredCities.forEach(function (city) {
                   $('#placesSearch').append(`<li class="liIzbor" onclick="filterCity('${city.name}')">${city.name}</li>`);
               });
+          }
+          else {
+              cityFilter = null;
+              loadCities(cityFilter, category);
+              $('html,body').animate({
+                  scrollTop: $("#ponuda").offset().top
+              },
+                  'slow');
           }
       }
 
@@ -276,6 +284,10 @@
           cityFilter = cityName;
 
           loadCities(cityFilter, category);
+          $('html,body').animate({
+              scrollTop: $("#ponuda").offset().top
+          },
+              'slow');
       }
 
       $('.middle .but').click(function () {
@@ -284,6 +296,10 @@
 
           category = $(this).attr('value');
           loadCities(cityFilter, category);
+          $('html,body').animate({
+              scrollTop: $("#ponuda").offset().top
+          },
+              'slow');
       });
   </script>
 </body>
