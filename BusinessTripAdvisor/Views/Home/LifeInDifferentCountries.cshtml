@@ -64,7 +64,7 @@
                     <i class="fas fa-university"></i>
                     Local Culture
                 </button>
-                <button class="but" value="Local Transport">
+                <button class="but" value="Local Transportation">
                     <i class="fas fa-bus"></i>
                     Local Transport
                 </button>
@@ -103,6 +103,7 @@
   @Scripts.Render("~/bundles/jqueryval")
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+  <script src="~/Scripts/lifeInDifferentCountries/citiesList.js"></script>
   <script src="~/Scripts/lifeInDifferentCountries/carousel.js"></script>
   <script src="~/Scripts/lifeInDifferentCountries/mapApi.js" type="text/javascript" charset="UTF-8"></script>
   <script src="~/Scripts/lifeInDifferentCountries/infoCard.js"></script>
@@ -117,190 +118,77 @@
   }
   <script type="text/javascript">
 
-    //toogle button
-    $(document).ready(function () {
+  // When page is ready
+  $(document).ready(function () {
+    $("#details").hide(); // Hide infoCard (City details div)
+
+    // Navigation bar items style on click
+    $(".menu-icon").on("click", function () {
+      $("nav ul li").toggleClass("showing");
+    });
+
+    loadCities(null, "All"); // Load list of all cities and feedbacks from database
+  });
+
+  // Navigation bar scrolling effect
+  $(window).on("scroll", function () {
+    if ($(window).scrollTop()) {
+      $('nav').addClass('black');
+    }
+    else {
+      $('nav').removeClass('black');
+    }
+  });
+
+  // Data from database in global variables
+  var citiesInDb; // all cities from database
+  var feedbacksInDb; // all feedbacks from database
+
+  // Parameters for loadCities function
+  var cityFilter = null; // filter cities by city name, default: no filtering
+  var category = 'All'; // filter feedbacks by chosen category, default: no filtering
+
+  // Autocomplete function for choosing city from database, based on same part of text
+  // While typing text, list of cities in database is refreshed
+  function citiesInDbAutocomlete() {
+    $('#placesSearch').empty();
+    var typedCity = $('#town').val();
+
+    // If some text is entered, city list is filtered and refreshed
+    if (typedCity !== '') {
+      var filteredCities = citiesInDb.filter(city => city.name.toUpperCase().indexOf(typedCity.toUpperCase()) !== -1);
+      filteredCities.forEach(function (city) {
+        $('#placesSearch').append(`<li class="liIzbor" onclick="filterCity('${city.name}')">${city.name}</li>`);
+      });
+    }
+    // If no text is entered, show all cities from database in list
+    else {
+      cityFilter = null;
       $("#details").hide();
+      loadCities(cityFilter, category);
+      $("#ponuda").show();
+    }
+  }
 
-      $(".menu-icon").on("click", function () {
+  // Refresh list of cities based on city name chosen from autocomplete function
+  function filterCity(cityName) {
+    $('#placesSearch').empty();
+    $('#town').val(cityName);
+    cityFilter = cityName;
 
-        $("nav ul li").toggleClass("showing");
-      });
-        $("#spinner").hide();
+    $("#details").hide();
+    loadCities(cityFilter, category);
+    $("#ponuda").show();
+  }
 
-        loadCities(null, "All");
-    });
+  // Filter feedbacks based on click on one of feedback category buttons
+  $('.middle .but').click(function () {
+    $('.middle .but').removeClass('button-clicked');
+    $(this).addClass('button-clicked');
 
-    //scrolling effect
-    $(window).on("scroll", function () {
-      if ($(window).scrollTop()) {
-        $('nav').addClass('black');
-      }
-      else {
-        $('nav').removeClass('black');
-      }
-    });
-
-    $(".addBtn").click(function() {
-    $('html,body').animate({
-        scrollTop: $("#details").offset().top},
-        'slow');
-});
-
-    // *************************************************************
-    // *** Life in different countries - Index - show all cities ***
-    // *************************************************************
-
-      var citiesInDb;
-      var feedbacksInDb;
-      var cityFilter = null;
-      var category = 'All';
-
-      function loadCities(cityFilter, category) {
-          $('#ponuda').empty();
-
-          // Get all feedbacks from database
-          $.ajax({
-              url: '/api/cityLifeFeedbacks',
-              method: 'GET',
-              success: function (responseData) {
-                  feedbacksInDb = responseData;
-
-                  // Get all cities from database and fill cities list
-                  $.ajax({
-                      url: "/api/cities",
-                      method: "GET",
-                      success: function (responseData) {
-                          citiesInDb = responseData;
-                          if (responseData.length == 0)
-                              $("#ponuda").append("<p>There are no cities in database.</p>");
-                          else {
-                              if (cityFilter !== null)
-                                  responseData = responseData.filter(city => city.name === cityFilter);
-                              responseData.forEach(function (city) {
-                                  // Add new card for each city in database
-                                  $("#ponuda").append(`
-                                    <div id="card">
-                                        <div class="row ">
-                                            <div class="picbox">
-                                                <div class="pic"></div>
-                                            </div>
-                                            <div class="descriptionBox">
-                                                <div class="card-block px-3">
-                                                    <h2 class="card-title">${city.name}</h2>
-                                                    <p class="cardText">${city.description}</p>
-                                                    <button class="btn btn-primary" onclick="details(${city.id})">Read More</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  `);
-
-                                  var cityFeedbacks = feedbacksInDb.filter(
-                                      feedback => feedback.city.id ===
-                                          city.id &&
-                                          (category === 'All' ?
-                                            true :
-                                            feedback.tag.name === category
-                                          )
-                                  );
-                                  //console.log(cityFeedbacks);
-                                  $('#ponuda').append(`<div id="feedbackWrapper${city.id}" class="card-f">`);
-
-                                  cityFeedbacks.forEach(function (feedback) {
-                                      //console.log(city.name + ': feedback id: ' + feedback.id);
-                                      var time = new Date(feedback.time);
-                                      $('#feedbackWrapper' + city.id).append(`
-                                        <div class="card radius shadowDepth1">
-
-                                            <div class="card__content card__padding">
-                                                <div class="card__meta">
-                                                    <a href="#">${feedback.tag.name}</a>
-                                                    <time>${time.toLocaleDateString()}</time>
-                                                </div>
-
-                                                <article class="card__article">
-                                                    <h5><a href="#">${feedback.title}</a></h5>
-
-                                                    <p>${feedback.comment}</p>
-                                                </article>
-                                            </div>
-                                            <hr>
-                                            <div class="card__action">
-
-                                                <div class="card__author">
-                                                    <img src="http://lorempixel.com/40/40/sports/" alt="user">
-                                                    <div class="card__author-content">
-
-                                                        By: <a href="#">${feedback.user.firstName + ' ' + feedback.user.lastName}</a>
-                                                        <p>Ocena : ${feedback.rating}</p>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    `);
-                                  });
-
-                                  $('#ponuda').append('</div><hr/>');
-                              });
-                          }
-                      },
-                      error: function () {
-                          alert('Something wrong happend.');
-                      }
-                  });
-
-              },
-              error: function () {
-                  alert('Something wrong happend.');
-              }
-          });
-
-      }
-
-      function citiesInDbAutocomlete() {
-          $('#placesSearch').empty();
-          var typedCity = $('#town').val();
-
-          if (typedCity !== '') {
-              var filteredCities = citiesInDb.filter(city => city.name.toUpperCase().indexOf(typedCity.toUpperCase()) !== -1);
-              filteredCities.forEach(function (city) {
-                  $('#placesSearch').append(`<li class="liIzbor" onclick="filterCity('${city.name}')">${city.name}</li>`);
-              });
-          }
-          else {
-              cityFilter = null;
-              loadCities(cityFilter, category);
-              $('html,body').animate({
-                  scrollTop: $("#ponuda").offset().top
-              },
-                  'slow');
-          }
-      }
-
-      function filterCity(cityName) {
-          $('#placesSearch').empty();
-          $('#town').val(cityName);
-          cityFilter = cityName;
-
-          loadCities(cityFilter, category);
-          $('html,body').animate({
-              scrollTop: $("#ponuda").offset().top
-          },
-              'slow');
-      }
-
-      $('.middle .but').click(function () {
-          $('.middle .but').removeClass('button-clicked');
-          $(this).addClass('button-clicked');
-
-          category = $(this).attr('value');
-          loadCities(cityFilter, category);
-          $('html,body').animate({
-              scrollTop: $("#ponuda").offset().top
-          },
-              'slow');
-      });
+    category = $(this).attr('value');
+    loadCities(cityFilter, category);
+  });
   </script>
 </body>
 </html>

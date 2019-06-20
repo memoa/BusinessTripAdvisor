@@ -24,6 +24,12 @@ function details(id) {
             map.setZoom(12);
 
             $("#details").show();
+            $('html,body').animate(
+                {
+                    scrollTop: $("#details").offset().top - 64
+                },
+                'slow'
+            );
         }
         else {
             alert('There is no such city in database.');
@@ -43,6 +49,8 @@ function details(id) {
         $('#deleteBtn').hide();
         $('#feedBtn').hide();
 
+        $("#spinner").hide();
+        $("#placesList li.place").remove();
         $('#inputPlace').val('');
         $('#chooseCity').show();
 
@@ -58,6 +66,12 @@ function details(id) {
         map.setZoom(12);
 
         $("#details").show();
+        $('html,body').animate(
+            {
+                scrollTop: $("#details").offset().top - 64
+            },
+            'slow'
+        );
     }
 }
 
@@ -94,8 +108,9 @@ function onSave() {
 }
 
 function onCancel() {
+    console.log(cityFilter, category);
     $("#details").hide();
-    loadCities();
+    loadCities(cityFilter, category);
     $("#ponuda").show();
 }
 

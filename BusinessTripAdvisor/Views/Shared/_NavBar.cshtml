@@ -13,13 +13,13 @@
             <li><a href="/Home/Transportation">Transportation</a> </li>
             <li><a href="/Home/Feedbacks">Feedbacks</a> </li>
             <li><a href="#">Providers</a> </li>
-            <li><a href="#">Hello 
+            @*<li><a href="#">Hello 
                 @User.Identity.Name.ToString()
                 @if (User.IsInRole("Administrator"))
                 {
                     <p>(admin)</p>
                 }</a> 
-            </li>
+            </li>*@
             <li>
                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                 {
