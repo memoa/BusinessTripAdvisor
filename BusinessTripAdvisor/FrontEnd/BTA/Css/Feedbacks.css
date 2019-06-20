@@ -421,6 +421,9 @@ hr{
         text-align: justify;
         padding: 1rem;
     }
+    footer{
+        height: 20vh;
+    }
 }
 
 /*--------------------MEDIA QUERY FOR MOBILE---------------------------*/

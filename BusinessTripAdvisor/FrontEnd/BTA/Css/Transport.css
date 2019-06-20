@@ -431,6 +431,10 @@ hr{
         padding: 0.5rem 0;
         height: 50%;
     }
+
+    footer{
+        height: 20vh;
+    }
 }
 
 /*--------------------MEDIA QUERY FOR MOBILE---------------------------*/
@@ -551,7 +555,7 @@ hr{
 
     #card {
         width: 95vw;
-        height: 25vh;
+        height: 30vh;
     }
 
     .card-title {

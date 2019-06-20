@@ -431,16 +431,16 @@ hr{
         padding-top: 1rem;
     }
 
-        .menu ul li i:hover {
-            color: black;
-        }
+    .menu ul li i:hover {
+        color: black;
+    }
 
-        .menu ul li i > p {
-            padding-top: 0;
-            display: flex;
-            justify-content: space-between;
-            transform: translate(-40%,-40%);
-        }
+    .menu ul li i > p {
+        padding-top: 0;
+        display: flex;
+        justify-content: space-between;
+        transform: translate(-40%,-40%);
+    }
     .weather {
         margin: 0;
         border: 0;
@@ -462,10 +462,10 @@ hr{
         padding: 0 0.3rem;
     }
 
-        .choosecity p {
-            font-size: 1.5rem;
-            padding-left: 2rem;
-        }
+    .choosecity p {
+        font-size: 1.5rem;
+        padding-left: 2rem;
+    }
 
     #town {
         width: 65%;
@@ -479,21 +479,22 @@ hr{
         width: 5rem;
         height: 5rem;
         margin: 2px 10px auto 10px;
+        font-size: 0.6rem;
     }
 
-        .but .ctg {
-            font-size: 0.8rem;
-            padding: 0;
-            margin: 0;
-            margin: auto 0;
-        }
+    .but .ctg {
+        font-size: 0.8rem;
+        padding: 0;
+        margin: 0;
+        margin: auto 0;
+    }
 
-        .but i {
-            font-size: 1rem;
-            display: flex;
-            padding: 10px; /*Ovde centriram ikonice u dugmicima*/
-            margin: auto 0;
-        }
+    .but i {
+        font-size: 1rem;
+        display: flex;
+        /*padding: 10px; /*Ovde centriram ikonice u dugmicima*/
+        margin: auto 0;
+    }
 
     .statment h1 {
         font-size: 1.8rem;
@@ -519,7 +520,7 @@ hr{
 
     #card {
         width: 95vw;
-        height: 30vh;
+        height: 20vh;
     }
 
     .card-title {
@@ -561,7 +562,7 @@ hr{
 
     footer {
         margin-top: 1.5rem;
-        height: 40vh;
+        height: 20vh;
     }
 
     footer > p {
@@ -647,9 +648,10 @@ hr{
          width: 45%;
      }
      .but{
-         width: 3.5rem;
-         height: 3.5rem;
+         width: 4.5rem;
+         height: 4.5rem;
          margin: 2px 0 auto 0;
+         font-size: 0.5rem;
      }
      .but .ctg{
          font-size: 0.6rem;

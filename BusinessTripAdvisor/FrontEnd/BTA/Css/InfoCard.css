@@ -33,7 +33,7 @@
 
 .cardSection {
     height: 50%;
-    width: 50%; /*Bilo je 60%*/
+    width: 60%; /*Bilo je 60%*/
     margin: 2rem auto;
     
 }
@@ -276,15 +276,18 @@ textarea {
        position: absolute;
        bottom: -150px;
     }
-        .side button {
-            transition: 0;
-            transform: none;
-            margin-left: 0;
-            width: 50vw;
-            border-bottom-right-radius: 0;
-            border-top-right-radius: 0;
-            font-size: 0.9rem;
-        }
+    .side button {
+        transition: 0;
+        transform: none;
+        margin-left: 0;
+        width: 50vw;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        font-size: 0.9rem;
+    }
+    .side i{
+        display: none;
+    }
     
 }
 

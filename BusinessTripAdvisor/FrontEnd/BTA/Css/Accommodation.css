@@ -428,12 +428,12 @@ hr{
     #ponuda {
         width: 80vw;
         padding: 0.5rem 0;
-        height: 200vh;
+        height: 100vh;
     }
 
     #card {
         width: 80vw;
-        height: 100vh;
+        height: 20vh;
     }
 
     .card-title {
@@ -474,7 +474,7 @@ hr{
     }
     footer {
         margin-top: 1.5rem;
-        height: 40vh;
+        height: 20vh;
     }
 
     footer > p {
@@ -586,7 +586,7 @@ hr{
     }
     #card{
         width: 100vw;
-        height: 100vh;
+        height: 80vh;
     }
     .card-title{
         font-size: 1rem;
