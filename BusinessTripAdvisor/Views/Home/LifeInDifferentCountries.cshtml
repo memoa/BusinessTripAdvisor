@@ -117,7 +117,9 @@
 
         $("nav ul li").toggleClass("showing");
       });
-      $("#spinner").hide();
+        $("#spinner").hide();
+
+        loadCities();
     });
 
     //scrolling effect
@@ -143,7 +145,7 @@
       var citiesInDb;
       var feedbacksInDb;
 
-      function loadCities() {
+      function loadCities(category) {
           $('#ponuda').empty();
 
           // Get all feedbacks from database
@@ -166,9 +168,31 @@
                                   var city = responseData[i];
 
                                   // Add new card for each city in database
-                                  $("#ponuda").append(`<div id="card"><div class="row "><div class="picbox"><div class="pic"></div></div><div class="descriptionBox"><div class="card-block px-3"><h2 class="card-title">${city.name}</h2><p class="cardText">${city.description}</p><button class="btn btn-primary" onclick="details(${city.id})">Read More</button></div></div></div></div>`);
+                                  $("#ponuda").append(`
+                                    <div id="card">
+                                        <div class="row ">
+                                            <div class="picbox">
+                                                <div class="pic"></div>
+                                            </div>
+                                            <div class="descriptionBox">
+                                                <div class="card-block px-3">
+                                                    <h2 class="card-title">${city.name}</h2>
+                                                    <p class="cardText">${city.description}</p>
+                                                    <button class="btn btn-primary" onclick="details(${city.id})">Read More</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  `);
 
-                                  var cityFeedbacks = feedbacksInDb.filter(feedback => feedback.city.id === city.id);
+                                  var cityFeedbacks = feedbacksInDb.filter(
+                                      feedback => feedback.city.id ===
+                                          city.id &&
+                                          (category === undefined ?
+                                            true :
+                                            feedback.tag.name === category
+                                          )
+                                  );
                                   //console.log(cityFeedbacks);
                                   $('#ponuda').append(`<div id="feedbackWrapper${city.id}" class="card-f">`);
 
@@ -225,8 +249,6 @@
 
       }
 
-      loadCities();
-
       function citiesInDbAutocomlete() {
           $('#placesSearch').empty();
           var typedCity = $('#town').val();
@@ -246,6 +268,10 @@
       $('.middle .but').click(function () {
           $('.middle .but').removeClass('button-clicked');
           $(this).addClass('button-clicked');
+
+          var category = $(this).attr('value');
+          loadCities(category);
+
       });
   </script>
 </body>
