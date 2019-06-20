@@ -152,3 +152,15 @@ function findOnMap(locationId) {
         }
     });
 }
+
+function loadMarkers(map, feedbacks) {
+    feedbacks.forEach(function (feedback) {
+        var domIcon = new H.map.DomIcon(`<i class="fas ${feedback.tag.faIconName} fa-2x text-primary" data-toggle="tooltip" data-placement="top" title="${feedback.title}" style="top:-32px;left:-10px;container:'body';"></i>`);
+        var marker = new H.map.DomMarker(
+            { lat: feedback.latitude, lng: feedback.longitude },
+            { icon: domIcon }
+        );
+
+        map.addObject(marker);
+    });
+}

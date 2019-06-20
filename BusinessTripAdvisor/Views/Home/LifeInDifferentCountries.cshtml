@@ -33,74 +33,76 @@
     <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
 </head>
 <body>
-    <div class="komplet">
-        <header>
-            @Html.Partial("_NavBar")
-            <div class="choosecity">
-                <span>
-                    <p>Where to go ?</p>
-                    <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list" onkeyup="citiesInDbAutocomlete();">
-                    <ul id="placesSearch" class="list-group"></ul>
+  <div class="komplet">
+    <header>
+      @Html.Partial("_NavBar")
+      <div class="choosecity">
+        <span>
+          <p>Where to go ?</p>
+          <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list" onkeyup="citiesInDbAutocomlete();">
+          <ul id="placesSearch" class="list-group"></ul>
 
-                </span>
-            </div>
-        </header>
+        </span>
+      </div>
+    </header>
 
-        <div class="category">
-            <div class="middle">
-                <button class="but" value="All">
-                    <i class="fa fa-folder" aria-hidden="true"></i>
-                    All
-                </button>
-                <button class="but" value="Food">
-                    <i class="fas fa-hamburger"></i>
-                    Food
-                </button>
-                <button class="but" value="Safety">
-                    <i class="fas fa-user-shield"></i>
-                    Safety
-                </button>
-                <button class="but" value="Local Culture">
-                    <i class="fas fa-university"></i>
-                    Local Culture
-                </button>
-                <button class="but" value="Local Transportation">
-                    <i class="fas fa-bus"></i>
-                    Local Transport
-                </button>
-                <button class="but" value="Sightseeing">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                    Sightseeing
-                </button>
-                <button class="but" value="Other">
-                    <i class="fa fa-map-signs" aria-hidden="true"></i>
-                    Other
-                </button>
-            </div>
-        </div>
-        <div class="statment">
-            <h1>Discover your city with</h1><br>
-            <h1>Bussines Trip Advisor</h1>
-            <p class="fewwords">
-                Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-            </p>
-        </div>
-
-        <!-- Index page - All cities listed -->
-
-        <div id="ponuda"></div>
-
-        <!-- END - Index page - All cities listed -->
-
-        @Html.Partial("~/Views/Home/LifeInDifferentCountries/_InfoCard.cshtml")
-
-
-        @Html.Partial("_Footer")
+    <div class="category">
+      <div class="middle">
+        <button class="but" value="All">
+          <i class="fa fa-folder" aria-hidden="true"></i>
+          All
+        </button>
+        <button class="but" value="Food">
+          <i class="fas fa-hamburger"></i>
+          Food
+        </button>
+        <button class="but" value="Safety">
+          <i class="fas fa-user-shield"></i>
+          Safety
+        </button>
+        <button class="but" value="Local Culture">
+          <i class="fas fa-university"></i>
+          Local Culture
+        </button>
+        <button class="but" value="Local Transportation">
+          <i class="fas fa-bus"></i>
+          Local Transport
+        </button>
+        <button class="but" value="Sightseeing">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          Sightseeing
+        </button>
+        <button class="but" value="Other">
+          <i class="fa fa-map-signs" aria-hidden="true"></i>
+          Other
+        </button>
+      </div>
     </div>
+    <div class="statment">
+      <h1>Discover your city with</h1><br>
+      <h1>Bussines Trip Advisor</h1>
+      <p class="fewwords">
+        Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+      </p>
+    </div>
+
+    <!-- Index page - All cities listed -->
+
+    <div id="ponuda"></div>
+
+    <!-- END - Index page - All cities listed -->
+
+    @Html.Partial("~/Views/Home/LifeInDifferentCountries/_InfoCard.cshtml")
+
+
+    @Html.Partial("_Footer")
+  </div>
   @Html.Partial("~/Views/Home/LifeInDifferentCountries/_Feedback.cshtml")
 
   @Scripts.Render("~/bundles/jquery")
   @Scripts.Render("~/bundles/jqueryval")
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   <script src="~/Scripts/lifeInDifferentCountries/citiesList.js"></script>
@@ -117,78 +119,81 @@
     </script>
   }
   <script type="text/javascript">
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
 
-  // When page is ready
-  $(document).ready(function () {
-    $("#details").hide(); // Hide infoCard (City details div)
+    // When page is ready
+    $(document).ready(function () {
+      $("#details").hide(); // Hide infoCard (City details div)
 
-    // Navigation bar items style on click
-    $(".menu-icon").on("click", function () {
-      $("nav ul li").toggleClass("showing");
+      // Navigation bar items style on click
+      $(".menu-icon").on("click", function () {
+        $("nav ul li").toggleClass("showing");
+      });
+
+      loadCities(null, "All"); // Load list of all cities and feedbacks from database
     });
 
-    loadCities(null, "All"); // Load list of all cities and feedbacks from database
-  });
+    // Navigation bar scrolling effect
+    $(window).on("scroll", function () {
+      if ($(window).scrollTop()) {
+        $('nav').addClass('black');
+      }
+      else {
+        $('nav').removeClass('black');
+      }
+    });
 
-  // Navigation bar scrolling effect
-  $(window).on("scroll", function () {
-    if ($(window).scrollTop()) {
-      $('nav').addClass('black');
+    // Data from database in global variables
+    var citiesInDb; // all cities from database
+    var feedbacksInDb; // all feedbacks from database
+
+    // Parameters for loadCities function
+    var cityFilter = null; // filter cities by city name, default: no filtering
+    var category = 'All'; // filter feedbacks by chosen category, default: no filtering
+
+    // Autocomplete function for choosing city from database, based on same part of text
+    // While typing text, list of cities in database is refreshed
+    function citiesInDbAutocomlete() {
+      $('#placesSearch').empty();
+      var typedCity = $('#town').val();
+
+      // If some text is entered, city list is filtered and refreshed
+      if (typedCity !== '') {
+        var filteredCities = citiesInDb.filter(city => city.name.toUpperCase().indexOf(typedCity.toUpperCase()) !== -1);
+        filteredCities.forEach(function (city) {
+          $('#placesSearch').append(`<li class="liIzbor" onclick="filterCity('${city.name}')">${city.name}</li>`);
+        });
+      }
+      // If no text is entered, show all cities from database in list
+      else {
+        cityFilter = null;
+        $("#details").hide();
+        loadCities(cityFilter, category);
+        $("#ponuda").show();
+      }
     }
-    else {
-      $('nav').removeClass('black');
-    }
-  });
 
-  // Data from database in global variables
-  var citiesInDb; // all cities from database
-  var feedbacksInDb; // all feedbacks from database
+    // Refresh list of cities based on city name chosen from autocomplete function
+    function filterCity(cityName) {
+      $('#placesSearch').empty();
+      $('#town').val(cityName);
+      cityFilter = cityName;
 
-  // Parameters for loadCities function
-  var cityFilter = null; // filter cities by city name, default: no filtering
-  var category = 'All'; // filter feedbacks by chosen category, default: no filtering
-
-  // Autocomplete function for choosing city from database, based on same part of text
-  // While typing text, list of cities in database is refreshed
-  function citiesInDbAutocomlete() {
-    $('#placesSearch').empty();
-    var typedCity = $('#town').val();
-
-    // If some text is entered, city list is filtered and refreshed
-    if (typedCity !== '') {
-      var filteredCities = citiesInDb.filter(city => city.name.toUpperCase().indexOf(typedCity.toUpperCase()) !== -1);
-      filteredCities.forEach(function (city) {
-        $('#placesSearch').append(`<li class="liIzbor" onclick="filterCity('${city.name}')">${city.name}</li>`);
-      });
-    }
-    // If no text is entered, show all cities from database in list
-    else {
-      cityFilter = null;
       $("#details").hide();
       loadCities(cityFilter, category);
       $("#ponuda").show();
     }
-  }
 
-  // Refresh list of cities based on city name chosen from autocomplete function
-  function filterCity(cityName) {
-    $('#placesSearch').empty();
-    $('#town').val(cityName);
-    cityFilter = cityName;
+    // Filter feedbacks based on click on one of feedback category buttons
+    $('.middle .but').click(function () {
+      $('.middle .but').removeClass('button-clicked');
+      $(this).addClass('button-clicked');
 
-    $("#details").hide();
-    loadCities(cityFilter, category);
-    $("#ponuda").show();
-  }
-
-  // Filter feedbacks based on click on one of feedback category buttons
-  $('.middle .but').click(function () {
-    $('.middle .but').removeClass('button-clicked');
-    $(this).addClass('button-clicked');
-
-    category = $(this).attr('value');
-    loadCities(cityFilter, category);
-  });
+      category = $(this).attr('value');
+      loadCities(cityFilter, category);
+    });
   </script>
 </body>
 </html>

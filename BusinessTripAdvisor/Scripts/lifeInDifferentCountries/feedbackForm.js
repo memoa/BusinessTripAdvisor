@@ -141,7 +141,7 @@ $('#feedbackModal').on('hidden.bs.modal', function (e) {
 
 function saveFeedback() {
     if ($("#feedbackForm").valid()) {
-        console.log('TagId: ' + $("#tagId").val());
+        //console.log('TagId: ' + $("#tagId").val());
         $.ajax({
             url: "/api/cityLifeFeedbacks", //+ (id === null ? "" : '/' + id),
             method: "POST", //id === null ? "POST" : "PUT",
@@ -157,6 +157,9 @@ function saveFeedback() {
                 time: $("#time").val()
             },
             success: function (responseData, textStatus, jqXHR) {
+                //console.log('responseData: ', responseData, 'textStatus: ', textStatus, 'jqXHR: ', jqXHR);
+                feedbacksInDb += responseData;
+                loadMarkers(map, [responseData]);
                 alert("Feedback saved.");
                 $("#feedbackModal").modal("hide");
                 //getCities(); // read all cities from API and put data in table

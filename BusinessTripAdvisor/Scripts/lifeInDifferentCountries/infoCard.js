@@ -23,6 +23,9 @@ function details(id) {
             map.setCenter(coords);
             map.setZoom(12);
 
+            var feedbacks = feedbacksInDb.filter(feedback => feedback.city.id === chosenCity.id);
+            loadMarkers(map, feedbacks);
+
             $("#details").show();
             $('html,body').animate(
                 {
@@ -108,8 +111,11 @@ function onSave() {
 }
 
 function onCancel() {
-    console.log(cityFilter, category);
+    //console.log(cityFilter, category);
     $("#details").hide();
+
+    map.removeObjects(map.getObjects()); // remove all markers from the map
+
     loadCities(cityFilter, category);
     $("#ponuda").show();
 }

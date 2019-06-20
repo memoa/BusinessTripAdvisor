@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BusinessTripAdvisor.ViewModels;
+using System.Data.Entity;
 
 
 namespace BusinessTripAdvisor.Controllers.Api
@@ -27,6 +28,7 @@ namespace BusinessTripAdvisor.Controllers.Api
         // GET api/cityLifeFeedbacks
         public IHttpActionResult GetCityLifeFeedbacks()
         {
+            /*
             var citiesInDb = _context.Cities.ToList();
             var tagsInDb = _context.Tags.ToList();
 
@@ -42,8 +44,12 @@ namespace BusinessTripAdvisor.Controllers.Api
                 };
                 userVMs.Add(userVM);
             }
-
-            var cityLifeFeedbacks = _context.CityLIfeFeedbacks.ToList();
+            */
+            var cityLifeFeedbacks = _context.CityLIfeFeedbacks
+                .Include(f => f.City)
+                .Include(f => f.AspNetUser)
+                .Include(f => f.Tag)
+                .ToList();
 
             var cityLifeFeedbackVMs = new List<CityLifeFeedbackViewModel>();
 
@@ -52,13 +58,17 @@ namespace BusinessTripAdvisor.Controllers.Api
                 var cityLifeFeedbackVM = new CityLifeFeedbackViewModel
                 {
                     Id = cityLifeFeedback.Id,
-                    City = citiesInDb.SingleOrDefault(c => c.Id == cityLifeFeedback.CityId),
+                    City = cityLifeFeedback.City,
                     Time = cityLifeFeedback.Time,
                     Rating = cityLifeFeedback.Rating,
                     Title = cityLifeFeedback.Title,
                     Comment = cityLifeFeedback.Comment,
-                    User = userVMs.SingleOrDefault(u => u.Id == cityLifeFeedback.AspNetUserId),
-                    Tag = tagsInDb.SingleOrDefault(t => t.Id == cityLifeFeedback.TagId),
+                    User = new UserViewModel {
+                        Id = cityLifeFeedback.AspNetUser.Id,
+                        FirstName = cityLifeFeedback.AspNetUser.FirstName,
+                        LastName = cityLifeFeedback.AspNetUser.LastName
+                    },
+                    Tag = cityLifeFeedback.Tag,
                     Latitude = cityLifeFeedback.Latitude,
                     Longitude = cityLifeFeedback.Longitude
                 };
@@ -71,12 +81,35 @@ namespace BusinessTripAdvisor.Controllers.Api
         // GET api/cityLifeFeedbacks/1
         public IHttpActionResult GetCityLifeFeedback(int id)
         {
-            var cityLifeFeedback = _context.CityLIfeFeedbacks.SingleOrDefault(c => c.Id == id);
+            var cityLifeFeedback = _context.CityLIfeFeedbacks
+                .Include(f => f.City)
+                .Include(f => f.AspNetUser)
+                .Include(f => f.Tag)
+                .SingleOrDefault(c => c.Id == id);
 
             if (cityLifeFeedback == null)
                 return NotFound();
 
-            return Ok(cityLifeFeedback);
+            var cityLifeFeedbackVM = new CityLifeFeedbackViewModel
+            {
+                Id = cityLifeFeedback.Id,
+                City = cityLifeFeedback.City,
+                Time = cityLifeFeedback.Time,
+                Rating = cityLifeFeedback.Rating,
+                Title = cityLifeFeedback.Title,
+                Comment = cityLifeFeedback.Comment,
+                User = new UserViewModel
+                {
+                    Id = cityLifeFeedback.AspNetUser.Id,
+                    FirstName = cityLifeFeedback.AspNetUser.FirstName,
+                    LastName = cityLifeFeedback.AspNetUser.LastName
+                },
+                Tag = cityLifeFeedback.Tag,
+                Latitude = cityLifeFeedback.Latitude,
+                Longitude = cityLifeFeedback.Longitude
+            };
+
+            return Ok(cityLifeFeedbackVM);
         }
 
         // POST api/cityLifeFeedbacks
@@ -86,10 +119,36 @@ namespace BusinessTripAdvisor.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
+            if (_context.Cities.SingleOrDefault(c => c.Id == cityLifeFeedback.CityId) == null)
+                return BadRequest();
+            if (_context.Users.SingleOrDefault(u => u.Id == cityLifeFeedback.AspNetUserId) == null)
+                return BadRequest();
+            if (_context.Tags.SingleOrDefault(t => t.Id == cityLifeFeedback.TagId) == null)
+                return BadRequest();
+
             _context.CityLIfeFeedbacks.Add(cityLifeFeedback);
             _context.SaveChanges();
 
-            return Created(new Uri(Request.RequestUri + "/" + cityLifeFeedback.Id), cityLifeFeedback);
+            var cityLifeFeedbackVM = new CityLifeFeedbackViewModel
+            {
+                Id = cityLifeFeedback.Id,
+                City = cityLifeFeedback.City,
+                Time = cityLifeFeedback.Time,
+                Rating = cityLifeFeedback.Rating,
+                Title = cityLifeFeedback.Title,
+                Comment = cityLifeFeedback.Comment,
+                User = new UserViewModel
+                {
+                    Id = cityLifeFeedback.AspNetUser.Id,
+                    FirstName = cityLifeFeedback.AspNetUser.FirstName,
+                    LastName = cityLifeFeedback.AspNetUser.LastName
+                },
+                Tag = cityLifeFeedback.Tag,
+                Latitude = cityLifeFeedback.Latitude,
+                Longitude = cityLifeFeedback.Longitude
+            };
+
+            return Created(new Uri(Request.RequestUri + "/" + cityLifeFeedbackVM.Id), cityLifeFeedbackVM);
         }
 
         // PUT api/cityLifeFeedbacks/1
@@ -97,6 +156,13 @@ namespace BusinessTripAdvisor.Controllers.Api
         public IHttpActionResult UpdateCityLifeFeedback(int id, CityLIfeFeedback cityLifeFeedback)
         {
             if (!ModelState.IsValid)
+                return BadRequest();
+
+            if (_context.Cities.SingleOrDefault(c => c.Id == cityLifeFeedback.CityId) == null)
+                return BadRequest();
+            if (_context.Users.SingleOrDefault(u => u.Id == cityLifeFeedback.AspNetUserId) == null)
+                return BadRequest();
+            if (_context.Tags.SingleOrDefault(t => t.Id == cityLifeFeedback.TagId) == null)
                 return BadRequest();
 
             var cityLifeFeedbackInDb = _context.CityLIfeFeedbacks.SingleOrDefault(c => c.Id == id);
@@ -116,7 +182,26 @@ namespace BusinessTripAdvisor.Controllers.Api
 
             _context.SaveChanges();
 
-            return Ok();
+            var cityLifeFeedbackVM = new CityLifeFeedbackViewModel
+            {
+                Id = cityLifeFeedbackInDb.Id,
+                City = cityLifeFeedbackInDb.City,
+                Time = cityLifeFeedbackInDb.Time,
+                Rating = cityLifeFeedbackInDb.Rating,
+                Title = cityLifeFeedbackInDb.Title,
+                Comment = cityLifeFeedbackInDb.Comment,
+                User = new UserViewModel
+                {
+                    Id = cityLifeFeedbackInDb.AspNetUser.Id,
+                    FirstName = cityLifeFeedbackInDb.AspNetUser.FirstName,
+                    LastName = cityLifeFeedbackInDb.AspNetUser.LastName
+                },
+                Tag = cityLifeFeedbackInDb.Tag,
+                Latitude = cityLifeFeedbackInDb.Latitude,
+                Longitude = cityLifeFeedbackInDb.Longitude
+            };
+
+            return Ok(cityLifeFeedbackInDb);
         }
 
         // DELETE api/cityLifeFeedbacks/1
