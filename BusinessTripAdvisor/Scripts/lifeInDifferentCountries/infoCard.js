@@ -23,7 +23,19 @@ function details(id) {
             map.setCenter(coords);
             map.setZoom(12);
 
-            var feedbacks = feedbacksInDb.filter(feedback => feedback.city.id === chosenCity.id);
+            // Filter feedbacks based on which category button is toggled
+            var feedbacks = feedbacksInDb.filter(
+                feedback => feedback.city.id ===
+                    chosenCity.id &&
+                    (category === 'All' ?
+                        true :
+                        feedback.tag.name === category
+                    )
+            );
+            //var feedbacks = feedbacksInDb.filter(feedback => feedback.city.id === chosenCity.id);
+            var feedbacksContainer = $('#feedbackWrapper');
+            loadFeedbackCards(feedbacksContainer, feedbacks);
+
             loadMarkers(map, feedbacks);
 
             $("#details").show();
@@ -40,6 +52,7 @@ function details(id) {
     }
     // Add new city
     else {
+        onCancel();
         chosenCity = {
             name: 'Choose city',
             description: '',
@@ -115,6 +128,7 @@ function onCancel() {
     $("#details").hide();
 
     map.removeObjects(map.getObjects()); // remove all markers from the map
+    $('#feedbackWrapper').empty();
 
     loadCities(cityFilter, category);
     $("#ponuda").show();

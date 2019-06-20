@@ -82,21 +82,10 @@
 
         <div class="cardTextInfo">
             <textarea id="subject" name="subject" placeholder="Write something.." readonly></textarea>
-            @*<span>
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <button class="levo" onclick="onSave();">Save</button>
-                    }
-                    <button class="desno" onclick="onCancel();">Cancel</button>
-                </span>
-                @if (User.IsInRole("Administrator"))
-                {
-                    <button id="deleteBtn" class="btn btn-danger" onclick="onDelete();">Delete</button>
-                }*@
         </div>
 
     </div>
-
+    <div id="feedbackWrapper" class="card-f"></div>
 </div>
 
 <!-- END - Info Card - City Details -->

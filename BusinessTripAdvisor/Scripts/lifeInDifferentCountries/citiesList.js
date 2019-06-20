@@ -54,36 +54,8 @@ function loadCities(cityFilter, category) {
                             );
                             // Add wrapper for feedbacks for current city
                             $('#ponuda').append(`<div id="feedbackWrapper${city.id}" class="card-f">`);
-
-                            // Add feedbacks in wrapper
-                            cityFeedbacks.forEach(function (feedback) {
-                                var time = new Date(feedback.time);
-                                $('#feedbackWrapper' + city.id).append(`
-                                    <div class="card radius shadowDepth1">
-                                        <div class="card__content card__padding">
-                                            <div class="card__meta">
-                                                <a href="#">${feedback.tag.name}</a>
-                                                <time>${time.toLocaleDateString()}</time>
-                                            </div>
-                                            <article class="card__article">
-                                                <h5><a href="#">${feedback.title}</a></h5>
-                                                <p>${feedback.comment}</p>
-                                            </article>
-                                        </div>
-                                        <hr>
-                                        <div class="card__action">
-                                            <div class="card__author">
-                                                <img src="http://lorempixel.com/40/40/sports/" alt="user">
-                                                <div class="card__author-content">
-                                                    By: <a href="#">${feedback.user.firstName + ' ' + feedback.user.lastName}</a>
-                                                    <p>Ocena : ${feedback.rating}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `);
-                            });
-
+                            var feedbacksContainer = $('#feedbackWrapper' + city.id);
+                            loadFeedbackCards(feedbacksContainer, cityFeedbacks);
                             $('#ponuda').append('</div><hr/>');
                         });
                     }
@@ -109,4 +81,36 @@ function loadCities(cityFilter, category) {
         }
     });
 
+}
+
+function loadFeedbackCards(feedbacksContainer, feedbacks) {
+    console.log(feedbacksContainer, feedbacks);
+    // Add feedbacks in wrapper
+    feedbacks.forEach(function (feedback) {
+        var time = new Date(feedback.time);
+        feedbacksContainer.append(`
+            <div class="card radius shadowDepth1">
+                <div class="card__content card__padding">
+                    <div class="card__meta">
+                        <a href="#">${feedback.tag.name}</a>
+                        <time>${time.toLocaleDateString()}</time>
+                    </div>
+                    <article class="card__article">
+                        <h5><a href="#">${feedback.title}</a></h5>
+                        <p>${feedback.comment}</p>
+                    </article>
+                </div>
+                <hr>
+                <div class="card__action">
+                    <div class="card__author">
+                        <img src="http://lorempixel.com/40/40/sports/" alt="user">
+                        <div class="card__author-content">
+                            By: <a href="#">${feedback.user.firstName + ' ' + feedback.user.lastName}</a>
+                            <p>Ocena : ${feedback.rating}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `);
+    });
 }
