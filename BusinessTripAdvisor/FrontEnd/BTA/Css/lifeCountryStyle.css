@@ -165,7 +165,7 @@ p{
     overflow: hidden;
     position: relative;
     text-decoration: none;
-
+    font-size: 0.8rem;
 }
 .category .middle .but{
     text-decoration: none;
