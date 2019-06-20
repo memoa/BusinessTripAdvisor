@@ -119,7 +119,7 @@
       });
         $("#spinner").hide();
 
-        loadCities();
+        loadCities(null, "All");
     });
 
     //scrolling effect
@@ -144,8 +144,10 @@
 
       var citiesInDb;
       var feedbacksInDb;
+      var cityFilter = null;
+      var category = 'All';
 
-      function loadCities(category) {
+      function loadCities(cityFilter, category) {
           $('#ponuda').empty();
 
           // Get all feedbacks from database
@@ -164,9 +166,9 @@
                           if (responseData.length == 0)
                               $("#ponuda").append("<p>There are no cities in database.</p>");
                           else {
-                              for (var i = 0; i < responseData.length; ++i) {
-                                  var city = responseData[i];
-
+                              if (cityFilter !== null)
+                                  responseData = responseData.filter(city => city.name === cityFilter);
+                              responseData.forEach(function (city) {
                                   // Add new card for each city in database
                                   $("#ponuda").append(`
                                     <div id="card">
@@ -188,7 +190,7 @@
                                   var cityFeedbacks = feedbacksInDb.filter(
                                       feedback => feedback.city.id ===
                                           city.id &&
-                                          (category === undefined ?
+                                          (category === 'All' ?
                                             true :
                                             feedback.tag.name === category
                                           )
@@ -232,8 +234,7 @@
                                   });
 
                                   $('#ponuda').append('</div><hr/>');
-
-                              }
+                              });
                           }
                       },
                       error: function () {
@@ -256,22 +257,25 @@
           if (typedCity.length > 2) {
               var filteredCities = citiesInDb.filter(city => city.name.toUpperCase().indexOf(typedCity.toUpperCase()) !== -1);
               filteredCities.forEach(function (city) { 
-                  $('#placesSearch').append(`<li class="liIzbor" onclick="filterCity(${city.id})">${city.name}</li>`);
+                  $('#placesSearch').append(`<li class="liIzbor" onclick="filterCity('${city.name}')">${city.name}</li>`);
               });
           }
       }
 
-      function filterCity(id) {
-          
+      function filterCity(cityName) {
+          $('#placesSearch').empty();
+          $('#town').val(cityName);
+          cityFilter = cityName;
+
+          loadCities(cityFilter, category);
       }
 
       $('.middle .but').click(function () {
           $('.middle .but').removeClass('button-clicked');
           $(this).addClass('button-clicked');
 
-          var category = $(this).attr('value');
-          loadCities(category);
-
+          category = $(this).attr('value');
+          loadCities(cityFilter, category);
       });
   </script>
 </body>
