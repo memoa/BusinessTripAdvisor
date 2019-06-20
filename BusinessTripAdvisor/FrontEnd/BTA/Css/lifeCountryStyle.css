@@ -205,6 +205,10 @@ p{
     top: -10%;
     left: -10%;
 }
+.button-clicked {
+    background: white;
+    color: #0e89a5;
+}
 @keyframes aaa{
     0%{
         left: -110%;

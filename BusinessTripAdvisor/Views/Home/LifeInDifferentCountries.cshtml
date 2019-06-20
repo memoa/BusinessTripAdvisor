@@ -33,63 +33,62 @@
     <script src="https://kit.fontawesome.com/69c4fe908d.js"></script>
 </head>
 <body>
-  <div class="komplet">
-    <header>
-      @Html.Partial("_NavBar")
-      <div class="choosecity">
-          <span>
-              <p>Where to go ?</p>
-              <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list" onkeydown="citiesInDbAutocomlete();">
-              <ul id="placesSearch" class="list-group"></ul>
+    <div class="komplet">
+        <header>
+            @Html.Partial("_NavBar")
+            <div class="choosecity">
+                <span>
+                    <p>Where to go ?</p>
+                    <input type="text" id="town" placeholder="Choose city" aria-autocomplete="list" onkeydown="citiesInDbAutocomlete();">
+                    <ul id="placesSearch" class="list-group"></ul>
 
-          </span>
-      </div>
-    </header>
+                </span>
+            </div>
+        </header>
 
-    <div class="category">
-      <div class="middle">
-        <a class="but" href="#">
-          <i class="fas fa-hamburger"></i>
-          <p class="ctg">Food</p>
+        <div class="category">
+            <div class="middle">
+                <button class="but" id="prviVisited">
+                    <i class="fas fa-hamburger"></i>
+                    Food
+                </button>
+                <button class="but" id="drugiVisited">
+                    <i class="fas fa-user-shield"></i>
+                    Safety
+                </button>
+                <button class="but">
+                    <i class="fas fa-university"></i>
+                    Local Culture
+                </button>
+                <button class="but">
+                    <i class="fas fa-bus"></i>
+                    Local Transport
+                </button>
+                <button class="but">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    Sightseeing
+                </button>
+            </div>
+        </div>
+        <div class="statment">
+            <h1>Discover your city with</h1><br>
+            <h1>Bussines Trip Advisor</h1>
+            <p class="fewwords">
+                Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+            </p>
+        </div>
 
-        </a>
-        <a class="but" href="#">
-          <i class="fas fa-user-shield"></i>
-          <p class="ctg">Safety</p>
-        </a>
-        <a class="but" href="#">
-          <i class="fas fa-university"></i>
-          <p class="ctg">Local Culture</p>
-        </a>
-        <a class="but" href="#">
-          <i class="fas fa-bus"></i>
-          <p class="ctg">Local Transport</p>
-        </a>
-        <a class="but" href="#">
-            <i class="fa fa-eye" aria-hidden="true"></i>
-            <p class="ctg">Sightseeing</p>
-        </a>
-      </div>
+        <!-- Index page - All cities listed -->
+
+        <div id="ponuda"></div>
+
+        <!-- END - Index page - All cities listed -->
+
+        @Html.Partial("~/Views/Home/LifeInDifferentCountries/_InfoCard.cshtml")
+
+
+        @Html.Partial("_Footer")
     </div>
-    <div class="statment">
-      <h1>Discover your city with</h1><br>
-      <h1>Bussines Trip Advisor</h1>
-      <p class="fewwords">
-        Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-      </p>
-    </div>
-
-    <!-- Index page - All cities listed -->
-
-    <div id="ponuda"></div>
-
-    <!-- END - Index page - All cities listed -->
-
-    @Html.Partial("~/Views/Home/LifeInDifferentCountries/_InfoCard.cshtml")
-
-
-    @Html.Partial("_Footer")
-  </div>
   @Html.Partial("~/Views/Home/LifeInDifferentCountries/_Feedback.cshtml")
 
   @Scripts.Render("~/bundles/jquery")
@@ -243,6 +242,11 @@
       function filterCity(id) {
           
       }
+
+      $('.middle .but').click(function () {
+          $('.middle .but').removeClass('button-clicked');
+          $(this).addClass('button-clicked');
+      });
   </script>
 </body>
 </html>
